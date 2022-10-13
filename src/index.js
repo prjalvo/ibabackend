@@ -8,6 +8,12 @@ import './errors';
 import scheduler from './scheduler';
 import path from 'path';
 import cors from 'cors';
+
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
+
 global.appRoot = path.resolve(__dirname);
 
 //const PORT = config.app.port;

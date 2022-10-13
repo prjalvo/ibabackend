@@ -1,7 +1,6 @@
 {
     "plugins": [
-        "@babel/plugin-transform-runtime",
-        "@babel/plugin-syntax-import-meta"
+        "@babel/plugin-transform-runtime"
     ],
     "presets": ["@babel/env"],
     "ignore": [

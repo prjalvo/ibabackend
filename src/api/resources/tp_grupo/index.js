@@ -1,0 +1,1 @@
+export { tp_grupoRouter } from './tp_grupo.router';

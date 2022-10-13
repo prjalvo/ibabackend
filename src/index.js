@@ -10,7 +10,7 @@ import path from 'path';
 import cors from 'cors';
 global.appRoot = path.resolve(__dirname);
 
-const PORT = config.app.port;
+//const PORT = config.app.port;
 const app = appManager.setup(config);
 
 /*cors handling*/

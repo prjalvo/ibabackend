@@ -21,7 +21,7 @@ app.use(cors({
 app.options('*', cors());
 
 /* Route handling */
-app.use('./netlify/functions/api', restRouter);
+app.use('/api', restRouter);
 // app.use('/', webRouter);
 
 app.use((req, res, next) => {
@@ -53,6 +53,6 @@ db.sequelize.authenticate().then(function () {
 });
 
 /* Start Listening service */
-//app.listen(PORT, () => {
-//	console.log(`Server is running at PORT http://localhost:${PORT}`);
-//});
+app.listen(process.env.PORT, () => {
+	console.log(`Server is running at PORT http://localhost:${PORT}`);
+});

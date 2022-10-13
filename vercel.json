@@ -3,11 +3,11 @@
   "public": false,
   "builds": [
     { "src": "package.json", "use": "@now/static-build" },
-    { "src": "/api/server.js", "use": "@now/node-server" }
+    { "src": "src/index.js", "use": "@now/node-server" }
   ],
   "routes": [
-    { "src": "/api/.*", "dest": "/api/server.js" },
+    { "src": "/api/.*", "dest": "src/index.js" },
     { "src": "^/static/(.*)", "dest": "/static/$1" },
-    { "src": ".*", "dest": "/index.html" }
+    { "src": ".*", "dest": "/index.js" }
   ]
 }

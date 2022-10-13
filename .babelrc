@@ -1,0 +1,11 @@
+{
+    "plugins": [
+        "@babel/plugin-transform-runtime",
+        "importMeta"
+    ],
+    "presets": ["@babel/env"],
+    "ignore": [
+        "node_modules",
+        "src/public"
+    ]
+}

@@ -53,6 +53,6 @@ db.sequelize.authenticate().then(function () {
 });
 
 /* Start Listening service */
-app.listen(process.env.PORT, () => {
-	console.log(`Server is running at PORT http://localhost:${PORT}`);
+app.listen(5000, () => {
+	console.log(`Server is running at PORT http://localhost:`);
 });

@@ -18,8 +18,7 @@
       "src/public/*"
     ]
   },
-  "devDependencies": {
-    "@babel/core": "^7.0.0",
+  "devDependencies": {   
     "@babel/polyfill": "^7.0.0",
     "@babel/runtime": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",

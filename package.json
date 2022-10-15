@@ -37,8 +37,7 @@
     "babel-jest": "^23.4.2",
     "nodemon": "^1.18.4"
   },  
-"jest": {
-    ...
+"jest": {    
     "transform": {
       "^.+\\.jsx$": "babel-jest",
       "^.+\\.js$": "babel-jest"

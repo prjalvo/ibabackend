@@ -31,7 +31,7 @@
     "@babel/runtime": "^7.2.0",
     "aws-sdk": "^2.700.0",
     "babel-cli": "^7.0.0-0",
-    "babel-core": "^7.0.0-bridge.0",
+    "babel-core": "^7.0.0-beta.41",
     "babel-node": "^0.0.1-security",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",

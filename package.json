@@ -4,7 +4,7 @@
   "description": "groffers-nepal",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js --exec babel-node --presets @babel/env",
+    "start": "nodemon src/index.js --exec babel-node --presets @babel/env",
     "build": "babel src -d dist --source-maps inline --copy-files",
     "serve": "node dist/index.js",
     "sequelize": "sequelize"
@@ -18,34 +18,20 @@
       "src/public/*"
     ]
   },
-  "devDependencies": {   
-    "@babel/polyfill": "^7.0.0",
-    "@babel/runtime": "^7.0.0",
-    "@babel/plugin-proposal-class-properties": "^7.0.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
-    "@babel/plugin-transform-async-to-generator": "^7.0.0",
-    "@babel/plugin-transform-object-assign": "^7.0.0",
+  "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "7.0.0-beta.41",
+    "@babel/node": "^7.18.5",
     "@babel/plugin-transform-runtime": "^7.2.0",
-    "@babel/preset-env": "^7.0.0",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/standalone": "^7.0.0",
-    "babel-eslint": "^10.0.1",
-    "babel-jest": "^23.4.2", 
-    "babel-loader": "^8.0.4",
-    "jest": "^23.6.0",
-    "babel-jest": "^24.8.0",    
+    "@babel/preset-env": "^7.18.2",
     "nodemon": "^1.18.4"
-  },  
-"jest": {    
-    "transform": {
-      "^.+\\.jsx$": "babel-jest",
-      "^.+\\.js$": "babel-jest"
-    }
- },
+  },
   "dependencies": {
+    "@babel/plugin-syntax-import-meta": "^7.10.4",
     "@babel/runtime": "^7.2.0",
     "aws-sdk": "^2.700.0",
-    "babel-cli": "^7.0.0-0",      
+    "babel-cli": "^7.0.0-0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-node": "^0.0.1-security",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",

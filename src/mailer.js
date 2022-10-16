@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
-import config from './config';
-import { db } from './models';
+import config from './config/index.js';
+import { db } from './models/index.js';
 
 export default {
     sendEmployeePassword: (email,otp) => {

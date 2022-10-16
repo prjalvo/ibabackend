@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { db } from './models/index.js';
 import { restRouter } from './api/index.js';
-import config from './config/index.js';
+import config from './config/app.js';
 import appManager from './app.js';
 //import kue from './kue';
 import './errors.js';

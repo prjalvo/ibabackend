@@ -11,7 +11,7 @@ import { formularioRouter } from './resources/formulario/index.js'
 import { grupo_membrosRouter } from './resources/grupo_membros/index.js'
 import { comprometimentosRouter } from './resources/comprometimentos/index.js'
 import { pessoaRouter } from './resources/pessoa/index.js'
-import { customerRouter } from './resources/customer/index.js';
+
 
  
 export const restRouter = express.Router();

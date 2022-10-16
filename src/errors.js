@@ -1,4 +1,13 @@
 import stackTrace from 'stack-trace';
+import { fileURLToPath } from 'url';
+import path from 'path';
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
 
 global.RequestError =  class RequestError extends Error {
     copyObject(requestError) {

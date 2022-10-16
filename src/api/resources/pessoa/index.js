@@ -1,1 +1,0 @@
-export { pessoaRouter } from './pessoa.router';

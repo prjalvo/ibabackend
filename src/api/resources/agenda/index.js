@@ -1,1 +1,0 @@
-export { agendaRouter } from './agenda.router';

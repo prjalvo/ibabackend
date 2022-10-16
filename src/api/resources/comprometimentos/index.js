@@ -1,1 +1,0 @@
-export { comprometimentosRouter } from './comprometimentos.router';

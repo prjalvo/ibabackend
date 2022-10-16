@@ -1,1 +1,0 @@
-export { faixaetariaRouter } from './faixaetaria.router';

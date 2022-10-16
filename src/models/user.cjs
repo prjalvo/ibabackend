@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const user = sequelize.define('User', {
+  const user = sequelize.define('user', {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     address: DataTypes.STRING,
@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     id_cargo: DataTypes.INTEGER
   }, {});
 
-  User.associate = function(models) {
+  user.associate = function(models) {
     models.user.belongsTo(models.cargo, { foreignKey: 'id_cargo' });
     models.user.hasMany(models.grupos, { foreignKey: 'id' });
   };

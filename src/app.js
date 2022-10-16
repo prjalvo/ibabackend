@@ -10,6 +10,12 @@ import helmet from 'helmet';
 import rfs from 'rotating-file-stream';
 import './passport.js';
 
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
+
+
 export default {
     setup: (config ) => {
         const app = express();

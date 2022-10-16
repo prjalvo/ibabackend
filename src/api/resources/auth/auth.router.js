@@ -1,8 +1,8 @@
 import express from 'express';
-import authController from './auth.controller';
-import { localStrategy , jwtStrategy} from '../../../middleware/strategy';
-import { sanitize } from '../../../middleware/sanitizer';
-import { validateBody, schemas } from '../../../middleware/validator';
+import authController from './auth.controller.js';
+import { localStrategy , jwtStrategy} from '../../../middleware/strategy.js';
+import { sanitize } from '../../../middleware/sanitizer.js';
+import { validateBody, schemas } from '../../../middleware/validator.js';
 
 export const authRouter = express.Router();
 authRouter.route('/register').post(sanitize(),/* validateBody(schemas.registerSchema), */ authController.addUser);

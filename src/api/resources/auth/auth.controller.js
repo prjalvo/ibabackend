@@ -1,10 +1,10 @@
-import { db } from '../../../models';
+import { db } from '../../../models/index.js';
 import JWT from 'jsonwebtoken';
-import mailer from '../../../mailer';
-import config from '../../../config';
+import mailer from '../../../mailer.js';
+import config from '../../../config/index.js';
 import bcrypt from 'bcrypt-nodejs';
 import speakeasy from 'speakeasy';
-import { validateEmail } from './../../../functions'
+import { validateEmail } from './../../../functions.js'
 
 var JWTSign = function (user, date) {
     return JWT.sign({

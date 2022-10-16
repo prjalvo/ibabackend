@@ -25,13 +25,13 @@ export default {
             path: path.join(__dirname, '..', 'log')
         })
         
-        app.use(logger(config.app.log, { stream: accessLogStream }));
+        app.use(logger(config.log, { stream: accessLogStream }));
 
         app.use(bodyParser.urlencoded({ extended: true }));
         app.use(bodyParser.json({limit: '50mb'}));
 
-        app.use(cookieParser(config.app.secret));
-        app.use(session({ secret: config.app.secret ,resave: true, saveUninitialized:true}));
+        app.use(cookieParser(config.secret));
+        app.use(session({ secret: config.secret ,resave: true, saveUninitialized:true}));
         app.use("/photo", express.static(path.join(__dirname, 'public/images')));
         app.use(passport.initialize());
         app.use(passport.session());

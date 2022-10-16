@@ -1,8 +1,8 @@
 'use strict';
-import { sequelize, DataTypes } from 'sequelize';
+import { Sequelize, DataTypes } from 'sequelize';
 
-module.exports = (sequelize, DataTypes) => {
-  const Address = sequelize.define('Address', {
+module.exports = (Sequelize, DataTypes) => {
+  const Address = Sequelize.define('Address', {
     fullname: DataTypes.STRING,
     phone: DataTypes.STRING,
     orderId: DataTypes.INTEGER,

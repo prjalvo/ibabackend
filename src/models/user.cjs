@@ -12,9 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     id_cargo: DataTypes.INTEGER
   }, {});
 
-  user.associate = function(models) {
-    models.user.belongsTo(models.cargo, { foreignKey: 'id_cargo' });
-    models.user.hasMany(models.grupos, { foreignKey: 'id' });
+  user.associate = function(models) {   
   };
 
   return user;

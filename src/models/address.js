@@ -1,5 +1,5 @@
 'use strict';
-import { sequelize, DataTypes } 'sequelize';
+import { sequelize, DataTypes } from 'sequelize';
 
 module.exports = (sequelize, DataTypes) => {
   const Address = sequelize.define('Address', {

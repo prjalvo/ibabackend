@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "groffers-nepal",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon src/index.js --exec babel-node --presets @babel/env",
     "build": "babel src -d dist --source-maps inline --copy-files",

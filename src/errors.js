@@ -5,10 +5,6 @@ const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__filename);
 
-const __filename = fileURLToPath(import.meta.url);
-
-const __dirname = path.dirname(__filename);
-
 global.RequestError =  class RequestError extends Error {
     copyObject(requestError) {
         this.errorList = requestError.errorList;

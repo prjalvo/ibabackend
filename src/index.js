@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { db } from './models.js';
+import { db } from './models/index.js';
 import { restRouter } from './api';
 import config from './config';
 import appManager from './app';

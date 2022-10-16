@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "groffers-nepal",
   "main": "index.js",
-  "type": "module",
+  "type": "CommonJS",
   "scripts": {
     "start": "node src/index.js --experimental-specifier-resolution=node --exec babel-node --presets @babel/env",
     "build": "babel src -d dist --source-maps inline --copy-files",

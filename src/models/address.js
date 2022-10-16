@@ -1,4 +1,6 @@
 'use strict';
+import fetch from 'node-fetch'
+
 module.exports = (sequelize, DataTypes) => {
   const Address = sequelize.define('Address', {
     fullname: DataTypes.STRING,

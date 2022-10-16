@@ -3,8 +3,8 @@ import { Strategy as JwtStrategy } from 'passport-jwt';
 import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from 'bcrypt-nodejs';
 
-import config from './config';
-import { db } from './models';
+import config from './config/index.js';
+import { db } from './models/index.js';
 
 var TokenExtractor = function(req){
     var token = null;

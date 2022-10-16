@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+  const user = sequelize.define('User', {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     address: DataTypes.STRING,
@@ -17,5 +17,5 @@ module.exports = (sequelize, DataTypes) => {
     models.user.hasMany(models.grupos, { foreignKey: 'id' });
   };
 
-  return User;
+  return user;
 };

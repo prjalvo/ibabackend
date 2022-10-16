@@ -1,5 +1,5 @@
 import { db } from '../../../models/index.js';
-var Sequelize = require("sequelize");
+import Sequelize from "sequelize"
 
 export default {
 

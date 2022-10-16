@@ -1,5 +1,5 @@
 'use strict';
-import fetch from 'node-fetch'
+import { sequelize, DataTypes } 'sequelize';
 
 module.exports = (sequelize, DataTypes) => {
   const Address = sequelize.define('Address', {

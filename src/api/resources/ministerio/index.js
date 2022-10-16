@@ -1,0 +1,1 @@
+export { ministerioRouter } from './ministerio.router.js';

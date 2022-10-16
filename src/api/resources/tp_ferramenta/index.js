@@ -1,0 +1,1 @@
+export { tp_ferramentaRouter } from './tp_ferramenta.router.js';

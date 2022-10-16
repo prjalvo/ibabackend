@@ -1,0 +1,1 @@
+export { grupo_membrosRouter } from './grupo_membros.router.js';

@@ -1,0 +1,1 @@
+export { faixaetariaRouter } from './faixaetaria.router.js';

@@ -28,7 +28,7 @@ let sequelize = new Sequelize(config.database, config.username, config.password,
 
 readdirSync(__dirname)
     .filter(file => {
-        return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.cjs');
+        return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-4) === '.cjs');
     })
     .forEach(file => {
         const model = sequelize['import'](join(__dirname, file));

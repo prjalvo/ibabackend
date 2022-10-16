@@ -8,12 +8,12 @@ import { validateEmail } from './../../../functions.js'
 
 var JWTSign = function (user, date) {
     return JWT.sign({
-        iss: config.app.name,
+        iss: config.name,
         sub: user.id,
         iam : user.type,
         iat: date.getTime(),
         exp: new Date().setMinutes(date.getMinutes() + 30)
-    }, config.app.secret);
+    }, config.secret);
 }
 
 function generateOtp() {
@@ -143,7 +143,7 @@ export default {
         var token = JWTSign(req.user, date);
         res.cookie('XSRF-token',     token, {
             expire: new Date().setMinutes(date.getMinutes() + 30),
-            httpOnly: true, secure: config.app.secure
+            httpOnly: true, secure: config.secure
         });
         
         return res.status(200).json({ success: true ,token,role: req.user.role,firstName: req.user.firstName,id_lider: req.user.id});

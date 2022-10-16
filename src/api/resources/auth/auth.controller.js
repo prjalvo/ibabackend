@@ -91,7 +91,7 @@ export default {
     },
 
      async getAllUserList(req,res,next){
-        db.User.findAll({
+        db.user.findAll({
             include: [{ model: db.cargo, attributes: ["id", "descricao"], }]
         })
         .then(user => {

@@ -1,19 +1,19 @@
 import { db } from '../../../models/index.js';
 import JWT from 'jsonwebtoken';
 import mailer from '../../../mailer.js';
-import config from '../../../config/index.js';
+import config from '../../../config/app.js';
 import bcrypt from 'bcrypt-nodejs';
 import speakeasy from 'speakeasy';
 import { validateEmail } from './../../../functions.js'
 
 var JWTSign = function (user, date) {
     return JWT.sign({
-        iss: config.app.name,
+        iss: config.name,
         sub: user.id,
         iam : user.type,
         iat: date.getTime(),
         exp: new Date().setMinutes(date.getMinutes() + 30)
-    }, config.app.secret);
+    }, config.secret);
 }
 
 function generateOtp() {

@@ -1,7 +1,7 @@
 import { readdirSync } from 'fs';
 import { basename as _basename, join } from 'path';
 import Sequelize from 'sequelize';
-import config from '../config/index.js';
+import config from '../config/db.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);

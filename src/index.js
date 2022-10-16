@@ -4,7 +4,7 @@ import { restRouter } from './api/index.js';
 import config from './config/index.js';
 import appManager from './app.js';
 //import kue from './kue';
-import './errors';
+import './errors.js';
 import scheduler from './scheduler.js';
 import path from 'path';
 import cors from 'cors';

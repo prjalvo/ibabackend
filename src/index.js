@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { db } from './models/index.js';
-import { restRouter } from './api';
+import { restRouter } from './api/index.js';
 import config from './config';
 import appManager from './app';
 //import kue from './kue';

@@ -10,7 +10,7 @@ var data = {}
 
 fs.readdirSync(normalizedPath).forEach(function(file) {
     if(file != 'index.js'){
-        data[file.split('.')[0]] = require(path.join(__dirname, file))['default'];
+        data[file.split('.')[0]] = import(path.join(__dirname, file))['default'];
     }
 });
 

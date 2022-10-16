@@ -11,10 +11,10 @@ const __dirname = path.dirname(__filename);
 const basename = _basename(__filename);
 const db = {};
 
-let sequelize = new Sequelize(config.db.database, config.db.username, config.db.password, {
-    host: config.db.host,
-    port: config.db.port,
-    dialect: config.db.connection,
+let sequelize = new Sequelize(config.database, config.username, config.password, {
+    host: config.host,
+    port: config.port,
+    dialect: config.connection,
     logging: false,
     underscored: true,
     pool: {

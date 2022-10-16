@@ -1,6 +1,6 @@
 import passport from 'passport';
 import JWT from 'jsonwebtoken';
-import config from '../config';
+import config from '../config/index.js';
 
 var JWTSign = function(iss, user, date){
     return JWT.sign({

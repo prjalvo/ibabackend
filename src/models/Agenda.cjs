@@ -27,6 +27,11 @@ module.exports = (sequelize, DataTypes) => {
   agendas.associate = function(models) {   
     models.agendas.belongsTo(models.user, {as:'user_lider',foreignKey: 'id_lider' }); 
     models.agendas.belongsTo(models.grupos, { foreignKey: 'id_celula' });      
+    models.agendas.belongsTo(models.user, {as:'user_colider', foreignKey: 'id_colider' });    
+    models.agendas.belongsTo(models.user, {as:'user_supervisor', foreignKey: 'id_supervisor' });      
+    models.agendas.belongsTo(models.user, {as:'user_area', foreignKey: 'id_area' });      
+    models.agendas.belongsTo(models.user, {as:'user_distrito', foreignKey: 'id_distrito' });      
+    models.agendas.belongsTo(models.user, {as:'user_setor', foreignKey: 'id_setor' });     
   };
   return agendas;
 };

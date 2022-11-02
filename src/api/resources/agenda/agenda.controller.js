@@ -53,7 +53,12 @@ export default {
             db.agendas.findAll({
                 order: [['createdAt', 'DESC']],
                 include: [{ model: db.grupos, attributes: ["id", "descricao"] },           
-                { model: db.user, as:"user_lider",attributes: ["id", "firstName"] },                
+                { model: db.user, as:"user_lider",attributes: ["id", "firstName"] }, 
+                { model: db.user, as:"user_colider",attributes: ["id", "firstName"] },
+                { model: db.user, as:"user_supervisor",attributes: ["id", "firstName"] },
+                { model: db.user, as:"user_setor",attributes: ["id", "firstName"] },
+                { model: db.user, as:"user_area",attributes: ["id", "firstName"] },
+                { model: db.user, as:"user_distrito",attributes: ["id", "firstName"] }          
                ],
                 
             })

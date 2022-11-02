@@ -82,8 +82,7 @@ export default {
                  
             ], 
                 
-               include: [{ model: db.grupos, attributes: ["id", "descricao","id_lider","id_colider","id_supervisor","id_setor","id_area","id_distrito"] },           
-                { model: db.user, as:"user_lider",attributes: ["id", "firstName"] },                
+               include: [{ model: db.grupos, attributes: ["id", "descricao","id_lider","id_colider","id_supervisor","id_setor","id_area","id_distrito"] }
                ],
                 
             })

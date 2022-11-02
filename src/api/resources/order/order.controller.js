@@ -46,7 +46,7 @@ export default {
     async getAllMembroCount(req, res, next) {
         try {
             db.grupo_membros.findAll({
-                attributes: ['id', [Sequelize.fn('COUNT', Sequelize.col('id')), 'total']],                                
+                attributes: ['nome', [Sequelize.fn('COUNT', Sequelize.col('nome')), 'total']],                                
                    include: [{ model: db.grupos, attributes: ["id_lider","id_colider","id_supervisor","id_setor","id_area","id_distrito"] }
                ],
             })

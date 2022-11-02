@@ -50,9 +50,7 @@ export default {
                    include: [{ model: db.grupos, attributes: ["id", "descricao","id_lider","id_colider","id_supervisor","id_setor","id_area","id_distrito"] }
                ],
             })
-                .then(list => {   include: [{ model: db.grupos, attributes: ["id", "descricao","id_lider","id_colider","id_supervisor","id_setor","id_area","id_distrito"] },           
-                { model: db.user, as:"user_lider",attributes: ["id", "firstName"] },                
-               ],
+                .then(list => {   
                     res.status(200).json({ 'success': true, data: list });
                 })
                 .catch(function (err) {

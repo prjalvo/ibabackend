@@ -47,7 +47,7 @@ export default {
         try {
             db.grupo_membros.findAll({
                 attributes: ['id', [Sequelize.fn('COUNT', Sequelize.col('id')), 'total']],                                
-                   include: [{ model: db.grupos, attributes: ["id", "descricao","id_lider","id_colider","id_supervisor","id_setor","id_area","id_distrito"] }
+                   include: [{ model: db.grupos, attributes: ["id_lider","id_colider","id_supervisor","id_setor","id_area","id_distrito"] }
                ],
             })
                 .then(list => {   

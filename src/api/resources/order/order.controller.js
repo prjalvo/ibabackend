@@ -28,7 +28,7 @@ export default {
     async getAllGrupoCount(req, res, next) {
         try {
             db.grupos.findAll({
-                attributes: ['id'],                                
+                attributes: ["id","id_lider","id_colider","id_supervisor","id_setor","id_area","id_distrito"],                                
                 
             })
                 .then(list => {

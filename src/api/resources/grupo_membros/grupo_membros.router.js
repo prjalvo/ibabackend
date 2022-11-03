@@ -6,7 +6,7 @@ import { jwtStrategy } from '../../../middleware/strategy.js';
 
 
 export const grupo_membrosRouter = express.Router();
-grupo_membrosRouter.route('/add').post(sanitize(),jwtStrategy, grupo_membrosController.addGrupo);
+grupo_membrosRouter.route('/add').post(sanitize(),grupo_membrosController.addGrupo);
 grupo_membrosRouter.route('/getAllGrupoMembrosList').get(sanitize(), grupo_membrosController.getAllGrupoList);
 grupo_membrosRouter.route('/getAllGrupoMembrosListID').get(sanitize(), grupo_membrosController.getAllGrupoMembrosListID);
 

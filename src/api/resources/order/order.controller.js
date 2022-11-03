@@ -28,7 +28,7 @@ export default {
     async getAllGrupoCount(req, res, next) {
         try {
             db.grupos.findAll({
-                attributes: ['id', [Sequelize.fn('COUNT', Sequelize.col('id')), 'total']],                                
+                attributes: ['id'],                                
                 
             })
                 .then(list => {

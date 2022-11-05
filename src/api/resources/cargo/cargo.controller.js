@@ -5,13 +5,13 @@ export default {
 
     async index(req, res, next) {
         try {
-            const { descricao } = req.body;
+            const { descricao,sup,periodo } = req.body;
             db.cargo.findOne({ where: { descricao: descricao } })
                 .then(data => {
                     if (data) {
-                        return db.cargo.update({ descricao:descricao }, { where: { id: data.id } })
+                        return db.cargo.update({ descricao:descricao,sup:sup,periodo:periodo }, { where: { id: data.id } })
                     }
-                    return db.cargo.create({ descricao: descricao})
+                    return db.cargo.create({ descricao: descricao,sup:sup,periodo:periodo})
                 })
                 .then(cargo => {
                     res.status(200).json({ 'success': true, msg: "Successfully inserted location" });
@@ -27,7 +27,7 @@ export default {
 
     async List(req, res, next) {
         try {
-            db.cargo.findAll({attributes: ["id", "descricao"]})
+            db.cargo.findAll({attributes: ["id", "descricao","sup","periodo"]})
             .then(list => {
                 res.status(200).json({ 'success': true,data:list});
             })
@@ -80,12 +80,14 @@ export default {
 
     async getcargoUpdate(req, res, next) {
         try {
-            const{ id,descricao } = req.body
+            const{ id,descricao,sup,periodo } = req.body
             db.cargo.findOne({ where: { id: parseInt(id) } })
             .then(cargo => {
                 if (cargo) {
                     return db.cargo.update({
-                        descricao: descricao 
+                        descricao: descricao,
+                        sup: sup,
+                        periodo: periodo
                     },{where: {id: parseInt(id)}})
                 }
                 throw new RequestError('No data found')

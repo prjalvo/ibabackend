@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
           field: 'updated_at',
           type: DataTypes.DATE,
       },      
-    descricao: DataTypes.STRING  
+    descricao: DataTypes.STRING,
+    sup: DataTypes.INTEGER,
+    periodo: descricao: DataTypes.STRING
   }, 
    
   {});

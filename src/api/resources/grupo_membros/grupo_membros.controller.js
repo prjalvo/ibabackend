@@ -51,7 +51,9 @@ export default {
                 { model: db.user, as:"user_supervisor",attributes: ["id", "firstName"] },
                 { model: db.user, as:"user_setor",attributes: ["id", "firstName"] },
                 { model: db.user, as:"user_area",attributes: ["id", "firstName"] },
-                { model: db.user, as:"user_distrito",attributes: ["id", "firstName"] } ]     
+                { model: db.user, as:"user_distrito",attributes: ["id", "firstName"] },
+                { model: db.user, as:"user_rede",attributes: ["id", "firstName"] } 
+                ]     
                 
             })
                 .then(grupos => {

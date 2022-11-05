@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     id_setor:DataTypes.INTEGER,
     id_area: DataTypes.INTEGER,
     id_distrito: DataTypes.INTEGER,
+    id_rede: DataTypes.INTEGER,
     id_membro: DataTypes.INTEGER,
     info: DataTypes.STRING,
     dia_semana:DataTypes.INTEGER,
@@ -40,7 +41,8 @@ module.exports = (sequelize, DataTypes) => {
     models.grupos.belongsTo(models.user, {as:'user_supervisor', foreignKey: 'id_supervisor' });      
     models.grupos.belongsTo(models.user, {as:'user_area', foreignKey: 'id_area' });      
     models.grupos.belongsTo(models.user, {as:'user_distrito', foreignKey: 'id_distrito' });      
-    models.grupos.belongsTo(models.user, {as:'user_setor', foreignKey: 'id_setor' });     
+    models.grupos.belongsTo(models.user, {as:'user_setor', foreignKey: 'id_setor' });   
+    models.grupos.belongsTo(models.user, {as:'user_rede', foreignKey: 'id_rede' });    
   };
   return grupos;
 };

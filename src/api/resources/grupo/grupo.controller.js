@@ -6,7 +6,7 @@ export default {
 
     async addGrupo(req, res, next) {
         try {
-            const { descricao,addres,status,id_tp_grupo,id_tp_ferramenta,id_lider,id_colider,id_supervisor,id_setor,id_area,id_distrito,info,dia_semana,faixa_etaria} = req.body;
+            const { descricao,addres,status,id_tp_grupo,id_tp_ferramenta,id_lider,id_colider,id_supervisor,id_setor,id_area,id_distrito,id_rede,info,dia_semana,faixa_etaria} = req.body;
             db.grupos.findOne({
                 where: { descricao: descricao }
             })
@@ -24,6 +24,7 @@ export default {
                             id_setor: id_setor,
                             id_area: id_area,
                             id_distrito: id_distrito,
+                            id_rede: id_rede,
                             info:info,
                             dia_semana:dia_semana,
                             faixa_etaria:faixa_etaria,
@@ -56,7 +57,8 @@ export default {
                 { model: db.user, as:"user_supervisor",attributes: ["id", "firstName"] },
                 { model: db.user, as:"user_setor",attributes: ["id", "firstName"] },
                 { model: db.user, as:"user_area",attributes: ["id", "firstName"] },
-                { model: db.user, as:"user_distrito",attributes: ["id", "firstName"] }
+                { model: db.user, as:"user_distrito",attributes: ["id", "firstName"] },
+                { model: db.user, as:"user_rede",attributes: ["id", "firstName"] }          
             
                ],
                 
@@ -112,7 +114,7 @@ export default {
  */
     async update(req, res, next) {
         try {
-            const { id,descricao,addres,status,id_tp_grupo,id_tp_ferramenta,id_lider,id_colider,id_supervisor,id_setor,id_area,id_distrito,info,dia_semana,faixa_etaria} = req.body;  
+            const { id,descricao,addres,status,id_tp_grupo,id_tp_ferramenta,id_lider,id_colider,id_supervisor,id_setor,id_area,id_distrito,id_rede,info,dia_semana,faixa_etaria} = req.body;  
             db.grupos.findOne({ where: { id: id } })
                 .then(grupos => {
                     if (grupos) {
@@ -128,6 +130,7 @@ export default {
                             id_setor: id_setor.value ? id_setor.value : grupos.id_setor,
                             id_area: id_area.value ? id_area.value : grupos.id_area,
                             id_distrito: id_distrito.value ? id_distrito.value : grupos.id_distrito,
+                            id_rede: id_rede.value ? id_rede.value : grupos.id_rede,
                             info: info,
                             dia_semana:dia_semana,
                             faixa_etaria:faixa_etaria.value ? faixa_etaria.value : grupos.faixa_etaria
@@ -161,8 +164,8 @@ export default {
                 { model: db.user, as:"user_supervisor",attributes: ["id", "firstName"] },
                 { model: db.user, as:"user_setor",attributes: ["id", "firstName"] },
                 { model: db.user, as:"user_area",attributes: ["id", "firstName"] },
-                { model: db.user, as:"user_distrito",attributes: ["id", "firstName"] }
-            
+                { model: db.user, as:"user_distrito",attributes: ["id", "firstName"] },
+                { model: db.user, as:"user_rede",attributes: ["id", "firstName"] } 
                ],
                 
             })

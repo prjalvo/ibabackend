@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       },      
     descricao: DataTypes.STRING,
     sup: DataTypes.INTEGER,
-    periodo: descricao: DataTypes.STRING
+    periodo: DataTypes.STRING
   }, 
    
   {});

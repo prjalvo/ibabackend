@@ -13,7 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       },      
     descricao: DataTypes.STRING,
     data_ini: DataTypes.DATE,
-    periodo: DataTypes.STRING
+    fator: DataTypes.INTEGER,
+    periodo: DataTypes.STRING,
+    qtd: DataTypes.INTEGER
   }, 
    
   {});

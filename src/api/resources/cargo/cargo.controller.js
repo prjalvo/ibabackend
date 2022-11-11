@@ -5,13 +5,13 @@ export default {
 
     async index(req, res, next) {
         try {
-            const { descricao,data_ini,periodo } = req.body;
+            const { descricao,data_ini,fator,periodo,qtd } = req.body;
             db.cargo.findOne({ where: { descricao: descricao } })
                 .then(data => {
                     if (data) {
-                        return db.cargo.update({ descricao:descricao,data_ini:data_ini,periodo:periodo }, { where: { id: data.id } })
+                        return db.cargo.update({ descricao:descricao,data_ini:data_ini,fator:fator,periodo:periodo,qtd:qtd }, { where: { id: data.id } })
                     }
-                    return db.cargo.create({ descricao: descricao,data_ini:data_ini,periodo:periodo})
+                    return db.cargo.create({ descricao: descricao,data_ini:data_ini,fator:fator,periodo:periodo,qtd:qtd})
                 })
                 .then(cargo => {
                     res.status(200).json({ 'success': true, msg: "Successfully inserted location" });
@@ -27,7 +27,7 @@ export default {
 
     async List(req, res, next) {
         try {
-            db.cargo.findAll({attributes: ["id", "descricao","data_ini","periodo"]})
+            db.cargo.findAll({attributes: ["id", "descricao","data_ini","fator","periodo","qtd"]})
             .then(list => {
                 res.status(200).json({ 'success': true,data:list});
             })
@@ -80,14 +80,16 @@ export default {
 
     async getcargoUpdate(req, res, next) {
         try {
-            const{ id,descricao,data_ini,periodo } = req.body
+            const{ id,descricao,data_ini,fator,periodo,qtd } = req.body
             db.cargo.findOne({ where: { id: parseInt(id) } })
             .then(cargo => {
                 if (cargo) {
                     return db.cargo.update({
                         descricao: descricao,
                         data_ini: data_ini,
-                        periodo: periodo
+                        fator: fator,
+                        periodo: periodo,
+                        qtd: qtd
                     },{where: {id: parseInt(id)}})
                 }
                 throw new RequestError('No data found')

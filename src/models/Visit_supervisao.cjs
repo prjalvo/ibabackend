@@ -1,21 +1,31 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const user = sequelize.define('visit_supervisao', {
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    address: DataTypes.STRING,
-    email: DataTypes.STRING,
-    phone: DataTypes.STRING,
-    role: DataTypes.STRING,
-    verify: DataTypes.BOOLEAN,
-    password: DataTypes.STRING,
-    id_cargo: DataTypes.INTEGER
+  const visit_supervisao = sequelize.define('visit_supervisao', {
+    id: {type: DataTypes.INTEGER,
+        primaryKey: true},
+    createdAt: {
+          field: 'created_at',
+          type: DataTypes.DATE,
+      },
+      updatedAt: {
+          field: 'updated_at',
+          type: DataTypes.DATE,
+      },      
+     id_celula: DataTypes.INTEGER,
+     id_lider: DataTypes.INTEGER,
+     id_cargo: DataTypes.INTEGER, 
+     desc_cargo: DataTypes.STRING,
+     desc_celula: DataTypes.STRING,
+     desc_nome: DataTypes.STRING,
+     mesano: DataTypes.INTEGER,
+     visita: DataTypes.INTEGER,
+     status: DataTypes.INTEGER
+    
+    
   }, {});
 
-  user.associate = function(models) {   
-    models.user.belongsTo(models.cargo, { foreignKey: 'id_cargo' });
-    models.user.hasMany(models.grupos, { foreignKey: 'id' });
+  visit_supervisao.associate = function(models) {     
   };
 
-  return user;
+  return visit_supervisao;
 };

@@ -76,7 +76,7 @@ export default {
                 order: [['createdAt', 'DESC']]                                         
                 
             })
-                .then(agenda => {
+                .then(visit_supervisaos => {
                     res.status(200).json({ 'success': true, visit_supervisaos });
                 })
                 .catch(function (err) {

@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const visit_supervisao = sequelize.define('visit_supervisao', {
+  const visit_supervisaos = sequelize.define('visit_supervisaos', {
     id: {type: DataTypes.INTEGER,
         primaryKey: true},
     createdAt: {
@@ -24,8 +24,8 @@ module.exports = (sequelize, DataTypes) => {
     
   }, {});
 
-  visit_supervisao.associate = function(models) {     
+  visit_supervisaos.associate = function(models) {     
   };
 
-  return visit_supervisao;
+  return visit_supervisaos;
 };

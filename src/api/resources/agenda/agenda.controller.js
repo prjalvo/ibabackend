@@ -70,6 +70,26 @@ export default {
     },       
     
     
+    async getAllVisit(req, res, next) {
+        try {
+            db.visit_supervisao.findAll({
+                order: [['createdAt', 'DESC']]                           
+               ],
+                
+            })
+                .then(agenda => {
+                    res.status(200).json({ 'success': true, visit_supervisao });
+                })
+                .catch(function (err) {
+                    next(err)
+                });
+        }
+        catch (err) {
+            throw new RequestError(err);
+        }
+    },       
+    
+    
     async getAgendaDelete(req, res, next) {
         try {
             db.agendas.findAll({ where: { id: parseInt(req.query.id) } })

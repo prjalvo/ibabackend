@@ -73,8 +73,7 @@ export default {
     async getAllVisit(req, res, next) {
         try {
             db.visit_supervisao.findAll({
-                order: [['createdAt', 'DESC']]                           
-               ],
+                order: [['createdAt', 'DESC']]                                         
                 
             })
                 .then(agenda => {

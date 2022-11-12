@@ -72,12 +72,12 @@ export default {
     
     async getAllVisit(req, res, next) {
         try {
-            db.visit_supervisao.findAll({
+            db.visit_supervisaos.findAll({
                 order: [['createdAt', 'DESC']]                                         
                 
             })
                 .then(agenda => {
-                    res.status(200).json({ 'success': true, visit_supervisao });
+                    res.status(200).json({ 'success': true, visit_supervisaos });
                 })
                 .catch(function (err) {
                     next(err)

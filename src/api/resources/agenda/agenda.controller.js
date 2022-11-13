@@ -73,7 +73,7 @@ export default {
     async getAllVisit(req, res, next) {
         try {
             db.visit_supervisaos.findAll({
-                order: [['createdAt', 'DESC']]                                         
+                order: [['desc_nome,desc_cargo,desc_celula,anomes', 'ASC']]                                         
                 
             })
                 .then(visit_supervisaos => {

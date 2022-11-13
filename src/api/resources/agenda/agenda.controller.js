@@ -76,7 +76,7 @@ export default {
                 order: [['desc_nome', 'ASC'],
                         ['desc_cargo','ASC'],
                         ['desc_celula','ASC'],
-                        ['anomes', 'ASC'],
+                        ['mesano', 'ASC'],
                        ]                                         
                 
             })

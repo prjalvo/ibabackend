@@ -7,7 +7,7 @@ var JWTSign = function(user, date){
         iss : config.app.name,
         sub : user.id,
         iat : date.getTime(),
-        exp : new Date().setMinutes(date.getMinutes() + 30)
+        exp : new Date().setMinutes(date.getMinutes() + 360)
     }, config.app.secret);
 }
 export var loginCheck = () => {

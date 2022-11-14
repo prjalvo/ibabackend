@@ -26,7 +26,13 @@ export default {
                     }
                     throw new RequestError('Already exist product', 409);
                 })
-                .then(grupo_membros => {
+                .then(grupo_membros => {             
+                   try {
+                    db.query('call calcula_datas()')
+                   }
+                    catch (err) {
+                    throw new RequestError('Erro chamada calcula_datas');
+                   }    
                     res.status(200).json({ 'success': true, msg: "Successfully inserted product" });
                 })
                 .catch(function (err) {

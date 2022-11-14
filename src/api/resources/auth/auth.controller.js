@@ -142,7 +142,7 @@ export default {
         var date = new Date();
         var token = JWTSign(req.user, date);
         res.cookie('XSRF-token',     token, {
-            expire: new Date().setMinutes(date.getMinutes() + 30),
+            expire: new Date().setMinutes(date.getMinutes() + 600),
             httpOnly: true, secure: config.secure
         });
         

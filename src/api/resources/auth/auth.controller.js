@@ -140,7 +140,8 @@ export default {
 
     async login(req, res, next) {
         var date = new Date();
-        var token = JWTSign(req.user, date,expiresIn: "12h");
+        var token = JWTSign(req.user, date,{expiresIn: '12h' 
+                         });
         res.cookie('XSRF-token',     token, {
             expire: new Date().setMinutes(date.getMinutes() + 30),
             httpOnly: true, secure: config.secure

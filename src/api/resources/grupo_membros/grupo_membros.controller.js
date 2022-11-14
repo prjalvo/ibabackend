@@ -28,7 +28,7 @@ export default {
                 })
                 .then(grupo_membros => {             
                    try {
-                    db.query('call calcula_datas()')
+                    db.sequelize.query('call calcula_datas()');
                    }
                     catch (err) {
                     throw new RequestError('Erro chamada calcula_datas');

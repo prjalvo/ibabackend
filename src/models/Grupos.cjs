@@ -28,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
     dia_semana:DataTypes.INTEGER,
     faixa_etaria:DataTypes.INTEGER,
     text: DataTypes.STRING,
+    data_mult: DataTypes.DATE,
+    gd: DataTypes.INTEGER,
+    lt: DataTypes.INTEGER,
+    ltd: DataTypes.INTEGER,
   }, {});
 
 

@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       status: DataTypes.INTEGER,
       data_realizada: DataTypes.DATE,
       note: DataTypes.STRING,
-      backgroundColor: DataTypes.STRING,
+      color: DataTypes.STRING,
      }, 
    
   {});  

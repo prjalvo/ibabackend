@@ -9,9 +9,9 @@ export default {
             db.cargo.findOne({ where: { descricao: descricao } })
                 .then(data => {
                     if (data) {
-                        return db.cargo.update({ descricao:descricao,data_ini:data_ini,fator:fator,periodo:periodo,qtd:qtd }, { where: { id: data.id } })
+                        return db.cargo.update({ descricao:descricao}, { where: { id: data.id } })
                     }
-                    return db.cargo.create({ descricao: descricao,data_ini:data_ini,fator:fator,periodo:periodo,qtd:qtd})
+                    return db.cargo.create({ descricao: descricao})
                 })
                 .then(cargo => {
                     res.status(200).json({ 'success': true, msg: "Successfully inserted location" });
@@ -27,7 +27,7 @@ export default {
 
     async List(req, res, next) {
         try {
-            db.cargo.findAll({attributes: ["id", "descricao","data_ini","fator","periodo","qtd"]})
+            db.cargo.findAll({attributes: ["id", "descricao"]})
             .then(list => {
                 res.status(200).json({ 'success': true,data:list});
             })
@@ -80,16 +80,12 @@ export default {
 
     async getcargoUpdate(req, res, next) {
         try {
-            const{ id,descricao,data_ini,fator,periodo,qtd } = req.body
+            const{ id,descricao} = req.body
             db.cargo.findOne({ where: { id: parseInt(id) } })
             .then(cargo => {
                 if (cargo) {
                     return db.cargo.update({
-                        descricao: descricao,
-                        data_ini: data_ini,
-                        fator: fator,
-                        periodo: periodo,
-                        qtd: qtd
+                        descricao: descricao
                     },{where: {id: parseInt(id)}})
                 }
                 throw new RequestError('No data found')

@@ -5,7 +5,7 @@ export default {
 
     async index(req, res, next) {
         try {
-            const { descricao,data_ini,fator,periodo,qtd } = req.body;
+            const { descricao} = req.body;
             db.cargo.findOne({ where: { descricao: descricao } })
                 .then(data => {
                     if (data) {

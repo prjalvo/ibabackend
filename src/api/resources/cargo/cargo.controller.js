@@ -5,13 +5,13 @@ export default {
 
     async index(req, res, next) {
         try {
-            const { descricao} = req.body;
+            const { descricao } = req.body;
             db.cargo.findOne({ where: { descricao: descricao } })
                 .then(data => {
                     if (data) {
-                        return db.cargo.update({ descricao:descricao}, { where: { id: data.id } })
+                        return db.cargo.update({ descricao:descricao }, { where: { id: data.id } })
                     }
-                    return db.cargo.create({ descricao: descricao})
+                    return db.cargo.create({ descricao: descricao })
                 })
                 .then(cargo => {
                     res.status(200).json({ 'success': true, msg: "Successfully inserted location" });

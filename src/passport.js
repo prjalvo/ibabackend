@@ -20,7 +20,7 @@ var TokenExtractor = function(req){
 passport.use('user-jwt', new JwtStrategy({
     jwtFromRequest: TokenExtractor,
     secretOrKey: config.secret,    
-    expiresIn: "10h",
+    expiresInMinutes: 1440,
     algorithm: "RS256",  
 }, async (payload, done) => {
     try {

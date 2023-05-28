@@ -3,7 +3,7 @@ export default {
 
     /* Add user api start here................................*/
 
-    async index(req, res, next) {
+   async index(req, res, next) {
         try {
             const { descricao } = req.body;
             db.cargo.findOne({ where: { descricao: descricao } })
@@ -11,7 +11,7 @@ export default {
                     if (data) {
                         return db.cargo.update({ descricao:descricao }, { where: { id: data.id } })
                     }
-                    return db.cargo.create({ descricao: descricao })
+                    return db.cargo.create({ descricao: descricao})
                 })
                 .then(cargo => {
                     res.status(200).json({ 'success': true, msg: "Successfully inserted location" });

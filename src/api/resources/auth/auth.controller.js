@@ -107,7 +107,7 @@ export default {
     },
 
      async userUpdate(req,res,next){
-        const { id, firstName, phone, email, password, role, verify,id_cargo,status } = req.body;
+        const { firstName, email, phone, id_cargo, status, verify, role ,password } = req.body;
         var passwordHash = bcrypt.hashSync(password);
         db.user.findOne({ where: { email: email }, paranoid: false })
             .then(user => {
@@ -117,6 +117,7 @@ export default {
                 return db.user.update({
                     firstName: firstName ? firstName: user.firstName,
                     phone: phone ? phone: user.phone,
+                    email: email ? email: user.email,
                     password: password ? passwordHash: user.passwordHash,              
                     role: role ? role: user.role,
                     verify : verify? verify: user.verify,

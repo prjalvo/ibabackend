@@ -39,7 +39,7 @@ function verifyOtp(token) {
 
 export default {
     async addUser(req, res, next) {
-        const { firstName, lastName, phone, email, address, password, role, verify,id_cargo,status } = req.body;
+        const { firstName, email, phone, id_cargo, status, verify, role ,password } = req.body;
         var passwordHash = bcrypt.hashSync(password);
         var token = generateOtp();
         var otp = verifyOtp(token);

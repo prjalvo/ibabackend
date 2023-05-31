@@ -39,7 +39,7 @@ function verifyOtp(token) {
 
 export default {
     async addUser(req, res, next) {
-        const { firstName, lastName, phone, email, address, password, role, verify,id_cargo } = req.body;
+        const { firstName, lastName, phone, email, address, password, role, verify,id_cargo,status } = req.body;
         var passwordHash = bcrypt.hashSync(password);
         var token = generateOtp();
         var otp = verifyOtp(token);
@@ -57,7 +57,8 @@ export default {
                     password: passwordHash,
                     verify: verify,
                     role: role,
-                    id_cargo
+                    id_cargo:id_cargo,
+                    status:status
                 })
 
             })
@@ -108,7 +109,7 @@ export default {
     },
 
      async userUpdate(req,res,next){
-        const { id, firstName, phone, email, password, role, verify,id_cargo } = req.body;
+        const { id, firstName, phone, email, password, role, verify,id_cargo,status } = req.body;
         var passwordHash = bcrypt.hashSync(password);
         db.user.findOne({ where: { email: email }, paranoid: false })
             .then(user => {
@@ -122,6 +123,7 @@ export default {
                     role: role ? role: user.role,
                     verify : verify? verify: user.verify,
                     id_cargo: id_cargo ? id_cargo : user.id_cargo,
+                    status: status ? status : user.status,
                 }, { where: { id: id } })
 
             })

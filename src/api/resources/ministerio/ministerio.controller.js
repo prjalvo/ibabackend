@@ -5,7 +5,7 @@ export default {
 
     async index(req, res, next) {
         try {           
-            const { descricao } = req.body.name;
+            const { descricao } = req.body;
             db.ministerio.findOne({ where: { descricao: descricao } })
                 .then(data => {
                     if (data) {

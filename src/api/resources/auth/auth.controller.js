@@ -49,22 +49,20 @@ export default {
                     throw new RequestError('Email is already in use', 409);
                 }
                 return db.user.create({
-                    firstName: firstName,
-                    lastName: lastName,
+                    firstName: firstName,                    
                     email: email,
-                    phone: phone,
-                    address: address,
-                    password: passwordHash,
+                    phone: phone,               
+                    id_cargo: id_cargo,
+                    status: status,                    
                     verify: verify,
                     role: role,
-                    id_cargo:id_cargo,
-                    status:status
+                    password: passwordHash                    
                 })
 
             })
             .then(user => {
                 if (user) {
-                    mailer.sendEmployeePassword(email, token);
+//                     mailer.sendEmployeePassword(email, token);
                     return res.status(200).json({ success: true, key: otp, msg: "New Registration added and password has been sent to " + email + " ." });
                 }
                 else

@@ -12,7 +12,7 @@ var JWTSign = function (user, date) {
         sub: user.id,
         iam : user.type,
         iat: date.getTime(),
-        exp: new Date().setMinutes(date.getMinutes() + 30)
+        exp: new Date().setMinutes(date.getMinutes() + 480)
     }, config.secret);
 }
 
@@ -144,7 +144,7 @@ export default {
         var token = JWTSign(req.user, date,{expiresIn: '12h' 
                          });
         res.cookie('XSRF-token',     token, {
-            expire: new Date().setMinutes(date.getMinutes() + 30),
+            expire: new Date().setMinutes(date.getMinutes() + 480),
             httpOnly: true, secure: config.secure
         });
         

@@ -107,9 +107,9 @@ export default {
     },
 
      async userUpdate(req,res,next){
-        const { firstName, email, phone, id_cargo, status, verify, role ,password } = req.body;
+        const { id, firstName, email, phone, id_cargo, status, verify, role ,password } = req.body;
         var passwordHash = bcrypt.hashSync(password);
-        db.user.findOne({ where: { email: email }, paranoid: false })
+        db.user.findOne({ where: { id: id }, paranoid: false })
             .then(user => {
                 if (!user) {
                     throw new RequestError('User is not found', 409);

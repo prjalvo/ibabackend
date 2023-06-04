@@ -25,13 +25,19 @@ export default {
         catch (err) {
             throw new RequestError('Error');
         }
-    },    
-    
-   async uploadController(req, res) {
-      upload.single("file")
+    },        
+async function uploadController(req, res, next) {
+  try {
+    upload.single("file")(req, res, function (err) {
+      if (err) {
+        return next(err);
+      }
       return res.json({ message: req.file.location });
-   },
-    
+    });
+  } catch (err) {
+    next(err);
+  }
+},
     async getCargoListById(req, res, next) {
         try {
             db.cargo.findAll({

@@ -8,7 +8,7 @@ import './errors.js';
 import scheduler from './scheduler.js';
 import path from 'path';
 import cors from 'cors';
-import { s3, bucket, upload } from "../middleware/bucket.js";
+import { s3, bucket, upload } from "./middleware/bucket.js";
 
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);

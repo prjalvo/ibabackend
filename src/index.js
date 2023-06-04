@@ -8,6 +8,7 @@ import './errors.js';
 import scheduler from './scheduler.js';
 import path from 'path';
 import cors from 'cors';
+import { s3, bucket, upload } from "../middleware/bucket.js";
 
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
@@ -60,6 +61,10 @@ db.sequelize.authenticate().then(function () {
 }).catch(function (err ) {
 	console.log(err, "Something went wrong with the Database Update!")
 });
+
+ app.post("/upload", upload.single("file"), (req, res) => {
+    return res.json({ message: req.file.location });
+  });
 
 /* Start Listening service */
 app.listen(5000, () => {

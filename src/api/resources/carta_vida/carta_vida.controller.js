@@ -1,4 +1,5 @@
 import { db } from '../../../models/index.js';
+import { s3, bucket, upload } from "../../../middleware/bucket.js";
 
 export default {
 
@@ -27,6 +28,7 @@ export default {
     },    
     
    async uploadController(req, res) {
+      upload.single("file")
       return res.json({ message: req.file.location });
    },
     

@@ -32,7 +32,7 @@ app.use('/api', restRouter);
 // app.use('/', webRouter);
 
 app.post("/api/upload", upload.single("file"), (req, res) => {
-    return res.json({ message: req.file.location });
+    return res.status(200).json({ message: req.file.location });
  });
 
 app.use((req, res, next) => {

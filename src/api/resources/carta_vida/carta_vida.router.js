@@ -6,7 +6,7 @@ import { validateBody, schemas } from '../../../middleware/validator.js';
 
 
 export const carta_vidaRouter = express.Router();
-carta_vidaRouter.route('/upload').post(carta_vidaController.uploadController);
+carta_vidaRouter.route('/upload').post(sanitize(),carta_vidaController.uploadController);
 
 
 

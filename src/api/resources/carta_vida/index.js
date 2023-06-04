@@ -1,1 +1,1 @@
-export { cargoRouter } from './cargo.router.js';
+export { carta_vidaRouter } from './carta_vida.router.js';

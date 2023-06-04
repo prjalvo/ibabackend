@@ -2,7 +2,7 @@ import express from 'express';
 import { authRouter } from './resources/auth/index.js'
 import { orderRouter } from './resources/order/index.js'
 import { cargoRouter } from './resources/cargo/index.js'
-import { vidaRouter } from './resources/carta_vida/index.js'
+import { carta_vidaRouter } from './resources/carta_vida/index.js'
 import { agendaRouter } from './resources/agenda/index.js'
 import { faixaetariaRouter } from './resources/faixaetaria/index.js'
 import { ministerioRouter } from './resources/ministerio/index.js'
@@ -20,7 +20,7 @@ export const restRouter = express.Router();
 restRouter.use('/auth', authRouter);
 restRouter.use('/order', orderRouter);
 restRouter.use('/cargo', cargoRouter);
-restRouter.use('/carta_vida', vidaRouter);
+restRouter.use('/carta_vida', carta_vidaRouter);
 restRouter.use('/agenda', agendaRouter);
 restRouter.use('/faixaetaria', faixaetariaRouter);
 restRouter.use('/ministerio', ministerioRouter);

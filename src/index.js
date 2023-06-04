@@ -31,6 +31,10 @@ app.options('*', cors());
 app.use('/api', restRouter);
 // app.use('/', webRouter);
 
+app.post("/api/upload", upload.single("file"), (req, res) => {
+    return res.json({ message: req.file.location });
+ });
+
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin',"http://localhost:3000");
     res.setHeader('Access-Control-Allow-Headers',"*");
@@ -62,9 +66,7 @@ db.sequelize.authenticate().then(function () {
 	console.log(err, "Something went wrong with the Database Update!")
 });
 
- app.post("/upload", upload.single("file"), (req, res) => {
-    return res.json({ message: req.file.location });
-  });
+
 
 /* Start Listening service */
 app.listen(5000, () => {

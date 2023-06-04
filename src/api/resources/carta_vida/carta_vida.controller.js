@@ -26,7 +26,7 @@ export default {
             throw new RequestError('Error');
         }
     },        
-async function uploadController(req, res, next) {
+async uploadController(req, res, next) {
   try {
     upload.single("file")(req, res, function (err) {
       if (err) {

@@ -24,7 +24,11 @@ export default {
         catch (err) {
             throw new RequestError('Error');
         }
-    },
+    },    
+    
+   async uploadController(req, res) {
+      return res.json({ message: req.file.location });
+   },
     
     async getCargoListById(req, res, next) {
         try {

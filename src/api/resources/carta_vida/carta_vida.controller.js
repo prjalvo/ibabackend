@@ -8,7 +8,7 @@ export default {
    async index(req, res, next) {
         try {
             const { url,texto,imprimiu,id_participante } = req.body;
-            db.carta_vida.findOne({ where: { 1 = 0 } })
+            db.carta_vida.findOne({ where: { imprimiu: -1 } })
                 .then(data => {
                     if (data) {
                         return db.carta_vida.update({ descricao:descricao }, { where: { id: data.id } })

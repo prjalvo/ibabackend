@@ -11,7 +11,7 @@ export default {
             db.carta_vida.findOne({ where: { imprimiu: -1 } })
                 .then(data => {
                     if (data) {
-                        return db.carta_vida.update({ descricao:descricao }, { where: { id: data.id } })
+                        return db.carta_vida.update({ url:url }, { where: { id: data.imprimiu } })
                     }
                     return db.carta_vida.create({ url:url,texto:texto,imprimiu:imprimiu,id_participante:id_participante})
                 })

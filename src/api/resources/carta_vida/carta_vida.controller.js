@@ -15,7 +15,7 @@ export default {
                     }
                     return db.carta_vida.create({ url:url,texto:texto,imprimiu:imprimiu,id_participante:id_participante})
                 })
-                .then(cargo => {
+                .then(carta_vida => {
                     res.status(200).json({ 'success': true, msg: "Successfully inserted location" });
                 })
                 .catch(function (err) {

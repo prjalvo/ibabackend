@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     url: DataTypes.STRING,
     texto: DataTypes.STRING,
     imprimiu:DataTypes.INTEGER,
-
+    id_participante:DataTypes.INTEGER,
+    
   createdAt: {
       field: 'created_at',
       type: DataTypes.DATE,

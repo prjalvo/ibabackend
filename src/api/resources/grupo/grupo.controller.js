@@ -6,7 +6,7 @@ export default {
 
     async addGrupo(req, res, next) {
         try {
-            const { descricao,addres,status,id_tp_grupo,id_tp_ferramenta,id_lider,id_colider,id_supervisor,id_setor,id_area,id_distrito,id_rede,info,dia_semana,faixa_etaria} = req.body;
+            const { descricao,status,id_tp_grupo,id_tp_ferramenta,id_lider,id_colider,id_supervisor,id_setor,id_area,id_distrito,id_rede,info,dia_semana,faixa_etaria} = req.body;
             db.grupos.findOne({
                 where: { descricao: descricao }
             })

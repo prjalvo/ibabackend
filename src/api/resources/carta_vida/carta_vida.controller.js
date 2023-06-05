@@ -7,13 +7,13 @@ export default {
 
    async index(req, res, next) {
         try {
-            const { descricao } = req.body;
-            db.cargo.findOne({ where: { descricao: descricao } })
+            const { url,texto,imprimiu,id_participante } = req.body;
+            db.carta_vida.findOne({ where: { 1 = 0 } })
                 .then(data => {
                     if (data) {
-                        return db.cargo.update({ descricao:descricao }, { where: { id: data.id } })
+                        return db.carta_vida.update({ descricao:descricao }, { where: { id: data.id } })
                     }
-                    return db.cargo.create({ descricao: descricao})
+                    return db.carta_vida.create({ url:url,texto:texto,imprimiu:imprimiu,id_participante:id_participante})
                 })
                 .then(cargo => {
                     res.status(200).json({ 'success': true, msg: "Successfully inserted location" });
@@ -26,21 +26,9 @@ export default {
             throw new RequestError('Error');
         }
     },        
-async uploadController(req, res, next) {
-  try {
-    upload.single("file")(req, res, function (err) {
-      if (err) {
-        return next(err);
-      }
-      return res.json({ message: req.file.location });
-    });
-  } catch (err) {
-    next(err);
-  }
-},
-    async getCargoListById(req, res, next) {
+    async getCartaListById(req, res, next) {
         try {
-            db.cargo.findAll({
+            db.carta_vida.findAll({
                 where: { id: req.query.id },             
             })
                 .then(list => {
@@ -56,12 +44,12 @@ async uploadController(req, res, next) {
     },
 
 
-    async getcargoDelete(req, res, next) {
+    async getcartaDelete(req, res, next) {
         try {
-            db.cargo.findAll({ where: { id: parseInt(req.query.id) } })
-            .then(cargo => {
-                if (cargo) {
-                    return db.cargo.destroy({ where: { id: parseInt(req.query.id)  } })
+            db.carta_vida.findAll({ where: { id: parseInt(req.query.id) } })
+            .then(carta_vida => {
+                if (carta_vida) {
+                    return db.carta_vida.destroy({ where: { id: parseInt(req.query.id)  } })
                 }
                 throw new RequestError('location is not found')
             })
@@ -76,14 +64,14 @@ async uploadController(req, res, next) {
         }
     },
 
-    async getcargoUpdate(req, res, next) {
+    async getcartaUpdate(req, res, next) {
         try {
-            const{ id,descricao} = req.body
-            db.cargo.findOne({ where: { id: parseInt(id) } })
-            .then(cargo => {
-                if (cargo) {
-                    return db.cargo.update({
-                        descricao: descricao
+            const{ id,url,texto,imprimiu,id_participante} = req.body
+            db.carta_vida.findOne({ where: { id: parseInt(id) } })
+            .then(carta_vida => {
+                if (carta_vida) {
+                    return db.carta_vida.update({
+                        url:url,texto:texto,imprimiu:imprimiu,id_participante:id_participante
                     },{where: {id: parseInt(id)}})
                 }
                 throw new RequestError('No data found')

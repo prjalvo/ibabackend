@@ -120,18 +120,18 @@ export default {
                         return db.grupos.update({
                             descricao: descricao,                         
                             status:status,
-                            id_tp_grupo: id_tp_grupo.value ? id_tp_grupo.value : grupos.id_tp_grupo,
-                            id_tp_ferramenta: id_tp_ferramenta.value ? id_tp_ferramenta.value : grupos.id_tp_ferramenta,
-                            id_lider: id_lider.value ? id_lider.value : grupos.id_lider,
-                            id_colider: id_colider.value ? id_colider.value : grupos.id_colider,
-                            id_supervisor: id_supervisor.value ? id_supervisor.value : grupos.id_supervisor,
-                            id_setor: id_setor.value ? id_setor.value : grupos.id_setor,
-                            id_area: id_area.value ? id_area.value : grupos.id_area,
-                            id_distrito: id_distrito.value ? id_distrito.value : grupos.id_distrito,
-                            id_rede: id_rede.value ? id_rede.value : grupos.id_rede,
+                            id_tp_grupo: id_tp_grupo ? id_tp_grupo : grupos.id_tp_grupo,
+                            id_tp_ferramenta: id_tp_ferramenta ? id_tp_ferramenta : grupos.id_tp_ferramenta,
+                            id_lider: id_lider ? id_lider : grupos.id_lider,
+                            id_colider: id_colider ? id_colider : grupos.id_colider,
+                            id_supervisor: id_supervisor ? id_supervisor : grupos.id_supervisor,
+                            id_setor: id_setor ? id_setor : grupos.id_setor,
+                            id_area: id_area ? id_area : grupos.id_area,
+                            id_distrito: id_distrito ? id_distrito : grupos.id_distrito,
+                            id_rede: id_rede ? id_rede : grupos.id_rede,
                             info: info,
-                            dia_semana:dia_semana.value ? dia_semana.value : grupos.dia_semana,
-                            faixa_etaria:faixa_etaria.value ? faixa_etaria.value : grupos.faixa_etaria
+                            dia_semana:dia_semana ? dia_semana : grupos.dia_semana,
+                            faixa_etaria:faixa_etaria ? faixa_etaria : grupos.faixa_etaria
                                                                            
                         }, { where: { id: grupos.id } })
                     }

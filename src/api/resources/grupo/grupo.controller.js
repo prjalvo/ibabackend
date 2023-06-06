@@ -130,7 +130,7 @@ export default {
                             id_distrito: id_distrito.value ? id_distrito.value : grupos.id_distrito,
                             id_rede: id_rede.value ? id_rede.value : grupos.id_rede,
                             info: info,
-                            dia_semana:dia_semana,
+                            dia_semana:dia_semana.value ? dia_semana.value : grupos.dia_semana,
                             faixa_etaria:faixa_etaria.value ? faixa_etaria.value : grupos.faixa_etaria
                                                                            
                         }, { where: { id: grupos.id } })

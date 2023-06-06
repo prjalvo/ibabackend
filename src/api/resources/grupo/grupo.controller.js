@@ -13,8 +13,7 @@ export default {
                 .then(grupos => {
                     if (!grupos) {
                         return db.grupos.create({
-                            descricao: descricao,    
-                            addres: addres,
+                            descricao: descricao,                         
                             status:status,
                             id_tp_grupo: id_tp_grupo,
                             id_tp_ferramenta: id_tp_ferramenta,
@@ -119,8 +118,7 @@ export default {
                 .then(grupos => {
                     if (grupos) {
                         return db.grupos.update({
-                            descricao: descricao,  
-                            addres: addres, 
+                            descricao: descricao,                         
                             status:status,
                             id_tp_grupo: id_tp_grupo.value ? id_tp_grupo.value : grupos.id_tp_grupo,
                             id_tp_ferramenta: id_tp_ferramenta.value ? id_tp_ferramenta.value : grupos.id_tp_ferramenta,

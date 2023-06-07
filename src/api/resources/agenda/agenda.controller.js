@@ -40,21 +40,21 @@ export default {
         try {
             const { title,location,id_celula,id_lider,startDate,endDate,note,id} = req.body;
             db.agendas.findOne({ where: { id: parseInt(id) } })
-           .then(agenda => {
-                if (agenda) {
+           .then(agendas => {
+                if (agendas) {
                    return db.agendas.update({
-                            title: title ? title : agenda.title,
-                            location: location ? location : agenda.location,
-                            id_celula: id_celula ? id_celula : agenda.id_celula,                            
-                            id_lider: id_lider ? id_lider : agenda.id_lider,
-                            startDate: startDate ? startDate : agenda.startDate,
-                            endDate: endDate ? endDate : agenda.endDate,
-                            note: note ? note : agenda.note,
+                            title: title ? title : agendas.title,
+                            location: location ? location : agendas.location,
+                            id_celula: id_celula ? id_celula : agendas.id_celula,                            
+                            id_lider: id_lider ? id_lider : agendas.id_lider,
+                            startDate: startDate ? startDate : agendas.startDate,
+                            endDate: endDate ? endDate : agendas.endDate,
+                            note: note ? note : agendas.note,
                         }, { where: { id: parseInt(id) } }) 
                 }
                 throw new RequestError('No data found')
             })
-            .then(agenda => {
+            .then(agendas => {
                 return res.status(200).json({'msg':'success','status': "Update location Seccessfully" });
             }).catch(err => {
                 next(err)

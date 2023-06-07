@@ -38,7 +38,7 @@ export default {
     
     async getAgendaUpdate(req, res, next) {
         try {
-             const { title,location,id_celula,id_lider,startDate,endDate,note,id} = req.body;
+            const { title,location,id_celula,id_lider,startDate,endDate,note,id} = req.body;
             db.agendas.findOne({ where: { id: parseInt(id) } })
            .then(agenda => {
                 if (agenda) {
@@ -50,7 +50,7 @@ export default {
                             startDate: startDate ? startDate : agenda.startDate,
                             endDate: endDate ? endDate : agenda.endDate,
                             note: note ? note : agenda.note,
-                        }, { where: { id: parseInt(agenda.id) } }) 
+                        }, { where: { id: parseInt(id) } }) 
                 }
                 throw new RequestError('No data found')
             })

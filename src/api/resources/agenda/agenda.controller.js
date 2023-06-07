@@ -6,8 +6,7 @@ export default {
 
     async addAgenda(req, res, next) {
         try {
-            const { title,location,id_celula,id_lider,startDate,endDate,note,id} = req.body;
-            console.log(title,location,id_celula,id_lider,startDate,endDate,note,id)
+            const { title,location,id_celula,id_lider,startDate,endDate,note,id} = req.body;         
             db.agendas.findOne({
                 where: { id: id }
             })
@@ -39,7 +38,7 @@ export default {
     
     async getAgendaUpdate(req, res, next) {
         try {
-            const{ id,descricao} = req.body
+             const { title,location,id_celula,id_lider,startDate,endDate,note,id} = req.body;
             db.agendas.findOne({ where: { id: parseInt(id) } })
            .then(agenda => {
                 if (agenda) {

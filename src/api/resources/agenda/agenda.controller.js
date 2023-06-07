@@ -98,7 +98,7 @@ export default {
             db.agendas.findAll({ where: { id: parseInt(req.query.id) } })
             .then(agendas => {
                 if (agendas) {
-                    return db.agendas.destroy({ where: { id: parseInt(agendas.id)  } })
+                    return db.agendas.destroy({ where: { id: parseInt(req.query.id)}})
                 }
                 throw new RequestError('location is not found')
             })

@@ -22,18 +22,19 @@ export default {
                             endDate: endDate,
                             note: note,
                         })                          
-
-                    }     
-                    return db.agendas.update({
-                        title: title ? title : agenda.title,
-                        location: location ? location : agenda.location,
-                        id_celula: id_celula ? id_celula : agenda.id_celula,                            
-                        id_lider: id_lider ? id_lider : agenda.id_lider,
-                        startDate: startDate ? startDate : agenda.startDate,
-                        endDate: endDate ? endDate : agenda.endDate,
-                        note: note ? note : agenda.note,
-
-                    }, { where: { id: id } })                 
+                    }
+                    else
+                    {
+                        return db.agendas.update({
+                            title: title ? title : agenda.title,
+                            location: location ? location : agenda.location,
+                            id_celula: id_celula ? id_celula : agenda.id_celula,                            
+                            id_lider: id_lider ? id_lider : agenda.id_lider,
+                            startDate: startDate ? startDate : agenda.startDate,
+                            endDate: endDate ? endDate : agenda.endDate,
+                            note: note ? note : agenda.note,
+                        }, { where: { id: id } }) 
+                    }                                     
                 })
                 .then(agenda => {
                     res.status(200).json({ 'success': true, msg: "Successfully inserted product" });

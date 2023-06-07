@@ -21,20 +21,8 @@ export default {
                             startDate: startDate,
                             endDate: endDate,
                             note: note,
-                        })                          
-                    }
-                    else
-                    {
-                        return db.agendas.update({
-                            title: title ? title : agenda.title,
-                            location: location ? location : agenda.location,
-                            id_celula: id_celula ? id_celula : agenda.id_celula,                            
-                            id_lider: id_lider ? id_lider : agenda.id_lider,
-                            startDate: startDate ? startDate : agenda.startDate,
-                            endDate: endDate ? endDate : agenda.endDate,
-                            note: note ? note : agenda.note,
-                        }, { where: { id: id } }) 
-                    }                                     
+                        })  
+                    }     
                 })
                 .then(agenda => {
                     res.status(200).json({ 'success': true, msg: "Successfully inserted product" });
@@ -48,6 +36,35 @@ export default {
         }
     },
 
+    
+    async getAgendaUpdate(req, res, next) {
+        try {
+            const{ id,descricao} = req.body
+            db.agendas.findOne({ where: { id: parseInt(id) } })
+           .then(agenda => {
+                if (agenda) {
+                   return db.agendas.update({
+                            title: title ? title : agenda.title,
+                            location: location ? location : agenda.location,
+                            id_celula: id_celula ? id_celula : agenda.id_celula,                            
+                            id_lider: id_lider ? id_lider : agenda.id_lider,
+                            startDate: startDate ? startDate : agenda.startDate,
+                            endDate: endDate ? endDate : agenda.endDate,
+                            note: note ? note : agenda.note,
+                        }, { where: { id: parseInt(id) } }) 
+                }
+                throw new RequestError('No data found')
+            })
+            .then(agenda => {
+                return res.status(200).json({'msg':'success','status': "Update location Seccessfully" });
+            }).catch(err => {
+                next(err)
+            })
+        }
+        catch (err) {
+            throw new RequestError('Error');
+        }
+    },    
     
     async getAllAgendaList(req, res, next) {
         try {

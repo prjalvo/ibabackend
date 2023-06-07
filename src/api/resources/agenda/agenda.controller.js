@@ -50,7 +50,7 @@ export default {
                             startDate: startDate ? startDate : agenda.startDate,
                             endDate: endDate ? endDate : agenda.endDate,
                             note: note ? note : agenda.note,
-                        }, { where: { id: parseInt(id) } }) 
+                        }, { where: { id: parseInt(agenda.id) } }) 
                 }
                 throw new RequestError('No data found')
             })

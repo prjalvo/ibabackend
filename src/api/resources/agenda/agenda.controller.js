@@ -44,14 +44,14 @@ export default {
            .then(agendas => {
                 if (agendas) {
                    return db.agendas.update({
-                            title: title ?? agendas.title,
-                            location: location ?? agendas.location,
-                            id_celula: id_celula ?? agendas.id_celula,
-                            id_lider: id_lider ?? agendas.id_lider,
-                            startDate: startDate ?? agendas.startDate,
-                            endDate: endDate ?? agendas.endDate,
-                            note: note ?? agendas.note,
-                            status: visitou ?? agendas.status,
+                            title: title ? title : agendas.title,
+                            location: location ? location : agendas.location,
+                            id_celula: id_celula ? id_celula : agendas.id_celula,                            
+                            id_lider: id_lider ? id_lider : agendas.id_lider,
+                            startDate: startDate ? startDate : agendas.startDate,
+                            endDate: endDate ? endDate : agendas.endDate,
+                            note: note ? note : agendas.note,
+                            status: visitou ? visitou : agendas.status,
                         }, { where: { id: parseInt(id) } }) 
                 }           
             })

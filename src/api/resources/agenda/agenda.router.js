@@ -7,7 +7,7 @@ import { jwtStrategy } from '../../../middleware/strategy.js';
 
 export const agendaRouter = express.Router();
 agendaRouter.route('/add').post(sanitize(),agendaController.addAgenda);
-agendaRouter.route('/update').post(sanitize(), agendaController.getAgendaUpdate);
+agendaRouter.route('/update').post(agendaController.getAgendaUpdate);
 agendaRouter.route('/getAllAgendaList').get(sanitize(), agendaController.getAllAgendaList);
 agendaRouter.route('/delete').delete(sanitize(), agendaController.getAgendaDelete);
 agendaRouter.route('/getAllVisit').get(sanitize(), agendaController.getAllVisit);

@@ -53,8 +53,7 @@ export default {
                             note: note ? note : agendas.note,
                             status: visitou ? visitou : agendas.status,
                         }, { where: { id: parseInt(id) } }) 
-                }
-                throw new RequestError('No data found')
+                }           
             })
             .then(agendas => {
                 return res.status(200).json({'msg':'success','status': "Update location Seccessfully" });

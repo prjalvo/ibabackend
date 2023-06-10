@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     verify: DataTypes.BOOLEAN,
     password: DataTypes.STRING,
     id_cargo: DataTypes.INTEGER,
-    status: DataTypes.INTEGER
+    status: DataTypes.INTEGER,
+    url_file: DataTypes.STRING,
   }, {});
 
   user.associate = function(models) {   

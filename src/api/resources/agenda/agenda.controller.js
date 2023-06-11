@@ -86,9 +86,9 @@ export default {
         catch (err) {
             throw new RequestError(err);
         }
-    },              
+    },            
     
-async function getAllVisit(req, res, next) {
+async getAllVisit(req, res, next) {
   try {
     const query = 'SELECT * FROM VISITA_DISTRITO ORDER BY desc_nome ASC, desc_cargo ASC, desc_celula ASC';
     const results = await sequelize.query(query, { type: QueryTypes.SELECT });

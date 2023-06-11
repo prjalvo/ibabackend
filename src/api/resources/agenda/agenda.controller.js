@@ -87,27 +87,29 @@ export default {
             throw new RequestError(err);
         }
     },           
-    async getAllVisit_old(req, res, next) {
-        try {
-            db.visita_setor.findAll({ })
-                .then(visita_setor => {
-                    res.status(200).json({ 'success': true, visit_supervisaos:visita_setor });
-                })
-                .catch(function (err) {
-                    next(err)
-                });
-        }
-        catch (err) {
-            throw new RequestError(err);
-        }
-    },       
-async getAllVisit(req, res, next) {
+async getVisit_Setor(req, res, next) {
+  try {
+    const query = "SELECT desc_nome,desc_cargo,desc_celula,id_lider,id_cargo,id_celula, SUM(CASE WHEN SUBSTR(mesano, -2) = '01' THEN visita ELSE 0 END) AS 'Jan',SUM(CASE WHEN SUBSTR(mesano, -2) = '02' THEN visita ELSE 0 END) AS 'Fev',SUM(CASE WHEN SUBSTR(mesano, -2) = '03' THEN visita ELSE 0 END) AS 'Mar',SUM(CASE WHEN SUBSTR(mesano, -2) = '04' THEN visita ELSE 0 END) AS 'Abr',SUM(CASE WHEN SUBSTR(mesano, -2) = '05' THEN visita ELSE 0 END) AS 'Mai',SUM(CASE WHEN SUBSTR(mesano, -2) = '06' THEN visita ELSE 0 END) AS 'Jun',SUM(CASE WHEN SUBSTR(mesano, -2) = '07' THEN visita ELSE 0 END) AS 'Jul',SUM(CASE WHEN SUBSTR(mesano, -2) = '08' THEN visita ELSE 0 END) AS 'Ago',SUM(CASE WHEN SUBSTR(mesano, -2) = '09' THEN visita ELSE 0 END) AS 'Sete',SUM(CASE WHEN SUBSTR(mesano, -2) = '10' THEN visita ELSE 0 END) AS 'Outu',SUM(CASE WHEN SUBSTR(mesano, -2) = '11' THEN visita ELSE 0 END) AS 'Nov',SUM(CASE WHEN SUBSTR(mesano, -2) = '12' THEN visita ELSE 0 END) AS 'Dez' FROM visit_supervisaos WHERE id_cargo IN (35, 33) GROUP BY desc_nome, desc_cargo, desc_celula, id_lider, id_cargo, id_celula";
+    const results = await db.sequelize.query(query, { type: QueryTypes.SELECT,raw: true });
+    res.status(200).json({ 'success': true, visita_setor: results });
+  } catch (err) {
+    next(err);
+  }
+},       
+async getVisit_area(req, res, next) {
+  try {
+    const query = "SELECT DESC_NOME,desc_cargo,desc_celula,id_lider,id_cargo,id_celula,SUM(CASE WHEN SUBSTR(mesano, -2) IN ('01', '02') THEN visita ELSE 0 END) AS 'JanFev',SUM(CASE WHEN SUBSTR(mesano, -2) IN ('03', '04') THEN visita ELSE 0 END) AS 'MarAbr',SUM(CASE WHEN SUBSTR(mesano, -2) IN ('05', '06') THEN visita ELSE 0 END) AS 'MaiJun',SUM(CASE WHEN SUBSTR(mesano, -2) IN ('07', '08') THEN visita ELSE 0 END) AS 'JulAgo',SUM(CASE WHEN SUBSTR(mesano, -2) IN ('09', '10') THEN visita ELSE 0 END) AS 'SetOut',SUM(CASE WHEN SUBSTR(mesano, -2) IN ('11', '12') THEN visita ELSE 0 END) AS 'NovDez' FROM visit_supervisaos WHERE id_cargo = 36 GROUP BY DESC_NOME, desc_cargo, desc_celula, id_lider, id_cargo, id_celula,mesano";
+    const results = await db.sequelize.query(query, { type: QueryTypes.SELECT,raw: true });
+    res.status(200).json({ 'success': true, visita_area: results });
+  } catch (err) {
+    next(err);
+  }
+},       
+async getVisit_Distrito(req, res, next) {
   try {
     const query = "SELECT DESC_NOME,desc_cargo,desc_celula, id_lider,id_cargo,id_celula, SUM(CASE WHEN SUBSTR(mesano, -2) IN ('01', '02', '03') THEN visita ELSE 0 END) JanFevMar, SUM(CASE WHEN SUBSTR(mesano, -2) IN ('04', '05', '06') THEN visita ELSE 0 END) AbrMaiJun,    SUM(CASE WHEN SUBSTR(mesano, -2) IN ('07', '08', '09') THEN visita ELSE 0 END) JulAgoSet,    SUM(CASE WHEN SUBSTR(mesano, -2) IN ('10', '11', '12') THEN visita ELSE 0 END) AS OutNovDez FROM visit_supervisaos WHERE id_cargo = 34 GROUP BY DESC_NOME, desc_cargo, desc_celula, id_lider, id_cargo, id_celula";
-     
     const results = await db.sequelize.query(query, { type: QueryTypes.SELECT,raw: true });
-
-    res.status(200).json({ 'success': true, visit_supervisaos: results });
+    res.status(200).json({ 'success': true, visita_distrito: results });
   } catch (err) {
     next(err);
   }

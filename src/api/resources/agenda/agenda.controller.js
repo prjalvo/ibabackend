@@ -90,7 +90,7 @@ export default {
     
 async getAllVisit(req, res, next) {
   try {
-    const query = 'SELECT * FROM visita_setor';
+    const query = 'SELECT * FROM VISITA_SETOR';
     const results = await db.sequelize.query(query, { type: QueryTypes.SELECT,raw: true });
 
     res.status(200).json({ 'success': true, visit_supervisaos: results });

@@ -1,4 +1,5 @@
 import { db } from '../../../models/index.js';
+const { QueryTypes } = require('sequelize');
 
 export default {
 
@@ -87,17 +88,16 @@ export default {
         }
     },              
     
-  async getAllVisit(req, res, next) {
+async function getAllVisit(req, res, next) {
   try {
     const query = 'SELECT * FROM VISITA_DISTRITO ORDER BY desc_nome ASC, desc_cargo ASC, desc_celula ASC';
-    const [results, metadata] = await sequelize.query(query);
-     res.status(200).json({ 'success': true, visit_supervisaos: results });  
-   }
-   catch (err) {
-            throw new RequestError('Error');
-        }
-    },
-    
+    const results = await sequelize.query(query, { type: QueryTypes.SELECT });
+
+    res.status(200).json({ 'success': true, visit_supervisaos: results });
+  } catch (err) {
+    next(err);
+  }
+},    
     async getAgendaDelete(req, res, next) {
         try {
             db.agendas.findAll({ where: { id: parseInt(req.query.id) } })

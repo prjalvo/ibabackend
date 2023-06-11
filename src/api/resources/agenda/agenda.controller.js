@@ -103,7 +103,7 @@ export default {
     },       
 async getAllVisit(req, res, next) {
   try {
-    const query = 'SELECT
+    const query = "SELECT 
     DESC_NOME,
     desc_cargo,
     desc_celula,
@@ -116,7 +116,7 @@ async getAllVisit(req, res, next) {
     SUM(CASE WHEN SUBSTR(mesano, -2) IN ('10', '11', '12') THEN visita ELSE 0 END) AS OutNovDez
 FROM visit_supervisaos
 WHERE id_cargo = 34
-GROUP BY DESC_NOME, desc_cargo, desc_celula, id_lider, id_cargo, id_celula';
+GROUP BY DESC_NOME, desc_cargo, desc_celula, id_lider, id_cargo, id_celula";
       
     const results = await db.sequelize.query(query, { type: QueryTypes.SELECT,raw: true });
 

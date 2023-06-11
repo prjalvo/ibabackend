@@ -10,7 +10,9 @@ agendaRouter.route('/add').post(sanitize(),agendaController.addAgenda);
 agendaRouter.route('/update').post(agendaController.getAgendaUpdate);
 agendaRouter.route('/getAllAgendaList').get(sanitize(), agendaController.getAllAgendaList);
 agendaRouter.route('/delete').delete(sanitize(), agendaController.getAgendaDelete);
-agendaRouter.route('/getAllVisit').get(sanitize(), agendaController.getAllVisit);
+agendaRouter.route('/getVisit_Setor').get(sanitize(), agendaController.getVisit_Setor);
+agendaRouter.route('/getVisit_area').get(sanitize(), agendaController.getVisit_area);
+agendaRouter.route('/getVisit_Distrito').get(sanitize(), agendaController.getVisit_Distrito);
 
 
 

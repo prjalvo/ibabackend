@@ -85,16 +85,18 @@ export default {
         catch (err) {
             throw new RequestError(err);
         }
-    },           
-  async function getAllVisit(req, res, next) {
+    },              
+    
+  async getAllVisit(req, res, next) {
   try {
     const query = 'SELECT * FROM VISITA_DISTRITO ORDER BY desc_nome ASC, desc_cargo ASC, desc_celula ASC, mesano ASC;';
     const [results, metadata] = await sequelize.query(query);
-    res.status(200).json({ 'success': true, visit_supervisaos: results });
-  } catch (err) {
-    next(err);
-  }
-  },    
+     res.status(200).json({ 'success': true, visit_supervisaos: results });  
+   }
+   catch (err) {
+            throw new RequestError('Error');
+        }
+    },
     
     async getAgendaDelete(req, res, next) {
         try {

@@ -89,9 +89,9 @@ export default {
     },           
     async getAllVisit(req, res, next) {
         try {
-            db.visita_setor.findAll({ })
-                .then(visita_setor => {
-                    res.status(200).json({ 'success': true, visit_supervisaos:visita_setor });
+            db.visita_setors.findAll({ })
+                .then(visita_setors => {
+                    res.status(200).json({ 'success': true, visit_supervisaos:visita_setors });
                 })
                 .catch(function (err) {
                     next(err)

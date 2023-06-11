@@ -1,5 +1,5 @@
 import { db } from '../../../models/index.js';
-import QueryTypes from 'Sequelize';
+import QueryTypes from 'sequelize';
 
 export default {
 

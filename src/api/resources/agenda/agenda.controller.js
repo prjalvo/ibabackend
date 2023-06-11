@@ -89,7 +89,7 @@ export default {
     
   async getAllVisit(req, res, next) {
   try {
-    const query = 'SELECT * FROM VISITA_DISTRITO ORDER BY desc_nome ASC, desc_cargo ASC, desc_celula ASC, mesano ASC;';
+    const query = 'SELECT * FROM VISITA_DISTRITO ORDER BY desc_nome ASC, desc_cargo ASC, desc_celula ASC';
     const [results, metadata] = await sequelize.query(query);
      res.status(200).json({ 'success': true, visit_supervisaos: results });  
    }

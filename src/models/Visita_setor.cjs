@@ -1,7 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const visita_setor = sequelize.define('visita_setor', {
-
     DESC_NOME:DataTypes.STRING,
     desc_cargo:DataTypes.STRING,
     desc_celula:DataTypes.STRING,
@@ -19,10 +18,12 @@ module.exports = (sequelize, DataTypes) => {
     Sete:DataTypes.STRING,
     Outu:DataTypes.STRING,
     Nov:DataTypes.STRING,
-    Dez:DataTypes.STRING,
- 
+    Dez:DataTypes.STRING, 
      }, 
-   
+   {
+     tableName: 'visita_setor',
+     timestamps: false, // Se a view não tiver colunas de data de criação/atualização, desative os timestamps
+   }
   {});  
 
   visita_setor.associate = function(models) {        

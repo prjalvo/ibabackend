@@ -87,7 +87,7 @@ export default {
             throw new RequestError(err);
         }
     },           
-    async getAllVisit(req, res, next) {
+    async getAllVisit_old(req, res, next) {
         try {
             db.visita_setor.findAll({ })
                 .then(visita_setor => {
@@ -101,9 +101,23 @@ export default {
             throw new RequestError(err);
         }
     },       
-async getAllVisit_old(req, res, next) {
+async getAllVisit(req, res, next) {
   try {
-    const query = 'SELECT * FROM visita_setor';
+    const query = 'SELECT
+    DESC_NOME,
+    desc_cargo,
+    desc_celula,
+    id_lider,
+    id_cargo,
+    id_celula,
+    SUM(CASE WHEN SUBSTR(mesano, -2) IN ('01', '02', '03') THEN visita ELSE 0 END) JanFevMar,
+    SUM(CASE WHEN SUBSTR(mesano, -2) IN ('04', '05', '06') THEN visita ELSE 0 END) AbrMaiJun,
+    SUM(CASE WHEN SUBSTR(mesano, -2) IN ('07', '08', '09') THEN visita ELSE 0 END) JulAgoSet,
+    SUM(CASE WHEN SUBSTR(mesano, -2) IN ('10', '11', '12') THEN visita ELSE 0 END) AS OutNovDez
+FROM visit_supervisaos
+WHERE id_cargo = 34
+GROUP BY DESC_NOME, desc_cargo, desc_celula, id_lider, id_cargo, id_celula';
+      
     const results = await db.sequelize.query(query, { type: QueryTypes.SELECT,raw: true });
 
     res.status(200).json({ 'success': true, visit_supervisaos: results });

@@ -86,9 +86,22 @@ export default {
         catch (err) {
             throw new RequestError(err);
         }
-    },            
-    
-async getAllVisit(req, res, next) {
+    },           
+    async getAllVisit(req, res, next) {
+        try {
+            db.visita_setor.findAll({ })
+                .then(visita_setor => {
+                    res.status(200).json({ 'success': true, visit_supervisaos:visita_setor });
+                })
+                .catch(function (err) {
+                    next(err)
+                });
+        }
+        catch (err) {
+            throw new RequestError(err);
+        }
+    },       
+async getAllVisit_old(req, res, next) {
   try {
     const query = 'SELECT * FROM visita_setor';
     const results = await db.sequelize.query(query, { type: QueryTypes.SELECT,raw: true });

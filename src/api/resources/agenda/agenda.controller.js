@@ -42,6 +42,8 @@ export default {
     async getAgendaUpdate(req, res, next) {
         try {
             const { title,location,id_celula,id_lider,startDate,endDate,note,id,visitou} = req.body;
+            console.log('visitou')
+            console.log(visitou)
             db.agendas.findOne({ where: { id: parseInt(id) } })
            .then(agendas => {
                 if (agendas) {

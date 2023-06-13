@@ -22,6 +22,7 @@ export default {
                             endDate: endDate,
                             note: note,
                             status: visitou,
+                            text: location,
                         })  
                     }     
                 })
@@ -53,6 +54,7 @@ export default {
                             endDate: endDate ? endDate : agendas.endDate,
                             note: note ? note : agendas.note,
                             status: visitou ? visitou : agendas.status,
+                            text: location ? location : agendas.text,
                         }, { where: { id: parseInt(id) } }) 
                 }           
             })

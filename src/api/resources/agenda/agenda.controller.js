@@ -7,7 +7,7 @@ export default {
 
     async addAgenda(req, res, next) {
         try {
-            const { title,location,id_celula,id_lider,startDate,endDate,note,id,visitou} = req.body;         
+            const { title,location,id_celula,id_lider,startDate,endDate,note,id,visita} = req.body;         
             db.agendas.findOne({
                 where: { id: id }
             })
@@ -21,7 +21,7 @@ export default {
                             startDate: startDate,
                             endDate: endDate,
                             note: note,
-                            status: visitou,
+                            status: visita,
                             text: location,
                         })  
                     }     
@@ -41,9 +41,8 @@ export default {
     
     async getAgendaUpdate(req, res, next) {
         try {
-            const { title,location,id_celula,id_lider,startDate,endDate,note,id,visitou} = req.body;
-            console.log('visitou')
-            console.log(visitou)
+            const { title,location,id_celula,id_lider,startDate,endDate,note,id,visita} = req.body;
+          
             db.agendas.findOne({ where: { id: parseInt(id) } })
            .then(agendas => {
                 if (agendas) {
@@ -55,7 +54,7 @@ export default {
                             startDate: startDate ? startDate : agendas.startDate,
                             endDate: endDate ? endDate : agendas.endDate,
                             note: note ? note : agendas.note,
-                            status: visitou ? visitou : agendas.status,
+                            status: visita ? visita : agendas.status,
                             text: location ? location : agendas.text,
                         }, { where: { id: parseInt(id) } }) 
                 }           

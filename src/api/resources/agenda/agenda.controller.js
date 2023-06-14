@@ -21,8 +21,7 @@ export default {
                             startDate: startDate,
                             endDate: endDate,
                             note: note,
-                            status: visita,
-                            text: location,
+                            status: visita,                           
                         })  
                     }     
                 })
@@ -54,8 +53,7 @@ export default {
                             startDate: startDate ? startDate : agendas.startDate,
                             endDate: endDate ? endDate : agendas.endDate,
                             note: note ? note : agendas.note,
-                            status: visita,
-                            text: location ? location : agendas.text,
+                            status: visita,                            
                         }, { where: { id: parseInt(id) } }) 
                 }           
             })

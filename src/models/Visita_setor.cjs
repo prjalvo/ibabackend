@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
    {
      tableName: 'visita_setor',
      timestamps: false, // Se a view não tiver colunas de data de criação/atualização, desative os timestamps
+     id: false,
    },                                      
   {});
 

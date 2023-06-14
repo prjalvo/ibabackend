@@ -1,6 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const visita_area = sequelize.define('visita_area', {
+    id: {type: DataTypes.INTEGER,
+    primaryKey: true},
     desc_nome: DataTypes.STRING,
     desc_cargo: DataTypes.STRING,
     desc_celula: DataTypes.STRING, 

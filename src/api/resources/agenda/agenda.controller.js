@@ -42,8 +42,7 @@ export default {
     async getAgendaUpdate(req, res, next) {
         try {
             const { title,location,id_celula,id_lider,startDate,endDate,note,id,visita} = req.body;
-            console.log('visita')
-            console.log(visita)
+         
             db.agendas.findOne({ where: { id: parseInt(id) } })
            .then(agendas => {
                 if (agendas) {
@@ -55,7 +54,7 @@ export default {
                             startDate: startDate ? startDate : agendas.startDate,
                             endDate: endDate ? endDate : agendas.endDate,
                             note: note ? note : agendas.note,
-                            status: visita ? visita : agendas.status,
+                            status: visita,
                             text: location ? location : agendas.text,
                         }, { where: { id: parseInt(id) } }) 
                 }           

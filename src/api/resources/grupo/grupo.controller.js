@@ -27,6 +27,7 @@ export default {
                             info:info,
                             dia_semana:dia_semana,
                             faixa_etaria:faixa_etaria,
+                            text:descricao
                         })
                     }
                     throw new RequestError('Already exist product', 409);
@@ -118,7 +119,7 @@ export default {
                 .then(grupos => {
                     if (grupos) {
                         return db.grupos.update({
-                            descricao: descricao,                         
+                            descricao: descricao ? descricao : grupos.descricao,                         
                             status:status,
                             id_tp_grupo: id_tp_grupo ? id_tp_grupo : grupos.id_tp_grupo,
                             id_tp_ferramenta: id_tp_ferramenta ? id_tp_ferramenta : grupos.id_tp_ferramenta,
@@ -131,7 +132,8 @@ export default {
                             id_rede: id_rede ? id_rede : grupos.id_rede,
                             info: info,
                             dia_semana:dia_semana ? dia_semana : grupos.dia_semana,
-                            faixa_etaria:faixa_etaria ? faixa_etaria : grupos.faixa_etaria
+                            faixa_etaria:faixa_etaria ? faixa_etaria : grupos.faixa_etaria,
+                            text: descricao ? descricao : grupos.descricao
                                                                            
                         }, { where: { id: grupos.id } })
                     }

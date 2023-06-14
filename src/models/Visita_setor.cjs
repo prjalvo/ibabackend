@@ -20,7 +20,12 @@ module.exports = (sequelize, DataTypes) => {
     Nov: DataTypes.INTEGER,
     Dez: DataTypes.INTEGER,
     ano: DataTypes.INTEGER,
-  }, {});
+  },
+   {
+     tableName: 'visita_setor',
+     timestamps: false, // Se a view não tiver colunas de data de criação/atualização, desative os timestamps
+   },                                      
+  {});
 
   visita_setor.associate = function(models) {     
   };

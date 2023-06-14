@@ -87,6 +87,48 @@ export default {
             throw new RequestError(err);
         }
     },           
+      async getVisita_Setor(req, res, next) {
+        try {
+            db.visita_setor.findAll()
+                .then(visita_setor => {
+                    res.status(200).json({ 'success': true, visita_setor });
+                })
+                .catch(function (err) {
+                    next(err)
+                });
+        }
+        catch (err) {
+            throw new RequestError(err);
+        }
+    },           
+     async getVisita_Area(req, res, next) {
+        try {
+            db.visita_area.findAll()
+                .then(visita_area => {
+                    res.status(200).json({ 'success': true, visita_area });
+                })
+                .catch(function (err) {
+                    next(err)
+                });
+        }
+        catch (err) {
+            throw new RequestError(err);
+        }
+    },       
+     async getVisita_Distrito(req, res, next) {
+        try {
+            db.visita_distrito.findAll()
+                .then(visita_distrito => {
+                    res.status(200).json({ 'success': true, visita_distrito });
+                })
+                .catch(function (err) {
+                    next(err)
+                });
+        }
+        catch (err) {
+            throw new RequestError(err);
+        }
+    },           
     async getAgendaDelete(req, res, next) {
         try {
             db.agendas.findAll({ where: { id: parseInt(req.query.id) } })

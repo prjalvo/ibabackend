@@ -1,6 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const visita_setor = sequelize.define('visita_setor', {
+     id: {type: DataTypes.INTEGER,
+      primaryKey: true},
     desc_nome: DataTypes.STRING,
     desc_cargo: DataTypes.STRING,
     desc_celula: DataTypes.STRING, 
@@ -24,7 +26,6 @@ module.exports = (sequelize, DataTypes) => {
    {
      tableName: 'visita_setor',
      timestamps: false, // Se a view não tiver colunas de data de criação/atualização, desative os timestamps
-     primaryKey:false,
    },                                      
   {});
 

@@ -16,8 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     addres: DataTypes.STRING,
     id_tp_grupo: DataTypes.INTEGER,
     id_tp_ferramenta: DataTypes.INTEGER,
-    id_lider:DataTypes.INTEGER,
-    id_colider: DataTypes.INTEGER,
+    id_lider:DataTypes.INTEGER,    
     id_supervisor:DataTypes.INTEGER,
     id_setor:DataTypes.INTEGER,
     id_area: DataTypes.INTEGER,
@@ -40,8 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     models.grupos.belongsTo(models.tp_grupos, { foreignKey: 'id_tp_grupo' });          
     models.grupos.belongsTo(models.tp_ferramentas, { foreignKey: 'id_tp_ferramenta' });  
     models.grupos.belongsTo(models.faixaetaria, { foreignKey: 'faixa_etaria' });  
-    models.grupos.belongsTo(models.user, {as:'user_lider',foreignKey: 'id_lider' }); 
-    models.grupos.belongsTo(models.user, {as:'user_colider', foreignKey: 'id_colider' });    
+    models.grupos.belongsTo(models.user, {as:'user_lider',foreignKey: 'id_lider' });  
     models.grupos.belongsTo(models.user, {as:'user_supervisor', foreignKey: 'id_supervisor' });      
     models.grupos.belongsTo(models.user, {as:'user_area', foreignKey: 'id_area' });      
     models.grupos.belongsTo(models.user, {as:'user_distrito', foreignKey: 'id_distrito' });      

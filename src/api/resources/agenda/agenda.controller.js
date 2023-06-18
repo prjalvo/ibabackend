@@ -70,7 +70,7 @@ export default {
         async getAllAgendaList(req, res, next) {
         try {
             db.agendas.findAll({
-                order: [['createdAt', 'DESC']],
+                order: [['startDate', 'DESC']],
                 include: [{ model: db.grupos, attributes: ["id", "descricao","id_lider","id_colider","id_supervisor","id_setor","id_area","id_distrito"] },           
                  { model: db.user, as: "user_lider", attributes: ["id", "firstName"], include: { model: db.cargo, attributes: ["id", "descricao"] } }      
                ],

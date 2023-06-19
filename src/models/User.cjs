@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     id_cargo: DataTypes.INTEGER,
     id_area: DataTypes.INTEGER,
+    id_setor: DataTypes.INTEGER,
+    id_distrito: DataTypes.INTEGER,
     status: DataTypes.INTEGER,
     url_file: DataTypes.STRING,
   }, {});
@@ -19,6 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     models.user.belongsTo(models.cargo, { foreignKey: 'id_cargo' });
     models.user.hasMany(models.grupos, { foreignKey: 'id' });
     models.user.belongsTo(models.areas, { foreignKey: 'id_area' });
+    models.user.belongsTo(models.areas, { foreignKey: 'id_setor' });
+    models.user.belongsTo(models.areas, { foreignKey: 'id_distrito' });
   };
 
   return user;

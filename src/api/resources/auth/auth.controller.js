@@ -93,8 +93,7 @@ export default {
 
      async getAllUserList(req,res,next){
         db.user.findAll({
-            include: [{ model: db.cargo, attributes: ["id", "descricao"], }],
-            include: [{ model: db.areas, attributes: ["id", "descricao","tipo"], }]
+            include: [{ model: db.cargo, attributes: ["id", "descricao"],},{ model: db.areas, attributes: ["id", "descricao","tipo"],}]            
         })
         .then(user => {
             if (user) {

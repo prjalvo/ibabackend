@@ -39,7 +39,7 @@ function verifyOtp(token) {
 
 export default {
     async addUser(req, res, next) {
-        const { firstName, email, phone, id_cargo,id_area,status, verify, role ,password,url_file } = req.body;
+        const { firstName, email, phone, id_cargo,id_distrito,id_area,id_setor,status, verify, role ,password,url_file } = req.body;
         var passwordHash = bcrypt.hashSync(password);
         var token = generateOtp();
         var otp = verifyOtp(token);
@@ -53,7 +53,9 @@ export default {
                     email: email,
                     phone: phone,               
                     id_cargo: id_cargo,
+                    id_distrito: id_distrito,
                     id_area: id_area,
+                    id_setor: id_setor,
                     status: status,                    
                     verify: verify,
                     role: role,
@@ -112,7 +114,7 @@ export default {
     },
 
      async userUpdate(req,res,next){
-        const { id, firstName, email, phone, id_cargo,id_area, status, verify, role ,password,url_file } = req.body;
+        const { id, firstName, email, phone, id_cargo,id_distrito,id_area,id_setor, status, verify, role ,password,url_file } = req.body;
         var passwordHash = bcrypt.hashSync(password);
         db.user.findOne({ where: { id: id }, paranoid: false })
             .then(user => {
@@ -127,8 +129,10 @@ export default {
                     role: role ? role: user.role,
                     verify : verify? verify: user.verify,
                     id_cargo: id_cargo ? id_cargo : user.id_cargo,
+                    id_distrito: id_distrito ? id_distrito : user.id_distrito,
                     id_area: id_area ? id_area : user.id_area,
-                    status: status ? status : user.status,
+                    id_setor: id_setor ? id_setor : user.id_setor,                    
+                    status: status,
                     url_file: url_file ? url_file : user.url_file,
                 }, { where: { id: id } })
 

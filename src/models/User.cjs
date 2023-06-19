@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     verify: DataTypes.BOOLEAN,
     password: DataTypes.STRING,
     id_cargo: DataTypes.INTEGER,
+    id_area: DataTypes.INTEGER,
     status: DataTypes.INTEGER,
     url_file: DataTypes.STRING,
   }, {});
@@ -17,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   user.associate = function(models) {   
     models.user.belongsTo(models.cargo, { foreignKey: 'id_cargo' });
     models.user.hasMany(models.grupos, { foreignKey: 'id' });
+    models.user.belongsTo(models.areas, { foreignKey: 'id_area' });
   };
 
   return user;

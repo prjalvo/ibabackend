@@ -7,7 +7,10 @@ module.exports = (sequelize, DataTypes) => {
     tipo: DataTypes.STRING   
 
   }, 
-   
+    {
+     tableName: 'areas',
+     timestamps: false, // Se a view não tiver colunas de data de criação/atualização, desative os timestamps
+   },   
   {});
   
   areas.associate = function(models) {   

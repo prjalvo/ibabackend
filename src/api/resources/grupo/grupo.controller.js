@@ -6,7 +6,7 @@ export default {
 
     async addGrupo(req, res, next) {
         try {
-            const { descricao,status,id_tp_grupo,id_tp_ferramenta,id_lider,id_supervisor,id_setor,id_area,id_distrito,id_rede,dia_semana,faixa_etaria,info} = req.body;
+            const { descricao,status,id_tp_ferramenta,id_lider,id_supervisor,id_setor,id_area,id_distrito,id_rede,dia_semana,faixa_etaria,info} = req.body;
             db.grupos.findOne({
                 where: { descricao: descricao }
             })
@@ -14,8 +14,7 @@ export default {
                     if (!grupos) {
                         return db.grupos.create({
                             descricao: descricao,                         
-                            status:status,
-                            id_tp_grupo: id_tp_grupo,
+                            status:status,                       
                             id_tp_ferramenta: id_tp_ferramenta,
                             id_lider: id_lider,                            
                             id_supervisor: id_supervisor,
@@ -111,14 +110,13 @@ export default {
  */
     async update(req, res, next) {
         try {
-            const { id,descricao,status,id_tp_grupo,id_tp_ferramenta,id_lider,id_supervisor,id_setor,id_area,id_distrito,id_rede,dia_semana,faixa_etaria,info} = req.body;  
+            const { id,descricao,status,id_tp_ferramenta,id_lider,id_supervisor,id_setor,id_area,id_distrito,id_rede,dia_semana,faixa_etaria,info} = req.body;  
             db.grupos.findOne({ where: { id: id } })
                 .then(grupos => {
                     if (grupos) {
                         return db.grupos.update({
                             descricao: descricao ? descricao : grupos.descricao,                         
-                            status:status,
-                            id_tp_grupo: id_tp_grupo ? id_tp_grupo : grupos.id_tp_grupo,
+                            status:status,                        
                             id_tp_ferramenta: id_tp_ferramenta ? id_tp_ferramenta : grupos.id_tp_ferramenta,
                             id_lider: id_lider ? id_lider : grupos.id_lider,                           
                             id_supervisor: id_supervisor ? id_supervisor : grupos.id_supervisor,
@@ -152,8 +150,7 @@ export default {
             db.grupos.findAll({
                 where: { id: req.query.id },
                 order: [['createdAt', 'DESC']],
-                include: [{ model: db.tp_grupos, attributes: ["id", "descricao"] },
-                { model: db.tp_ferramentas, attributes: ["id", "descricao"] },
+                include: [{ model: db.tp_ferramentas, attributes: ["id", "descricao"] },
                 { model: db.faixaetaria, attributes: ["id", "descricao"] },
                 { model: db.user, as:"user_lider",attributes: ["id", "firstName"] },          
                 { model: db.user, as:"user_supervisor",attributes: ["id", "firstName"] },

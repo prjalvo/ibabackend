@@ -50,8 +50,7 @@ export default {
         try {
             db.grupos.findAll({                
                 order: [['createdAt', 'DESC']],         
-                include: [{ model: db.tp_grupos, attributes: ["id", "descricao"] },
-                { model: db.tp_ferramentas, attributes: ["id", "descricao"] },
+                include: [{ model: db.tp_ferramentas, attributes: ["id", "descricao"] },
                 { model: db.user, as:"user_lider",attributes: ["id", "firstName"] },         
                 { model: db.user, as:"user_supervisor",attributes: ["id", "firstName"] },
                 { model: db.user, as:"user_setor",attributes: ["id", "firstName"] },

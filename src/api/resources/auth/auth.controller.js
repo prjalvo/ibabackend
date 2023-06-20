@@ -132,10 +132,9 @@ export default {
                     id_distrito: id_distrito ? id_distrito : user.id_distrito,
                     id_area: id_area ? id_area : user.id_area,
                     id_setor: id_setor ? id_setor : user.id_setor,                    
-                    status: status,
+                    status: status ? status : user.status,
                     url_file: url_file ? url_file : user.url_file,
                 }, { where: { id: id } })
-
             })
             .then(user => {
                 if (user) {

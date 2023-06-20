@@ -35,8 +35,7 @@ module.exports = (sequelize, DataTypes) => {
 
 
   grupos.associate = function(models) {
-    // associations can be defined here
-    models.grupos.belongsTo(models.tp_grupos, { foreignKey: 'id_tp_grupo' });          
+    // associations can be defined here        
     models.grupos.belongsTo(models.tp_ferramentas, { foreignKey: 'id_tp_ferramenta' });  
     models.grupos.belongsTo(models.faixaetaria, { foreignKey: 'faixa_etaria' });  
     models.grupos.belongsTo(models.user, {as:'user_lider',foreignKey: 'id_lider' });  

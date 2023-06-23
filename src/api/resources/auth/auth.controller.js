@@ -218,8 +218,36 @@ export default {
       const token = JWT.sign({ email }, process.env.OTP_KEY, { expiresIn: '1h' });
     
       // Enviar e-mail com o link de redefinição de senha
-      sendPasswordResetEmail(email, token);    
-      res.json({ message: 'Token de redefinição de senha enviado por e-mail: ' + email });
+      //sendPasswordResetEmail(email, token);    
+       const transporter = nodemailer.createTransport({
+      // Configurações do seu serviço de e-mail
+       host: 'smtp.gmail.com',
+       port: '25',
+      auth: {
+        user: 'prjalvo@gmail.com',
+        pass: 'cmsdrbftcrqbvuwn',
+      },
+        tls: {rejectUnauthorized: false},
+      });
+
+         const resetLink = `https://ibaredeverde.app.br/auth/reset-password?token=${token}`;
+    
+      const mailOptions = {
+                from: 'prjalvo@gmail.com',
+                to: email,
+                subject: 'Redefinição de Senha',
+                text: `Para redefinir sua senha, clique neste link: ${resetLink}`,
+       };
+    
+      transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+              res.json({ message: error } );
+       } else {
+               res.json({ message: 'Token de redefinição de senha enviado por e-mail: ' + email });
+      }
+     });
+       
+     
         
     
   },    

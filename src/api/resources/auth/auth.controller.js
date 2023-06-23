@@ -236,7 +236,7 @@ export default {
                 from: 'prjalvo@gmail.com',
                 to: email,
                 subject: 'Redefinição de Senha',
-                text: 'Para redefinir sua senha, clique neste link: ${resetLink}',
+                text: 'Para redefinir sua senha, clique neste link: ' + resetLink,
        };
     
       transporter.sendMail(mailOptions, (error, info) => {

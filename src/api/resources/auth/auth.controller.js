@@ -220,14 +220,14 @@ export default {
       // Enviar e-mail com o link de redefinição de senha
       //sendPasswordResetEmail(email, token);    
        const transporter = nodemailer.createTransport({
-      // Configurações do seu serviço de e-mail
-       host: 'smtp.gmail.com',
-       port: '25',
-      auth: {
-        user: 'prjalvo@gmail.com',
-        pass: 'cmsdrbftcrqbvuwn',
-      },
-        tls: {rejectUnauthorized: false},
+          // Configurações do seu serviço de e-mail
+           host: 'smtp.gmail.com',
+           port: '25',
+          auth: {
+            user: 'prjalvo@gmail.com',
+            pass: 'cmsdrbftcrqbvuwn'
+          },
+            tls: {rejectUnauthorized: false},
       });
 
          const resetLink = `https://ibaredeverde.app.br/auth/reset-password?token=${token}`;
@@ -245,11 +245,8 @@ export default {
        } else {
                res.json({ message: 'Token de redefinição de senha enviado por e-mail: ' + email });
       }
-     });
-       
+     });  
      
-        
-    
   },    
 }
 

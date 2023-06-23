@@ -1,6 +1,6 @@
 import { db } from '../../../models/index.js';
 import JWT from 'jsonwebtoken';
-import mailer from '../../../mailer.js';
+import nodemailer from 'nodemailer';
 import config from '../../../config/app.js';
 import bcrypt from 'bcrypt-nodejs';
 import speakeasy from 'speakeasy';

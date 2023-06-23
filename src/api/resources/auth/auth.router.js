@@ -12,4 +12,4 @@ authRouter.route('/user/delete').post(sanitize(), jwtStrategy, authController.de
 authRouter.route('/getUserByEmailId').get( authController.findUser);
 authRouter.route('/rootLogin').post(sanitize(),validateBody(schemas.loginSchema),localStrategy, authController.login);
 authRouter.route('/forgotpassword').post(authController.forgotpassword);
-
+authRouter.route('/resetpassword').post(authController.resetpassword);

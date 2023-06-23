@@ -219,7 +219,7 @@ export default {
     
       // Enviar e-mail com o link de redefinição de senha
       sendPasswordResetEmail(email, token);    
-      res.json({ message: 'Token de redefinição de senha enviado por e-mail: ${email}' });
+      res.json({ message: 'Token de redefinição de senha enviado por e-mail: ' + email });
         
     
   },    

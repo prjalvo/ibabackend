@@ -11,5 +11,5 @@ authRouter.route('/user/update').post(jwtStrategy, authController.userUpdate);
 authRouter.route('/user/delete').post(sanitize(), jwtStrategy, authController.deleteUserList);
 authRouter.route('/getUserByEmailId').get( authController.findUser);
 authRouter.route('/rootLogin').post(sanitize(),validateBody(schemas.loginSchema),localStrategy, authController.login);
-
+authRouter.route('/forgotpassword').post(authController.forgotpassword);
 

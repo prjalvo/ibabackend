@@ -40,7 +40,7 @@ function verifyOtp(token) {
 function sendPasswordResetEmail(email, token) {
     const transporter = nodemailer.createTransport({
       // Configurações do seu serviço de e-mail
-      service: 'seu_provedor_de_email',
+      service: 'smtp.gmail.com',
       auth: {
         user: 'prjalvo@gmail.com',
         pass: 'cmsdrbftcrqbvuwn',

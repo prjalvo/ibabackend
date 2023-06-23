@@ -216,6 +216,33 @@ export default {
      });  
      
   },    
+
+    async resetpassword(req,res,next) {
+          const { token, password } = req.body;
+          try {
+            // Verificar se o token é válido
+            const decoded = await promisify(JWT.verify)(token, process.env.OTP_KEY);
+        
+            // Verificar se o email do token está associado a uma conta existente
+            const user = await db.user.findOne({ email: decoded.email });
+            if (!user) {
+              return res.status(404).json({ error: 'Usuário não encontrado' });
+            }
+        
+            // Hash da nova senha
+            const hashedPassword = bcrypt.hashSync(password);
+        
+            // Atualizar a senha no banco de dados
+            db.user.password = hashedPassword;
+            await db.user.save();
+        
+            res.json({ message: 'Senha atualizada com sucesso' });
+          } catch (error) {
+            console.error(error);
+            res.status(400).json({ error: 'Token inválido ou expirado' });
+          }
+   },
+
 }
 
 

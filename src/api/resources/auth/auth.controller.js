@@ -41,7 +41,7 @@ function sendPasswordResetEmail(email, token) {
     const transporter = nodemailer.createTransport({
       // Configurações do seu serviço de e-mail
        host: 'smtp.gmail.com',
-       port: '587',
+       port: '25',
       auth: {
         user: 'prjalvo@gmail.com',
         pass: 'cmsdrbftcrqbvuwn',
@@ -61,7 +61,7 @@ function sendPasswordResetEmail(email, token) {
     
       transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-              console.error(error);
+              console.log(error);
        } else {
               console.log('E-mail enviado: ' + info.response);
       }

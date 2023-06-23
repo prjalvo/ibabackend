@@ -36,6 +36,35 @@ function verifyOtp(token) {
     return expiry
 }
 
+// Função para enviar o e-mail de redefinição de senha
+function sendPasswordResetEmail(email, token) {
+    const transporter = nodemailer.createTransport({
+      // Configurações do seu serviço de e-mail
+      service: 'seu_provedor_de_email',
+      auth: {
+        user: 'prjalvo@gmail.com',
+        pass: 'cmsdrbftcrqbvuwn',
+      },
+      });
+    
+      const resetLink = `https://ibaredeverde.app.br/auth/reset-password?token=${token}`;
+    
+      const mailOptions = {
+                from: 'prjalvo@gmail.com',
+                to: email,
+                subject: 'Redefinição de Senha',
+                text: `Para redefinir sua senha, clique neste link: ${resetLink}`,
+       };
+    
+      transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+              console.error(error);
+       } else {
+              console.log('E-mail enviado: ' + info.response);
+      }
+  });
+}
+
 
 export default {
     async addUser(req, res, next) {
@@ -175,6 +204,22 @@ export default {
                 next(err)
             })
     },
+
+   async forgot-password(req,res,next) 
+      const { email } = req.body;  
+      const user = await user.findOne({ where: { email: email} })
+      if (!user) {
+        return res.status(404).json({ error: 'Usuário não encontrado' });
+      }    
+      // Gerar o token de redefinição de senha
+      const token = JWT.sign({ email }, process.env.OTP_KEY, { expiresIn: '1h' });
+    
+      // Enviar e-mail com o link de redefinição de senha
+      sendPasswordResetEmail(email, token);    
+      res.json({ message: 'Token de redefinição de senha enviado por e-mail' });
+        
+    
+  },    
 }
 
 

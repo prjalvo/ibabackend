@@ -207,7 +207,7 @@ export default {
 
    async forgotpassword(req,res,next) {
       const { email } = req.body;  
-      const user = await user.findOne({ where: { email: email} })
+      const user = await db.user.findOne({ where: { email: email} })
       if (!user) {
         return res.status(404).json({ error: 'Usuário não encontrado' });
       }    

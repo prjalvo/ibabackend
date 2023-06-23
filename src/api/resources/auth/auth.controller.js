@@ -205,7 +205,7 @@ export default {
             })
     },
 
-   async forgot-password(req,res,next) {
+   async forgotpassword(req,res,next) {
       const { email } = req.body;  
       const user = await user.findOne({ where: { email: email} })
       if (!user) {

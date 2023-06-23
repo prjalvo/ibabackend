@@ -36,38 +36,6 @@ function verifyOtp(token) {
     return expiry
 }
 
-// Função para enviar o e-mail de redefinição de senha
-function sendPasswordResetEmail(email, token) {
-    const transporter = nodemailer.createTransport({
-      // Configurações do seu serviço de e-mail
-       host: 'smtp.gmail.com',
-       port: '25',
-      auth: {
-        user: 'prjalvo@gmail.com',
-        pass: 'cmsdrbftcrqbvuwn',
-      },
-        tls: {rejectUnauthorized: false},
-      });
-
-      
-      const resetLink = `https://ibaredeverde.app.br/auth/reset-password?token=' + token;
-    
-      const mailOptions = {
-                from: 'prjalvo@gmail.com',
-                to: email,
-                subject: 'Redefinição de Senha',
-                text: `Para redefinir sua senha, clique neste link: ${resetLink}`,
-       };
-    
-      transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-              console.log(error);
-       } else {
-              console.log('E-mail enviado: ' + info.response);
-      }
-  });
-}
-
 
 export default {
     async addUser(req, res, next) {
@@ -230,13 +198,13 @@ export default {
             tls: {rejectUnauthorized: false},
       });
 
-         const resetLink = 'https://ibaredeverde.app.br/auth/reset-password?token=' + token;
+      const resetLink = 'https://ibaredeverde.app.br/auth/reset-password?token=' + token
     
       const mailOptions = {
                 from: 'prjalvo@gmail.com',
                 to: email,
                 subject: 'Redefinição de Senha',
-                text: 'Para redefinir sua senha, clique neste link: ' + resetLink,
+                text: 'Para redefinir sua senha, clique neste link: ' + resetLink
        };
     
       transporter.sendMail(mailOptions, (error, info) => {

@@ -221,7 +221,7 @@ export default {
       //sendPasswordResetEmail(email, token);    
        const transporter = nodemailer.createTransport({
           // Configurações do seu serviço de e-mail
-           host: 'smtp.gmail.com',
+           host: 'smtp.googlemail.com',
            port: '25',
           auth: {
             user: 'prjalvo@gmail.com',

@@ -40,13 +40,16 @@ function verifyOtp(token) {
 function sendPasswordResetEmail(email, token) {
     const transporter = nodemailer.createTransport({
       // Configurações do seu serviço de e-mail
-      service: 'smtp.gmail.com',
+       host: 'smtp.gmail.com',
+       port: '587',
       auth: {
         user: 'prjalvo@gmail.com',
         pass: 'cmsdrbftcrqbvuwn',
       },
+        tls: {rejectUnauthorized: false},
       });
-    
+
+      
       const resetLink = `https://ibaredeverde.app.br/auth/reset-password?token=${token}`;
     
       const mailOptions = {

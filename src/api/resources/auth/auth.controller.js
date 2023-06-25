@@ -223,12 +223,23 @@ export default {
     async resetpassword(req,res,next) {
           const { token, password } = req.body;
           try {
-
-            const verifyAsync = util.promisify(JWT.verify);
-              
+            const verifyAsync = util.promisify(JWT.verify);              
             // Verificar se o token é válido
-            //const decoded = await promisify(JWT.verify)(token, process.env.OTP_KEY);
-            const decoded = await verifyAsync(token,process.env.OTP_KEY); 
+            try {  
+              const decoded = await verifyAsync(token,process.env.OTP_KEY); 
+            } catch (error) {
+              // Erro ao verificar o token
+              if (error.name === 'TokenExpiredError') {
+                // O token expirou
+                console.log('O token expirou.');
+              } else if (error.name === 'JsonWebTokenError') {
+                // O token é inválido ou malformado
+                console.log('O token é inválido ou malformado.');
+              } else {
+                // Outro tipo de erro
+                console.log('Ocorreu um erro ao verificar o token:', error.message);
+              }
+            }    
            // Hash da nova senha
             const hashedPassword = bcrypt.hashSync(password);         
             // Verificar se o email do token está associado a uma conta existente
@@ -241,8 +252,9 @@ export default {
                 return db.user.update({                
                     password: hashedPassword ? hashedPassword  : user.password,                                
                 }, { where: { email: decoded.email } })
-            }
-            res.json({ message: 'Senha atualizada com sucesso' });
+                
+               res.json({ message: 'Senha atualizada com sucesso' });
+            }            
           } catch (error) {
             console.error(error);
             res.status(400).json({ error: 'Token inválido ou expirado' });

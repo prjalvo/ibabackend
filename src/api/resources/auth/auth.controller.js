@@ -231,13 +231,13 @@ export default {
               // Erro ao verificar o token
               if (error.name === 'TokenExpiredError') {
                   // O token expirou
-                 return res.status(404).json({'O token expirou.'});
+                 return res.status(404).json( { 'O token expirou.' } );
               } else if (error.name === 'JsonWebTokenError') {
                 // O token é inválido ou malformado
-                return res.status(404).json({'O token é inválido ou malformado.'});
+                return res.status(404).json( { 'O token é inválido ou malformado.' } );
               } else {
                 // Outro tipo de erro
-                return res.status(404).json({'Ocorreu um erro ao verificar o token:', error.message});
+                return res.status(404).json( { 'Ocorreu um erro ao verificar o token:', error.message } );
               }
             }    
            // Hash da nova senha

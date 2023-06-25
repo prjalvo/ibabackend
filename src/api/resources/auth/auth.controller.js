@@ -238,7 +238,7 @@ export default {
                 return db.user.update({                
                     password: hashedPassword ? hashedPassword  : user.password,                                
                 }, { where: { email: decoded.email } })
-                
+                }
                return res.json({ message: 'Senha atualizada com sucesso' });                    
                 
               } catch (error) {
@@ -253,8 +253,7 @@ export default {
                 // Outro tipo de erro
                 return res.status(500).json( { message: 'Ocorreu um erro ao verificar o token: ' + error.message } );
               }
-            }   
-         }
+            }            
    },
 
 }

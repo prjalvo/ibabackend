@@ -198,7 +198,7 @@ export default {
             tls: {rejectUnauthorized: false},
       });
 
-      const resetLink = 'https://ibaredeverde.app.br/auth/reset-password?token=' + token
+      const resetLink = 'https://ibaredeverde.app.br/reset-password?token=' + token
     
       const mailOptions = {
                 from: 'prjalvo@gmail.com',

@@ -239,7 +239,7 @@ export default {
             else
             {
                 return db.user.update({                
-                    password: hashedPassword ? hashedPassword: user.password,                                
+                    password: hashedPassword ? hashedPassword  : user.password,                                
                 }, { where: { email: decoded.email } })
             }
             res.json({ message: 'Senha atualizada com sucesso' });

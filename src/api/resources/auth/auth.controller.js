@@ -253,11 +253,11 @@ export default {
                     password: hashedPassword ? hashedPassword  : user.password,                                
                 }, { where: { email: decoded.email } })
                 
-               res.json({ message: 'Senha atualizada com sucesso' });
+               return res.json({ message: 'Senha atualizada com sucesso' });
             }            
           } catch (error) {
             console.error(error);
-            res.status(400).json({ error: 'Token inválido ou expirado' });
+            return res.status(400).json({ error: 'Token inválido ou expirado' });
           }
    },
 

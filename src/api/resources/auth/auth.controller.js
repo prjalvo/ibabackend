@@ -230,14 +230,14 @@ export default {
             } catch (error) {
               // Erro ao verificar o token
               if (error.name === 'TokenExpiredError') {
-                // O token expirou
-                console.log('O token expirou.');
+                  // O token expirou
+                 return res.status(404).json({'O token expirou.'});
               } else if (error.name === 'JsonWebTokenError') {
                 // O token é inválido ou malformado
-                console.log('O token é inválido ou malformado.');
+                return res.status(404).json({'O token é inválido ou malformado.'});
               } else {
                 // Outro tipo de erro
-                console.log('Ocorreu um erro ao verificar o token:', error.message);
+                return res.status(404).json({'Ocorreu um erro ao verificar o token:', error.message});
               }
             }    
            // Hash da nova senha

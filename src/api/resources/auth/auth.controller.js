@@ -230,10 +230,9 @@ export default {
             //const decoded = await promisify(JWT.verify)(token, process.env.OTP_KEY);
             const decoded = await verifyAsync(token,process.env.OTP_KEY); 
            // Hash da nova senha
-            const hashedPassword = bcrypt.hashSync(password);
-            console.log(decoded.email)  
+            const hashedPassword = bcrypt.hashSync(password);         
             // Verificar se o email do token está associado a uma conta existente
-            const user = await db.user.findOne({ email: decoded.email });
+            const user = await db.user.findOne({ where: { email: decoded.email } } );
             if (!user) {
               return res.status(404).json({ error: 'Usuário não encontrado' });
             } 

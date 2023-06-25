@@ -222,20 +222,21 @@ export default {
           try {
             // Verificar se o token é válido
             const decoded = await promisify(JWT.verify)(token, process.env.OTP_KEY);
-        
+
+           // Hash da nova senha
+            const hashedPassword = bcrypt.hashSync(password);
+              
             // Verificar se o email do token está associado a uma conta existente
             const user = await db.user.findOne({ email: decoded.email });
             if (!user) {
               return res.status(404).json({ error: 'Usuário não encontrado' });
+            } 
+            else
+            {
+                return db.user.update({                
+                    password: hashedPassword ? hashedPassword: user.password,                                
+                }, { where: { email: decoded.email } })
             }
-        
-            // Hash da nova senha
-            const hashedPassword = bcrypt.hashSync(password);
-        
-            // Atualizar a senha no banco de dados
-            db.user.password = hashedPassword;
-            await db.user.save();
-        
             res.json({ message: 'Senha atualizada com sucesso' });
           } catch (error) {
             console.error(error);

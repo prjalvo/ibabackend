@@ -6,6 +6,8 @@ import bcrypt from 'bcrypt-nodejs';
 import speakeasy from 'speakeasy';
 import { validateEmail } from './../../../functions.js'
 
+const util = require('util');
+
 var JWTSign = function (user, date) {
     return JWT.sign({
         iss: config.name,
@@ -220,9 +222,12 @@ export default {
     async resetpassword(req,res,next) {
           const { token, password } = req.body;
           try {
+
+            const verifyAsync = util.promisify(JWT.verify);
+              
             // Verificar se o token é válido
             //const decoded = await promisify(JWT.verify)(token, process.env.OTP_KEY);
-            const decoded = await JWT.verifyAsync(token,process.env.OTP_KEY); 
+            const decoded = await verifyAsync(token,process.env.OTP_KEY); 
            // Hash da nova senha
             const hashedPassword = bcrypt.hashSync(password);
               

@@ -237,7 +237,7 @@ export default {
                 return res.status(404).json( { message: 'O token é inválido ou malformado.' } );
               } else {
                 // Outro tipo de erro
-                return res.status(404).json( { message: 'Ocorreu um erro ao verificar o token:', error.message } );
+                return res.status(404).json( { message: 'Ocorreu um erro ao verificar o token: ' + error.message } );
               }
             }    
            // Hash da nova senha

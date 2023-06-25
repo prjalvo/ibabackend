@@ -221,13 +221,27 @@ export default {
   },    
 
     async resetpassword(req,res,next) {
-          const { token, password } = req.body;
-          try {
+            const { token, password } = req.body;   
             const verifyAsync = util.promisify(JWT.verify);              
             // Verificar se o token é válido
             try {  
-              const decoded = await verifyAsync(token,process.env.OTP_KEY); 
-            } catch (error) {
+                const decoded = await verifyAsync(token,process.env.OTP_KEY); 
+                  // Hash da nova senha
+                const hashedPassword = bcrypt.hashSync(password);         
+                // Verificar se o email do token está associado a uma conta existente
+                const user = await db.user.findOne({ where: { email: decoded.email } } );
+                if (!user) {
+                  return res.status(404).json({ error: 'Usuário não encontrado' });
+                } 
+                else
+                {
+                return db.user.update({                
+                    password: hashedPassword ? hashedPassword  : user.password,                                
+                }, { where: { email: decoded.email } })
+                
+               return res.json({ message: 'Senha atualizada com sucesso' });                    
+                
+              } catch (error) {
               // Erro ao verificar o token
               if (error.name === 'TokenExpiredError') {
                   // O token expirou
@@ -239,26 +253,8 @@ export default {
                 // Outro tipo de erro
                 return res.status(500).json( { message: 'Ocorreu um erro ao verificar o token: ' + error.message } );
               }
-            }    
-           // Hash da nova senha
-            const hashedPassword = bcrypt.hashSync(password);         
-            // Verificar se o email do token está associado a uma conta existente
-            const user = await db.user.findOne({ where: { email: decoded.email } } );
-            if (!user) {
-              return res.status(404).json({ error: 'Usuário não encontrado' });
-            } 
-            else
-            {
-                return db.user.update({                
-                    password: hashedPassword ? hashedPassword  : user.password,                                
-                }, { where: { email: decoded.email } })
-                
-               return res.json({ message: 'Senha atualizada com sucesso' });
-            }            
-          } catch (error) {
-            console.error(error);
-            return res.status(400).json({ error: 'Token inválido ou expirado' });
-          }
+            }   
+         }
    },
 
 }

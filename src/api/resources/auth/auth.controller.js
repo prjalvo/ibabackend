@@ -231,7 +231,7 @@ export default {
             const decoded = await verifyAsync(token,process.env.OTP_KEY); 
            // Hash da nova senha
             const hashedPassword = bcrypt.hashSync(password);
-              
+            console.log(decoded.email)  
             // Verificar se o email do token está associado a uma conta existente
             const user = await db.user.findOne({ email: decoded.email });
             if (!user) {

@@ -225,34 +225,33 @@ export default {
             const verifyAsync = util.promisify(JWT.verify);              
             // Verificar se o token é válido
             try {  
-                const decoded = await verifyAsync(token,process.env.OTP_KEY); 
-                  // Hash da nova senha
-                const hashedPassword = bcrypt.hashSync(password);         
-                // Verificar se o email do token está associado a uma conta existente
-                const user = await db.user.findOne({ where: { email: decoded.email } } );
-                if (!user) {
-                  return res.status(404).json({ error: 'Usuário não encontrado' });
-                } 
-                else
-                {
-                return db.user.update({                
-                    password: hashedPassword ? hashedPassword  : user.password,                                
-                }, { where: { email: decoded.email } })
-                }
-               return res.json({ message: 'Senha atualizada com sucesso' });                    
-                
+                    const decoded = await verifyAsync(token,process.env.OTP_KEY); 
+                      // Hash da nova senha
+                    const hashedPassword = bcrypt.hashSync(password);         
+                    // Verificar se o email do token está associado a uma conta existente
+                    const user = await db.user.findOne({ where: { email: decoded.email } } );
+                    if (!user) {
+                        return res.status(404).json({ error: 'Usuário não encontrado' });
+                    } 
+                    else
+                    {
+                        return db.user.update({                
+                            password: hashedPassword ? hashedPassword  : user.password,                                
+                        }, { where: { email: decoded.email } })               
+                        return res.json({ message: 'Senha atualizada com sucesso' });   
+                    }
               } catch (error) {
-              // Erro ao verificar o token
-              if (error.name === 'TokenExpiredError') {
-                  // O token expirou
-                 return res.status(200).json( { message: 'O token expirou.' } );
-              } else if (error.name === 'JsonWebTokenError') {
-                // O token é inválido ou malformado
-                return res.status(200).json( { message: 'O token é inválido ou malformado.' } );
-              } else {
-                // Outro tipo de erro
-                return res.status(500).json( { message: 'Ocorreu um erro ao verificar o token: ' + error.message } );
-              }
+                  // Erro ao verificar o token
+                  if (error.name === 'TokenExpiredError') {
+                      // O token expirou
+                     return res.status(200).json( { message: 'O token expirou.' } );
+                  } else if (error.name === 'JsonWebTokenError') {
+                    // O token é inválido ou malformado
+                    return res.status(200).json( { message: 'O token é inválido ou malformado.' } );
+                  } else {
+                    // Outro tipo de erro
+                    return res.status(500).json( { message: 'Ocorreu um erro ao verificar o token: ' + error.message } );
+                  }
             }            
    },
 

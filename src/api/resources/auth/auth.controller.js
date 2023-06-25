@@ -221,8 +221,8 @@ export default {
           const { token, password } = req.body;
           try {
             // Verificar se o token é válido
-            const decoded = await promisify(JWT.verify)(token, process.env.OTP_KEY);
-
+            //const decoded = await promisify(JWT.verify)(token, process.env.OTP_KEY);
+            const decoded = await JWT.verifyAsync(token,process.env.OTP_KEY); 
            // Hash da nova senha
             const hashedPassword = bcrypt.hashSync(password);
               

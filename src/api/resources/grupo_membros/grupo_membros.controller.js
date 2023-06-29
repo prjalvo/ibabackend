@@ -94,7 +94,7 @@ export default {
     },
   async getAllGrupoMembrosFormula(req, res, next) {
   try {
-    db.formularios.findAll({
+    const formularios = await db.formularios.findAll({
       order: [['createdAt', 'DESC']],
       include: [
         {
@@ -127,15 +127,12 @@ export default {
           ]
         }
       ]
-    })
-      .then(formularios => {
-        res.status(200).json({ 'success': true, formularios });
-      })
-      .catch(err => {
-        next(err);
-      });
+    });
+
+    res.status(200).json({ 'success': true, formularios });
   } catch (err) {
-    throw new RequestError('Error');
+    console.error(err);
+    next(err);
   }
 },
     async update(req, res, next) {

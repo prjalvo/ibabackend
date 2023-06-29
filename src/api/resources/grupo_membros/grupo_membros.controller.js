@@ -100,8 +100,29 @@ export default {
                 order: [['createdAt', 'DESC']],     
                 include: [                                                     
                 { model: db.grupo_membros, attributes: ["id", "nome","telefone","email","data_conversao"] },
-                { model: db.grupos, attributes: ["id", "descricao"] }, 
-                ],
+                { model: db.grupos, attributes: ["id", "descricao"],
+                  include: [
+                          {
+                            model: db.users,
+                            attributes: ["id_area","id_setor","id_distrito","id_lider"],
+                            where: { id: db.sequelize.col('grupos.id_lider') },
+                            required: true,
+                               include: [
+                                          {
+                                            model: db.areas,
+                                            attributes: ["descricao","tipo"]
+                                            where: {
+                                                      [db.sequelize.Op.or]: [
+                                                        { id: db.sequelize.col('users.id_area') },
+                                                        { id: db.sequelize.col('users.id_distrito') },
+                                                        { id: db.sequelize.col('users.id_setor') }
+                                                      ]
+                                                    }  
+                                          }
+                                        ]
+                          }                      
+                        ]
+                 ]
             })
                 .then(formularios => {
                     res.status(200).json({ 'success': true, formularios });

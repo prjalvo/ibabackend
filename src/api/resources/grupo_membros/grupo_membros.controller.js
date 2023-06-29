@@ -108,10 +108,7 @@ export default {
           attributes: ["id", "descricao"],
           include: [
             {
-              model: db.users,
-              attributes: ["id_area", "id_setor", "id_distrito", "id_lider"],
-              where: { id: db.sequelize.col('grupos.id_lider') },
-              required: true
+              model: db.users              
             }
           ]
         }

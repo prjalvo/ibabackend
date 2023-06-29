@@ -108,9 +108,9 @@ export default {
           attributes: ["id", "descricao"],
           include: [
             { model: db.user, as:"user_lider",attributes: ["id", "firstName"],
-                     include: [ { model: db.areas,as:"user_area",attributes: ["id", "descricao","tipo"]}],
-                     include: [ { model: db.areas,as:"user_setor",attributes: ["id", "descricao","tipo"]}],
-                     include: [ { model: db.areas,as:"user_distrito",attributes: ["id", "descricao","tipo"]}],
+                     include: [ { model: db.areas,as:"user_area",attributes: ["id", "descricao","tipo"]},
+                              { model: db.areas,as:"user_setor",attributes: ["id", "descricao","tipo"]},
+                              { model: db.areas,as:"user_distrito",attributes: ["id", "descricao","tipo"]}],
             
             }, 
           ]

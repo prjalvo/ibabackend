@@ -110,7 +110,7 @@ export default {
                                include: [
                                           {
                                             model: db.areas,
-                                            attributes: ["descricao","tipo"]
+                                            attributes: ["descricao","tipo"],
                                             where: {
                                                       [db.sequelize.Op.or]: [
                                                         { id: db.sequelize.col('users.id_area') },

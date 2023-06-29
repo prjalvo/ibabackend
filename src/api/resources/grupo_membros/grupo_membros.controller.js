@@ -1,6 +1,6 @@
 import { db } from '../../../models/index.js';
-import { pkg } from 'sequelize';
-const { Op } = pkg;
+import { Sequelize } from 'sequelize';
+const { Op } = Sequelize;
 
 export default {
 

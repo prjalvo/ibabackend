@@ -107,9 +107,7 @@ export default {
           model: db.grupos,
           attributes: ["id", "descricao"],
           include: [
-            {
-              model: db.users              
-            }
+            { model: db.user, as:"user_lider",attributes: ["id", "firstName"] }, 
           ]
         }
       ]

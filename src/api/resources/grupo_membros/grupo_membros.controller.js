@@ -92,8 +92,8 @@ export default {
             throw new RequestError('Error');
         }
     },
-    async getAllGrupoMembrosFormula(req, res, next) {
-    try {
+  async getAllGrupoMembrosFormula(req, res, next) {
+  try {
     db.formularios.findAll({
       order: [['createdAt', 'DESC']],
       include: [
@@ -131,8 +131,8 @@ export default {
       .then(formularios => {
         res.status(200).json({ 'success': true, formularios });
       })
-      .catch(function (err) {
-        next(err)
+      .catch(err => {
+        next(err);
       });
   } catch (err) {
     throw new RequestError('Error');

@@ -1,5 +1,5 @@
 import { db } from '../../../models/index.js';
-const Op = require('Sequelize').Op;
+import { Op } from 'sequelize';
 
 export default {
 

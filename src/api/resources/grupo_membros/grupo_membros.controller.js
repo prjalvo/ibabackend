@@ -1,4 +1,5 @@
 import { db } from '../../../models/index.js';
+const { Op } = db.sequelize;
 
 export default {
 
@@ -115,7 +116,7 @@ export default {
                   model: db.areas,
                   attributes: ["descricao", "tipo"],
                   where: {
-                    [db.sequelize.Op.or]: [
+                    [Op.or]: [
                       { id: db.sequelize.col('users.id_area') },
                       { id: db.sequelize.col('users.id_distrito') },
                       { id: db.sequelize.col('users.id_setor') }

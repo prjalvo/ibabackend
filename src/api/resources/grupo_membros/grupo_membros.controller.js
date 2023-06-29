@@ -122,7 +122,7 @@ export default {
                                         ]
                           }                      
                         ]
-                 ]
+                 ],
             })
                 .then(formularios => {
                     res.status(200).json({ 'success': true, formularios });

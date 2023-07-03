@@ -5,5 +5,5 @@ import { sanitize } from '../../../middleware/sanitizer.js';
 import { validateBody, schemas } from '../../../middleware/validator.js';
 
 export const batismoRouter = express.Router();
-batismoRouter.route('/register').post(batismoController.addUser);
-batismoRouter.route('/user/getAllBatismoList').get(sanitize(), jwtStrategy, batismoController.getAllbatismoList);
+batismoRouter.route('/register').post(batismoController.addBatismo);
+batismoRouter.route('/batismo/getAllBatismoList').get(sanitize(), jwtStrategy, batismoController.getAllBatismoList);

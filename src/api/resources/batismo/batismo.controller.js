@@ -5,36 +5,30 @@ import bcrypt from 'bcrypt-nodejs';
 
 
 export default {
-    async addUser(req, res, next) {
-        const { firstName, email, phone, id_cargo,id_distrito,id_area,id_setor,status, verify, role ,password,url_file } = req.body;
-        var passwordHash = bcrypt.hashSync(password);
-        var token = generateOtp();
-        var otp = verifyOtp(token);
-        db.user.findOne({ where: { email: email }, paranoid: false })
+    async addBatismo(req, res, next) {
+        const { nome, email, est_c, idade,telefone,celula,lider,supervisores, ne, turma } = req.body;       
+        db.batismo.findOne({ where: { email: email }, paranoid: false })
             .then(find => {
                 if (find) {
                     throw new RequestError('Email is already in use', 409);
                 }
                 return db.user.create({
-                    firstName: firstName,                    
+                    nome: nome,                    
                     email: email,
-                    phone: phone,               
-                    id_cargo: id_cargo,
-                    id_distrito: id_distrito,
-                    id_area: id_area,
-                    id_setor: id_setor,
-                    status: status,                    
-                    verify: verify,
-                    role: role,
-                    password: passwordHash,
-                    url_file
+                    est_c: est_c,               
+                    idade: idade,
+                    telefone: telefone,
+                    celula: celula,
+                    lider: lider,
+                    supervisores: supervisores,                    
+                    ne: ne,
+                    turma: turma                    
                 })
 
             })
-            .then(user => {
-                if (user) {
-//                     mailer.sendEmployeePassword(email, token);
-                    return res.status(200).json({ success: true, key: otp, msg: "New Registration added and password has been sent to " + email + " ." });
+            .then(batismo => {
+                if (batismo) {//                
+                    return res.status(200).json({ success: true, msg: "New Registration added" });
                 }
                 else
                     res.status(500).json({ 'success': false });
@@ -43,12 +37,13 @@ export default {
                 console.log(err)
                 next(err);
             })
-    },
-
-    async findUser(req,res,next){
-        db.user.findOne({ attributes:["firstName","lastName"], where: { email: req.query.email }, paranoid: false })
-        .then(user => {
-            if (user) {
+    },  
+    
+     async getAllBatismoList(req,res,next){
+        db.batismo.findAll({            
+        })
+        .then(batismo => {
+            if (batismo) {
                 return res.status(200).json({ success: true, data:user});
             }
             else
@@ -58,167 +53,6 @@ export default {
             console.log(err)
             next(err);
         })
-    },
-
-     async getAllUserList(req,res,next){
-        db.user.findAll({
-            include: [{ model: db.cargo, attributes: ["id", "descricao"]},
-                      { model: db.areas,as:"user_area",attributes: ["id", "descricao","tipo"]},
-                      { model: db.areas,as:"user_setor",attributes: ["id", "descricao","tipo"]},
-                      { model: db.areas,as:"user_distrito",attributes: ["id", "descricao","tipo"]}]
-        })
-        .then(user => {
-            if (user) {
-                return res.status(200).json({ success: true, data:user});
-            }
-            else
-                res.status(500).json({ 'success': false });
-        })
-        .catch(err => {
-            console.log(err)
-            next(err);
-        })
-    },
-
-     async userUpdate(req,res,next){
-        const { id, firstName, email, phone, id_cargo,id_distrito,id_area,id_setor, status, verify, role ,password,url_file } = req.body;
-        var passwordHash = bcrypt.hashSync(password);
-        db.user.findOne({ where: { id: id }, paranoid: false })
-            .then(user => {
-                if (!user) {
-                    throw new RequestError('User is not found', 409);
-                }
-                return db.user.update({
-                    firstName: firstName ? firstName: user.firstName,
-                    phone: phone ? phone: user.phone,
-                    email: email ? email: user.email,
-                    password: password ? passwordHash: user.passwordHash,              
-                    role: role ? role: user.role,
-                    verify : verify? verify: user.verify,
-                    id_cargo: id_cargo ? id_cargo : user.id_cargo,
-                    id_distrito: id_distrito ? id_distrito : user.id_distrito,
-                    id_area: id_area ? id_area : user.id_area,
-                    id_setor: id_setor ? id_setor : user.id_setor,                    
-                    status: status,
-                    url_file: url_file ? url_file : user.url_file,
-                }, { where: { id: id } })
-            })
-            .then(user => {
-                if (user) {
-                    return res.status(200).json({ success: true, msg: "User update successsfully"});
-                }
-                else
-                    res.status(500).json({ 'success': false });
-            })
-            .catch(err => {
-                console.log(err)
-                next(err);
-            })
-    },
-
-    async login(req, res, next) {
-        var date = new Date();
-        var token = JWTSign(req.user, date,{expiresIn: '12h' 
-                         });
-        res.cookie('XSRF-token',     token, {
-            expire: new Date().setMinutes(date.getMinutes() + 480),
-            httpOnly: true, secure: config.secure
-        });
-        
-        return res.status(200).json({ success: true ,token,role: req.user.role,firstName: req.user.firstName,id_lider: req.user.id});
-    },
-
-     async deleteUserList(req, res, next) {
-        db.user.findOne({ where: { id: req.body.id} })
-            .then(data => {
-                if (data) {
-                    return db.user.destroy({ where: { id: req.body.id } }).then(r => [r, data])
-                }
-                throw new RequestError('User is not found', 409)
-            })
-            .then(re => {
-                return res.status(200).json({ 'status': "deleted userlist Seccessfully" });
-            }).catch(err => {
-                next(err)
-            })
-    },
-
-   async forgotpassword(req,res,next) {
-      const { email } = req.body;  
-      const user = await db.user.findOne({ where: { email: email} })
-      if (!user) {
-        return res.status(404).json({ error: 'Usuário não encontrado' });
-      }    
-      // Gerar o token de redefinição de senha
-      const token = JWT.sign({ email }, process.env.OTP_KEY, { expiresIn: '1h' });
-    
-      // Enviar e-mail com o link de redefinição de senha
-      //sendPasswordResetEmail(email, token);    
-       const transporter = nodemailer.createTransport({
-          // Configurações do seu serviço de e-mail
-           host: 'smtp.gmail.com',
-           port: '587',
-          auth: {
-            user: 'prjalvo@gmail.com',
-            pass: 'cmsdrbftcrqbvuwn'
-          },
-            tls: {rejectUnauthorized: false},
-      });
-
-      const resetLink = 'https://ibaredeverde.app.br/reset-password?token=' + token
-    
-      const mailOptions = {
-                from: 'prjalvo@gmail.com',
-                to: email,
-                subject: 'Redefinição de Senha',
-                text: 'Para redefinir sua senha, clique neste link: ' + resetLink
-       };
-    
-      transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-              res.json({ message: error } );
-       } else {
-               res.json({ message: 'Token de redefinição de senha enviado por e-mail: ' + email });
-      }
-     });  
-     
-  },    
-  async resetpassword(req,res,next) {
-            const { token, password } = req.body;   
-            const verifyAsync = util.promisify(JWT.verify);              
-            // Verificar se o token é válido
-            try {  
-                    const decoded = await verifyAsync(token,process.env.OTP_KEY); 
-                      // Hash da nova senha
-                    const hashedPassword = bcrypt.hashSync(password);         
-                    // Verificar se o email do token está associado a uma conta existente
-                    const user = await db.user.findOne({ where: { email: decoded.email } } );
-                    if (!user) {
-                        return res.status(404).json({ error: 'Usuário não encontrado' });
-                    } 
-                    else
-                    {
-                        db.user.update(
-                        { password: hashedPassword ? hashedPassword : user.password },
-                        { where: { email: decoded.email } }
-                        );
-                
-                      // Retornar uma resposta de sucesso
-                      return res.status(200).json({ message: 'Senha atualizada com sucesso' });
-                    }
-              } catch (error) {
-                  // Erro ao verificar o token
-                  if (error.name === 'TokenExpiredError') {
-                      // O token expirou
-                     return res.status(200).json( { message: 'O token expirou.' } );
-                  } else if (error.name === 'JsonWebTokenError') {
-                    // O token é inválido ou malformado
-                    return res.status(200).json( { message: 'O token é inválido ou malformado.' } );
-                  } else {
-                    // Outro tipo de erro
-                    return res.status(500).json( { message: 'Ocorreu um erro ao verificar o token: ' + error.message } );
-                  }
-            }            
-   },
+    }
 
 }

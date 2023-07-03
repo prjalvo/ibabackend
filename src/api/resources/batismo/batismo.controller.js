@@ -12,7 +12,7 @@ export default {
                 if (find) {
                     throw new RequestError('Email is already in use', 409);
                 }
-                return db.user.create({
+                return db.batismo.create({
                     nome: nome,                    
                     email: email,
                     est_c: est_c,               

@@ -44,7 +44,7 @@ export default {
         })
         .then(batismo => {
             if (batismo) {
-                return res.status(200).json({ success: true, data:user});
+                return res.status(200).json({ success: true, data:batismo});
             }
             else
                 res.status(500).json({ 'success': false });

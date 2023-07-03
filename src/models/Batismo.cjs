@@ -11,7 +11,13 @@ module.exports = (sequelize, DataTypes) => {
     supervisores: DataTypes.STRING,
     ne: DataTypes.STRING,
     turma: DataTypes.STRING,    
-  }, {});
+  },
+  {
+     tableName: 'batismo',
+     timestamps: false, // Se a view não tiver colunas de data de criação/atualização, desative os timestamps
+   },   
+                                   
+ {});
 
   batismo.associate = function(models) {       
   };

@@ -68,5 +68,37 @@ export default {
                 next(err)
             })
     },
+    async batismoUpdate(req,res,next){
+        const { id, nome, email, est_c, idade,telefone,celula,lider,supervisores, ne, turma  } = req.body;        
+        db.batismo.findOne({ where: { id: id }, paranoid: false })
+            .then(batismo => {
+                if (!batismo) {
+                    throw new RequestError('User is not found', 409);
+                }
+                return db.batismo.update({
+                    nome: nome ? nome : batismo.nome,                    
+                    email: email ? email : batismo.email,
+                    est_c: est_c ? est_c : batismo.est_c,               
+                    idade: idade ? idade : batismo.idade,
+                    telefone: telefone ? telefone : batismo.telefone,
+                    celula: celula ? celula : batismo.celula,
+                    lider: lider ? lider : batismo.lider,
+                    supervisores: supervisores ? supervisores : batismo.supervisores,                    
+                    ne: ne ? ne : batismo.ne,
+                    turma: turma ? turma : batismo.turma                          
+                }, { where: { id: id } })
+            })
+            .then(user => {
+                if (user) {
+                    return res.status(200).json({ success: true, msg: "User update successsfully"});
+                }
+                else
+                    res.status(500).json({ 'success': false });
+            })
+            .catch(err => {
+                console.log(err)
+                next(err);
+            })
+    },
 
 }

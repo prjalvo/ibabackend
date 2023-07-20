@@ -53,6 +53,20 @@ export default {
             console.log(err)
             next(err);
         })
-    }
+    },   
+    async deleteBatismoList(req, res, next) {
+        db.batismo.findOne({ where: { id: req.body.id} })
+            .then(data => {
+                if (data) {
+                    return db.batismo.destroy({ where: { id: req.body.id } }).then(r => [r, data])
+                }
+                throw new RequestError('User is not found', 409)
+            })
+            .then(re => {
+                return res.status(200).json({ 'status': "deleted userlist Seccessfully" });
+            }).catch(err => {
+                next(err)
+            })
+    },
 
 }

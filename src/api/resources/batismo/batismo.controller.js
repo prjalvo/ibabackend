@@ -69,7 +69,7 @@ export default {
             })
     },
     async batismoUpdate(req,res,next){
-        const { id, nome, email, est_c, idade,telefone,celula,lider,supervisores, ne, turma  } = req.body;        
+        const { id, nome, email, est_c, idade,telefone,celula,lider,supervisores, ne, turma, curso, inscricao, reuniao  } = req.body;        
         db.batismo.findOne({ where: { id: id }, paranoid: false })
             .then(batismo => {
                 if (!batismo) {
@@ -85,7 +85,10 @@ export default {
                     lider: lider ? lider : batismo.lider,
                     supervisores: supervisores ? supervisores : batismo.supervisores,                    
                     ne: ne ? ne : batismo.ne,
-                    turma: turma ? turma : batismo.turma                          
+                    turma: turma ? turma : batismo.turma,
+                    curso: curso ? curso : batismo.curso,
+                    inscricao: inscricao ? inscricao : batismo.inscricao,
+                    reuniao: reuniao ? reuniao : batismo.reuniao
                 }, { where: { id: id } })
             })
             .then(user => {

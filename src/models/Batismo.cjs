@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
     supervisores: DataTypes.STRING,
     ne: DataTypes.STRING,
     turma: DataTypes.STRING,    
+    curso: DataTypes.INTEGER, 
+    inscricao: DataTypes.INTEGER, 
+    reuniao: DataTypes.INTEGER, 
   },
   {
      tableName: 'batismo',

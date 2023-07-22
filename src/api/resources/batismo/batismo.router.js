@@ -7,5 +7,6 @@ import { validateBody, schemas } from '../../../middleware/validator.js';
 export const batismoRouter = express.Router();
 batismoRouter.route('/register').post(batismoController.addBatismo);
 batismoRouter.route('/getAllBatismoList').get(sanitize(), jwtStrategy, batismoController.getAllBatismoList);
+batismoRouter.route('/getAllBatismoListById').get(sanitize(), jwtStrategy, batismoController.getAllBatismoListById);
 batismoRouter.route('/update').post(jwtStrategy, batismoController.batismoUpdate);
 batismoRouter.route('/delete').post(sanitize(), jwtStrategy, batismoController.deleteBatismoList);

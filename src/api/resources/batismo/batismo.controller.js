@@ -54,6 +54,25 @@ export default {
             next(err);
         })
     },   
+        async getAllBatismoListById(req, res, next) {
+        try {
+            db.batismo.findAll({
+                where: { id: req.query.id },
+            })
+                .then(batismo => {
+                    res.status(200).json({ 'success': true, data: batismo });
+                })
+                .catch(function (err) {
+                    next(err)
+                });
+        }
+        catch (err) {
+            throw new RequestError('Error');
+        }
+    },
+
+
+    
     async deleteBatismoList(req, res, next) {
         db.batismo.findOne({ where: { id: req.body.id} })
             .then(data => {

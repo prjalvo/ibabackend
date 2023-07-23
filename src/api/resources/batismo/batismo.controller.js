@@ -56,6 +56,8 @@ export default {
     },   
     async getAllBatismoListById(req, res, next) {
         const { id } = req.body;
+        console.log('batismo');
+        console.log(id);
         db.batismo.findOne({ where: { id: id } })
             .then(data => {
                 if (data) {

@@ -59,7 +59,7 @@ export default {
         console.log('batismo');
         console.log(req.body);
         db.batismo.findOne({ where: { id: id } })
-            .then(data => {
+            .then(batismo => {
                 if (data) {
                     res.status(200).json({ 'success': true, data: batismo });
                 }

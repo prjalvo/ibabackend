@@ -60,7 +60,7 @@ export default {
         console.log(req.body);
         db.batismo.findOne({ where: { id: id } })
             .then(batismo => {
-                if (data) {
+                if (batismo) {
                     res.status(200).json({ 'success': true, data: batismo });
                 }
                 throw new RequestError('User is not found', 409)

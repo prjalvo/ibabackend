@@ -54,22 +54,20 @@ export default {
             next(err);
         })
     },   
-        async getAllBatismoListById(req, res, next) {
-        try {
-          db.batismo.findOne({ where: { id: req.body.id} })
-                .then(batismo => {
+    async getAllBatismoListById(req, res, next) {
+        db.batismo.findOne({ where: { id: req.body.id} })
+            .then(data => {
+                if (data) {
                     res.status(200).json({ 'success': true, data: batismo });
-                })
-                .catch(function (err) {
-                    next(err)
-                });
-        }
-        catch (err) {
-            throw new RequestError('Error');
-        }
+                }
+                throw new RequestError('User is not found', 409)
+            })
+            .then(re => {
+                return res.status(200).json({ 'status': "encontrado" });
+            }).catch(err => {
+                next(err)
+            })
     },
-
-
     
     async deleteBatismoList(req, res, next) {
         db.batismo.findOne({ where: { id: req.body.id} })

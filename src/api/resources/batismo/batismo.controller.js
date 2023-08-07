@@ -109,7 +109,7 @@ export default {
                     supervisores: supervisores ? supervisores : batismo.supervisores,                    
                     ne: ne ? ne : batismo.ne,
                     turma: turma ? turma : batismo.turma,
-                    curso: curso ? curso : batismo.curso,
+                    tipo_curso: tipo_curso ? tipo_curso : batismo.tipo_curso,
                     inscricao: inscricao ? inscricao : batismo.inscricao,
                     reuniao: reuniao ? reuniao : batismo.reuniao,
                     sexo: sexo ? sexo : batismo.sexo,

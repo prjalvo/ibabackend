@@ -8,5 +8,5 @@ export const batismoRouter = express.Router();
 batismoRouter.route('/register').post(batismoController.addBatismo);
 batismoRouter.route('/getAllBatismoList').get(sanitize(),batismoController.getAllBatismoList);
 batismoRouter.route('/getAllBatismoListById').post(sanitize(), batismoController.getAllBatismoListById);
-batismoRouter.route('/update').post(jwtStrategy, batismoController.batismoUpdate);
+batismoRouter.route('/update').post(batismoController.batismoUpdate);
 batismoRouter.route('/delete').post(sanitize(), jwtStrategy, batismoController.deleteBatismoList);

@@ -86,8 +86,13 @@ export default {
                 next(err)
             })
     },
-    async batismoUpdate(req,res,next){
-        const { id, nome, email, est_c, idade,telefone,celula,lider,supervisores, ne, turma, curso, inscricao, reuniao  } = req.body;        
+      async batismoUpdate(req,res,next){
+        const {id,sexo,nome_conjuque,batizado,aspersao,nome_pai,nome_mae,
+               estado,discipulado,url_diploma,blusa,tipo_curso,tem_celula,
+               vida_vitoriosa,rede,url_foto,faixa,nome_lider,tel_lider,
+               pais,uf,cidade,cep,rua,numero,complemento,bairro,nascimento,aceite
+        } = req.body;        
+        
         db.batismo.findOne({ where: { id: id }, paranoid: false })
             .then(batismo => {
                 if (!batismo) {
@@ -106,7 +111,35 @@ export default {
                     turma: turma ? turma : batismo.turma,
                     curso: curso ? curso : batismo.curso,
                     inscricao: inscricao ? inscricao : batismo.inscricao,
-                    reuniao: reuniao ? reuniao : batismo.reuniao
+                    reuniao: reuniao ? reuniao : batismo.reuniao,
+                    sexo: sexo ? sexo : batismo.sexo,
+                    nome_conjuque: nome_conjuque ? nome_conjuque : batismo.nome_conjuque,
+                    batizado: batizado ? batizado : batismo.batizado ,
+                    aspersao: aspersao ? aspersao : batismo.aspersao,
+                    nome_pai: nome_pai ? nome_pai : batismo.nome_pai,
+                    nome_mae: nome_mae ? nome_mae : batismo.nome_mae,
+                    estado: estado ? estado : batismo.estado,
+                    discipulado: discipulado ? discipulado : batismo.discipulado, 
+                    url_diploma: url_diploma ? url_diploma : batismo.url_diploma, 
+                    blusa: blusa ? blusa : batismo.blusa,
+                    tipo_curso: tipo_curso ? tipo_curso : batismo.tipo_curso,
+                    tem_celula: tem_celula ? tem_celula : batismo.tem_celula,
+                    vida_vitoriosa: vida_vitoriosa ? vida_vitoriosa : batismo.vida_vitoriosa,
+                    rede: rede ? rede : batismo.rede,
+                    url_foto: url_foto ? url_foto : batismo.url_foto,
+                    faixa: faixa ? faixa : batismo.faixa, 
+                    nome_lider: nome_lider ? nome_lider : batismo.nome_lider,
+                    tel_lider: tel_lider ? tel_lider : batismo.tel_lider,
+                    pais: pais ? pais : batismo.pais,
+                    uf: uf ? uf : batismo.uf,
+                    cidade: cidade ? cidade : batismo.cidade,
+                    cep: cep ? cep : batismo.cep,
+                    rua: rua ? rua : batismo.rua,
+                    numero: numero ? numero : batismo.numero,
+                    complemento: complemento ? complemento : batismo.complemento,
+                    bairro: bairro ? bairro : batismo.bairro,
+                    nascimento: nascimento ? nascimento : batismo.nascimento,
+                    aceite: aceite ? aceite : batismo.aceite
                 }, { where: { id: id } })
             })
             .then(user => {

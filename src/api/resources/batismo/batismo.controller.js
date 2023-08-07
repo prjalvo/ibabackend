@@ -87,7 +87,7 @@ export default {
             })
     },
       async batismoUpdate(req,res,next){
-        const {id,sexo,nome_conjuque,batizado,aspersao,nome_pai,nome_mae,
+        const {id, nome, email, est_c, idade,telefone,celula,lider,supervisores, ne, turma,sexo,nome_conjuque,batizado,aspersao,nome_pai,nome_mae,
                estado,discipulado,url_diploma,blusa,tipo_curso,tem_celula,
                vida_vitoriosa,rede,url_foto,faixa,nome_lider,tel_lider,
                pais,uf,cidade,cep,rua,numero,complemento,bairro,nascimento,aceite

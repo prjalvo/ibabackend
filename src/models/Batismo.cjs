@@ -41,7 +41,8 @@ module.exports = (sequelize, DataTypes) => {
     complemento: DataTypes.STRING,
     bairro: DataTypes.STRING,
     nascimento: DataTypes.STRING,
-    aceite: DataTypes.INTEGER
+    aceite: DataTypes.INTEGER,
+    data_batismo: DataTypes.Date
   },
   {
      tableName: 'batismo',

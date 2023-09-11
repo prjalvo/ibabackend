@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     bairro: DataTypes.STRING,
     nascimento: DataTypes.STRING,
     aceite: DataTypes.INTEGER,
-    data_batismo: DataTypes.Date
+    data_batismo: DataTypes.DATE
   },
   {
      tableName: 'batismo',

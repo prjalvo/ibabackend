@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   {});
  
   user_cargo.associate = function(models) {   
-    models.user_cargo.belongsTo(models.cargo, { foreignKey: 'id_cargo' });
+    models.user_cargo.hasMany(models.cargo, { foreignKey: 'id_cargo' });
     models.user_cargo.belongsTo(models.user, { foreignKey: 'id_user' });
   };
 

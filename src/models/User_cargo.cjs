@@ -2,7 +2,6 @@
 module.exports = (sequelize, DataTypes) => {
   const user_cargo = sequelize.define('user_cargo', {
     id_cargo: DataTypes.INTEGER,
-    id: DataTypes.INTEGER,    
   },
   {
      tableName: 'user_cargo',

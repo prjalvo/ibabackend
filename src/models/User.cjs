@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
     role: DataTypes.STRING,
     verify: DataTypes.BOOLEAN,
     password: DataTypes.STRING,
-    id_cargo: DataTypes.INTEGER,
     id_area: DataTypes.INTEGER,
     id_setor: DataTypes.INTEGER,
     id_distrito: DataTypes.INTEGER,
@@ -18,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   user.associate = function(models) {   
-    models.user.belongsTo(models.cargo, { foreignKey: 'id_cargo' });
+    models.user.belongsTo(models.user_cargo, { foreignKey: 'id' });
     models.user.hasMany(models.grupos, { foreignKey: 'id' });
     models.user.belongsTo(models.areas, {as:'user_area', foreignKey: 'id_area' });      
     models.user.belongsTo(models.areas, {as:'user_distrito', foreignKey: 'id_distrito' });      

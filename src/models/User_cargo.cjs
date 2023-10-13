@@ -15,12 +15,12 @@ module.exports = (sequelize, DataTypes) => {
       models.user_cargo.hasMany(models.cargo, {
       foreignKey: 'id',
       sourceKey: 'id_cargo',
-      as: 'user_cargo' });    
+      as: 'user_cargo_cargo' });    
 
       models.user_cargo.hasMany(models.user, {
       foreignKey: 'id',
       sourceKey: 'id_user',
-      as: 'user_cargo' });       
+      as: 'user_cargo_user' });       
     
   };
 

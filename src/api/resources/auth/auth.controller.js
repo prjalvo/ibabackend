@@ -105,8 +105,7 @@ export default {
                             attributes: ['id_cargo'],
                             include: [
                                 {
-                                    model: db.cargo,
-                                    as: 'user_cargo_cargo',
+                                    model: db.cargo,                                   
                                     attributes: ["id", "descricao"]
                                 }
                             ]

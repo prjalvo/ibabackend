@@ -102,13 +102,13 @@ export default {
                           {
                             model: db.user_cargo,
                             as: 'user_cargo',
-                            attributes: ['id'],
-                            include: [
-                                {
-                                    model: db.cargo,                                   
-                                    attributes: ["id", "descricao"]
-                                }
-                            ]
+                            attributes: ['id_cargo'],
+                        //    include: [
+                        //        {
+                        //            model: db.cargo,                                   
+                        //            attributes: ["id", "descricao"]
+                        //        }
+                        //    ]
                         },
                       { model: db.areas,as:"user_area",attributes: ["id", "descricao","tipo"]},
                       { model: db.areas,as:"user_setor",attributes: ["id", "descricao","tipo"]},

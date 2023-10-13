@@ -19,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
   user.associate = function(models) {   
     //models.user.hasMany(models.grupos, { foreignKey: 'id' });      
        models.user.hasMany(models.user_cargo, {
-      foreignKey: 'id_cargo',
-      sourceKey: 'id',
+      foreignKey: 'id',
+      sourceKey: 'id_cargo',
       as: 'user_cargo' });     
     models.user.belongsTo(models.areas, {as:'user_area', foreignKey: 'id_area' });      
     models.user.belongsTo(models.areas, {as:'user_distrito', foreignKey: 'id_distrito' });      

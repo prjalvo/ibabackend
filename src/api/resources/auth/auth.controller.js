@@ -98,7 +98,17 @@ export default {
 
      async getAllUserList(req,res,next){
         db.user.findAll({
-            include: [{ model: db.cargo_user, attributes: ["id_cargo"]},
+            include: [
+                          {
+                            model: db.user_cargo,
+                            attributes: ["id_cargo"],
+                            include: [
+                                {
+                                    model: db.cargo,
+                                    attributes: ["descricao"]
+                                }
+                            ]
+                        },
                       { model: db.areas,as:"user_area",attributes: ["id", "descricao","tipo"]},
                       { model: db.areas,as:"user_setor",attributes: ["id", "descricao","tipo"]},
                       { model: db.areas,as:"user_distrito",attributes: ["id", "descricao","tipo"]},                      

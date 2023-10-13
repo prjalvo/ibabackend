@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const user_cargo = sequelize.define('user_cargo', {
     id_cargo: DataTypes.INTEGER,
-    id_user: DataTypes.INTEGER,
+    //id_user: DataTypes.INTEGER,
   },
   {
      tableName: 'user_cargo',
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   {});
  
   user_cargo.associate = function(models) {   
-      models.user_cargo.belongsTo(models.user,{foreignKey: 'id_user'}); 
+      models.user_cargo.belongsTo(models.user,{foreignKey: 'id'}); 
       models.user_cargo.belongsTo(models.cargo,{foreignKey: 'id_cargo'});       
     
   };

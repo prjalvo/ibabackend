@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     models.user.hasMany(models.grupos, { foreignKey: 'id' });
     models.user.hasMany(db.user_cargo, {
       foreignKey: 'id_user',
-      sourceKey: 'id_user',
+      sourceKey: 'id',
       as: 'user_cargo' });
         
     models.user.belongsTo(models.areas, {as:'user_area', foreignKey: 'id_area' });      

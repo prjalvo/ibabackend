@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     //  foreignKey: 'id_cargo',
     //  sourceKey: 'id',
     //  as: 'user_cargo' });     
-    models.user.belongsTo(models.user_cargo, { as: 'user_cargo',foreignKey: 'id_cargo',sourceKey: 'id'});
+    models.user.belongsTo(models.user_cargo, { as: 'user_cargo',foreignKey: 'id',sourceKey: 'id'});
     models.user.belongsTo(models.areas, {as:'user_area', foreignKey: 'id_area' });      
     models.user.belongsTo(models.areas, {as:'user_distrito', foreignKey: 'id_distrito' });      
     models.user.belongsTo(models.areas, {as:'user_setor', foreignKey: 'id_setor' });  

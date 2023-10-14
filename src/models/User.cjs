@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     id_distrito: DataTypes.INTEGER,
     status: DataTypes.INTEGER,
     url_file: DataTypes.STRING,
+    lider_celula: DataTypes.STRING,
   }, {});
 
   user.associate = function(models) {   

@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     role: DataTypes.STRING,
     verify: DataTypes.BOOLEAN,
     password: DataTypes.STRING,
+    id_cargo: DataTypes.INTEGER,
     id_area: DataTypes.INTEGER,
     id_setor: DataTypes.INTEGER,
     id_distrito: DataTypes.INTEGER,
@@ -22,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     //  foreignKey: 'id_cargo',
     //  sourceKey: 'id',
     //  as: 'user_cargo' });     
-    models.user.belongsToMany(models.user_cargo, { as: 'user_cargo',foreignKey: 'id',sourceKey: 'id'});
+    //models.user.belongsToMany(models.user_cargo, { as: 'user_cargo',foreignKey: 'id',sourceKey: 'id'});
+    models.user.belongsTo(models.cargo, {foreignKey: 'id_cargo' }); 
     models.user.belongsTo(models.areas, {as:'user_area', foreignKey: 'id_area' });      
     models.user.belongsTo(models.areas, {as:'user_distrito', foreignKey: 'id_distrito' });      
     models.user.belongsTo(models.areas, {as:'user_setor', foreignKey: 'id_setor' });  

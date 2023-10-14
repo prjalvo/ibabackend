@@ -46,7 +46,7 @@ export default {
     async getAllGrupoList(req, res, next) {
         try {
             db.grupos.findAll({
-                order: [['createdAt', 'DESC']],
+                order: [['descricao', 'ASC']],
                 include: [{ model: db.faixaetaria, attributes: ["id", "descricao"] },
                 { model: db.tp_ferramentas, attributes: ["id", "descricao"] },
                 { model: db.user, as:"user_lider",attributes: ["id", "firstName"] },            

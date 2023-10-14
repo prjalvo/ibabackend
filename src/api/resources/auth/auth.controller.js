@@ -42,7 +42,7 @@ function verifyOtp(token) {
 
 export default {
     async addUser(req, res, next) {
-        const { firstName, email, phone, id_cargo,id_distrito,id_area,id_setor,status, verify, role ,password,url_file } = req.body;
+        const { firstName, email, phone, id_cargo,id_distrito,id_area,id_setor,status, verify, role ,password,url_file,lider_celula } = req.body;
         var passwordHash = bcrypt.hashSync(password);
         var token = generateOtp();
         var otp = verifyOtp(token);
@@ -63,7 +63,8 @@ export default {
                     verify: verify,
                     role: role,
                     password: passwordHash,
-                    url_file
+                    url_file:url_file,
+                    lider_celula:lider_celula
                 })
 
             })
@@ -117,7 +118,7 @@ export default {
     },
 
      async userUpdate(req,res,next){
-        const { id, firstName, email, phone, id_cargo,id_distrito,id_area,id_setor, status, verify, role ,password,url_file } = req.body;
+        const { id, firstName, email, phone, id_cargo,id_distrito,id_area,id_setor, status, verify, role ,password,url_file,lider_celula } = req.body;
         var passwordHash = bcrypt.hashSync(password);
         db.user.findOne({ where: { id: id }, paranoid: false })
             .then(user => {
@@ -137,6 +138,7 @@ export default {
                     id_setor: id_setor ? id_setor : user.id_setor,                    
                     status: status,
                     url_file: url_file ? url_file : user.url_file,
+                    lider_celula: lider_celula ? lider_celula : user.lider_celula
                 }, { where: { id: id } })
             })
             .then(user => {

@@ -119,7 +119,9 @@ export default {
 
      async userUpdate(req,res,next){
         const { id, firstName, email, phone, id_cargo,id_distrito,id_area,id_setor, status, verify, role ,password,url_file,lider_celula } = req.body;
-        var passwordHash = bcrypt.hashSync(password);
+        if (password !== null) {
+          var passwordHash = bcrypt.hashSync(password);
+        }    
         db.user.findOne({ where: { id: id }, paranoid: false })
             .then(user => {
                 if (!user) {

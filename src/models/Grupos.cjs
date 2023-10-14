@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     id_rede: DataTypes.INTEGER,
     id_membro: DataTypes.INTEGER,
     info: DataTypes.STRING,
-    dia_semana:DataTypes.INTEGER,
+    dia_semana:DataTypes.STRING,
     faixa_etaria:DataTypes.INTEGER,
     text: DataTypes.STRING,
     data_mult: DataTypes.DATE,

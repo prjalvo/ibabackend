@@ -10,8 +10,8 @@ export default {
         db.batismo.findOne({ where: { email: email }, paranoid: false })
             .then(find => {
                // if (find) {
-               //     throw new RequestError('Email is already in use', 409);
-               // }
+               //      throw new RequestError('Email is already in use', 409);
+               //  }
                 return db.batismo.create({
                     nome: nome,                    
                     email: email,

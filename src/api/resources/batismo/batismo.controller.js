@@ -9,9 +9,9 @@ export default {
         const { nome, email, est_c, idade,telefone,celula,lider,supervisores, ne, turma } = req.body;       
         db.batismo.findOne({ where: { email: email }, paranoid: false })
             .then(find => {
-                if (find) {
-                    throw new RequestError('Email is already in use', 409);
-                }
+               // if (find) {
+               //     throw new RequestError('Email is already in use', 409);
+               // }
                 return db.batismo.create({
                     nome: nome,                    
                     email: email,

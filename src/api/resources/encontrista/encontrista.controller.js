@@ -5,30 +5,88 @@ import bcrypt from 'bcrypt-nodejs';
 
 
 export default {
-    async addBatismo(req, res, next) {
-        const { nome, email, est_c, idade,telefone,celula,lider,supervisores, ne, turma } = req.body;       
-        db.batismo.findOne({ where: { email: email }, paranoid: false })
+    async addencontrista(req, res, next) {
+        const { nome, tipo_documento, numero_documento, email, codigo_inscricao, status, cancelada, 
+               data_inscricao, valor, categoria, cupom, forma_pagamento, quantidade_parcelas, nome_lider, 
+               telefone_lider, numero_lider, complemento_lider, bairro_lider, cidade_lider, cep_lider, 
+               telefone_Fixo, outro_telefone, membro_IBA, participa_Celula, endereco, quem_inscricao, 
+               email_quem, tipo_documento_quem, num_doc_quem, ciente, nome_Pai, email_Pai, telefone_Pai, 
+               idade_no_Evento, data_Nascimento, membro_IBA_PAI, pertence_igreja, email_mae, 
+               telefone_Mae, nome_crianca, tipo_Sanguineo, idade, nome_mae, sexo, contato, alergico, 
+               medicamento, restricao, necessidade, rede, url_doc, quem_inscricao2, email_inscricao, 
+               tipo_doc_inscricao, doc_inscricao, checkin, nome_inscricao_lider, codigo_inscricao_lider, 
+               email_inscricao_lider } = req.body;       
+        db.encontrista.findOne({ where: { nome: nome }, paranoid: false })
             .then(find => {
                 if (find) {
-                    throw new RequestError('Email is already in use', 409);
+                    throw new RequestError('Criança já cadastrada', 409);
                 }
-                return db.batismo.create({
-                    nome: nome,                    
-                    email: email,
-                    est_c: est_c,               
-                    idade: idade,
-                    telefone: telefone,
-                    celula: celula,
-                    lider: lider,
-                    supervisores: supervisores,                    
-                    ne: ne,
-                    turma: turma                    
+                return db.encontrista.create({
+                nome: nome,
+                tipo_documento: tipo_documento,
+                numero_documento: numero_documento,
+                email: email,
+                codigo_inscricao: codigo_inscricao,
+                status: status,
+                cancelada: cancelada,
+                data_inscricao: data_inscricao,
+                valor: valor,
+                categoria: categoria,
+                cupom: cupom,
+                forma_pagamento: forma_pagamento,
+                quantidade_parcelas: quantidade_parcelas,
+                nome_lider: nome_lider,
+                telefone_lider: telefone_lider,
+                numero_lider: numero_lider,
+                complemento_lider: complemento_lider,
+                bairro_lider: bairro_lider,
+                cidade_lider: cidade_lider,
+                cep_lider: cep_lider,
+                telefone_Fixo: telefone_Fixo,
+                outro_telefone: outro_telefone,
+                membro_IBA: membro_IBA,
+                participa_Celula: participa_Celula,
+                endereco: endereco,
+                quem_inscricao: quem_inscricao,
+                email_quem: email_quem,
+                tipo_documento_quem: tipo_documento_quem,
+                num_doc_quem: num_doc_quem,
+                ciente: ciente,
+                nome_Pai: nome_Pai,
+                email_Pai: email_Pai,
+                telefone_Pai: telefone_Pai,
+                idade_no_Evento: idade_no_Evento,
+                data_Nascimento: data_Nascimento,
+                membro_IBA_PAI: membro_IBA_PAI,
+                pertence_igreja: pertence_igreja,
+                email_mae: email_mae,
+                telefone_Mae: telefone_Mae,
+                nome_crianca: nome_crianca,
+                tipo_Sanguineo: tipo_Sanguineo,
+                idade: idade,
+                nome_mae: nome_mae,
+                sexo: sexo,
+                contato: contato,
+                alergico: alergico,
+                medicamento: medicamento,
+                restricao: restricao,
+                necessidade: necessidade,
+                rede: rede,
+                url_doc: url_doc,
+                quem_inscricao2: quem_inscricao2,
+                email_inscricao: email_inscricao,
+                tipo_doc_inscricao: tipo_doc_inscricao,
+                doc_inscricao: doc_inscricao,
+                checkin: checkin,
+                nome_inscricao_lider: nome_inscricao_lider,
+                codigo_inscricao_lider: codigo_inscricao_lider,
+                email_inscricao_lider: email_inscricao_lider             
                 })
 
             })
-            .then(batismo => {
-                if (batismo) {//                
-                    return res.status(200).json({ success: true, msg: "New Registration added" });
+            .then(encontrista => {
+                if (encontrista) {//                
+                    return res.status(200).json({ success: true, msg: "Encontrista Registrado com Sucesso" });
                 }
                 else
                     res.status(500).json({ 'success': false });

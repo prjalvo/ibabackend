@@ -97,12 +97,12 @@ export default {
             })
     },  
     
-     async getAllBatismoList(req,res,next){
-        db.batismo.findAll({            
+     async getAllencontrista(req,res,next){
+        db.encontrista.findAll({            
         })
-        .then(batismo => {
-            if (batismo) {
-                return res.status(200).json({ success: true, data:batismo});
+        .then(encontrista => {
+            if (encontrista) {
+                return res.status(200).json({ success: true, data:encontrista});
             }
             else
                 res.status(500).json({ 'success': false });
@@ -112,14 +112,12 @@ export default {
             next(err);
         })
     },   
-    async getAllBatismoListById(req, res, next) {
+    async getAllencontristaListById(req, res, next) {
         const { id } = req.body;
-        console.log('batismo');
-        console.log(req.body);
-        db.batismo.findOne({ where: { id: id } })
-            .then(batismo => {
-                if (batismo) {
-                    res.status(200).json({ 'success': true, data: batismo });
+        db.encontrista.findOne({ where: { id: id } })
+            .then(encontrista => {
+                if (encontrista) {
+                    res.status(200).json({ 'success': true, data: encontrista });
                 }
                 throw new RequestError('User is not found', 409)
             })
@@ -130,11 +128,11 @@ export default {
             })
     },
     
-    async deleteBatismoList(req, res, next) {
-        db.batismo.findOne({ where: { id: req.body.id} })
+    async deleteencontristaList(req, res, next) {
+        db.encontrista.findOne({ where: { id: req.body.id} })
             .then(data => {
                 if (data) {
-                    return db.batismo.destroy({ where: { id: req.body.id } }).then(r => [r, data])
+                    return db.encontrista.destroy({ where: { id: req.body.id } }).then(r => [r, data])
                 }
                 throw new RequestError('User is not found', 409)
             })
@@ -144,65 +142,88 @@ export default {
                 next(err)
             })
     },
-      async batismoUpdate(req,res,next){
-        const {id, nome, email, est_c, idade,telefone,celula,lider,supervisores, ne, turma,curso,inscricao,reuniao,sexo,nome_conjuque,batizado,aspersao,nome_pai,nome_mae,
-               estado,discipulado,url_diploma,blusa,tipo_curso,tem_celula,
-               vida_vitoriosa,rede,url_foto,faixa,nome_lider,tel_lider,
-               pais,uf,cidade,cep,rua,numero,complemento,bairro,nascimento,aceite
-        } = req.body;        
+      async encontristaUpdate(req,res,next){
+             const {id, nome, tipo_documento, numero_documento, email, codigo_inscricao, status, cancelada, 
+               data_inscricao, valor, categoria, cupom, forma_pagamento, quantidade_parcelas, nome_lider, 
+               telefone_lider, numero_lider, complemento_lider, bairro_lider, cidade_lider, cep_lider, 
+               telefone_Fixo, outro_telefone, membro_IBA, participa_Celula, endereco, quem_inscricao, 
+               email_quem, tipo_documento_quem, num_doc_quem, ciente, nome_Pai, email_Pai, telefone_Pai, 
+               idade_no_Evento, data_Nascimento, membro_IBA_PAI, pertence_igreja, email_mae, 
+               telefone_Mae, nome_crianca, tipo_Sanguineo, idade, nome_mae, sexo, contato, alergico, 
+               medicamento, restricao, necessidade, rede, url_doc, quem_inscricao2, email_inscricao, 
+               tipo_doc_inscricao, doc_inscricao, checkin, nome_inscricao_lider, codigo_inscricao_lider, 
+               email_inscricao_lider } = req.body;             
         
-        db.batismo.findOne({ where: { id: id }, paranoid: false })
+        db.encontrista.findOne({ where: { id: id }, paranoid: false })
             .then(batismo => {
-                if (!batismo) {
-                    throw new RequestError('User is not found', 409);
+                if (!encontrista) {
+                    throw new RequestError('Encontrista Não encontrado', 409);
                 }
-                return db.batismo.update({
-                    nome: nome ? nome : batismo.nome,                    
-                    email: email ? email : batismo.email,
-                    est_c: est_c ? est_c : batismo.est_c,               
-                    idade: idade ? idade : batismo.idade,
-                    telefone: telefone ? telefone : batismo.telefone,
-                    celula: celula ? celula : batismo.celula,
-                    lider: lider ? lider : batismo.lider,
-                    supervisores: supervisores ? supervisores : batismo.supervisores,                    
-                    ne: ne ? ne : batismo.ne,
-                    turma: turma ? turma : batismo.turma,
-                    curso: curso ? curso : batismo.curso,
-                    inscricao: inscricao ? inscricao : batismo.inscricao,
-                    reuniao: reuniao ? reuniao : batismo.reuniao,
-                    sexo: sexo ? sexo : batismo.sexo,
-                    nome_conjuque: nome_conjuque ? nome_conjuque : batismo.nome_conjuque,
-                    batizado: batizado ? batizado : batismo.batizado ,
-                    aspersao: aspersao ? aspersao : batismo.aspersao,
-                    nome_pai: nome_pai ? nome_pai : batismo.nome_pai,
-                    nome_mae: nome_mae ? nome_mae : batismo.nome_mae,
-                    estado: estado ? estado : batismo.estado,
-                    discipulado: discipulado ? discipulado : batismo.discipulado, 
-                    url_diploma: url_diploma ? url_diploma : batismo.url_diploma, 
-                    blusa: blusa ? blusa : batismo.blusa,
-                    tipo_curso: tipo_curso ? tipo_curso : batismo.tipo_curso,
-                    tem_celula: tem_celula ? tem_celula : batismo.tem_celula,
-                    vida_vitoriosa: vida_vitoriosa ? vida_vitoriosa : batismo.vida_vitoriosa,
-                    rede: rede ? rede : batismo.rede,
-                    url_foto: url_foto ? url_foto : batismo.url_foto,
-                    faixa: faixa ? faixa : batismo.faixa, 
-                    nome_lider: nome_lider ? nome_lider : batismo.nome_lider,
-                    tel_lider: tel_lider ? tel_lider : batismo.tel_lider,
-                    pais: pais ? pais : batismo.pais,
-                    uf: uf ? uf : batismo.uf,
-                    cidade: cidade ? cidade : batismo.cidade,
-                    cep: cep ? cep : batismo.cep,
-                    rua: rua ? rua : batismo.rua,
-                    numero: numero ? numero : batismo.numero,
-                    complemento: complemento ? complemento : batismo.complemento,
-                    bairro: bairro ? bairro : batismo.bairro,
-                    nascimento: nascimento ? nascimento : batismo.nascimento,
-                    aceite: aceite ? aceite : batismo.aceite
+                return db.encontrista.update({
+                    nome: nome ? nome : encontrista.nome,
+                    tipo_documento: tipo_documento ? tipo_documento : encontrista.tipo_documento,
+                    numero_documento: numero_documento ? numero_documento : encontrista.numero_documento,
+                    email: email ? email : encontrista.email,
+                    codigo_inscricao: codigo_inscricao ? codigo_inscricao : encontrista.codigo_inscricao,
+                    status: status ? status : encontrista.status,
+                    cancelada: cancelada ? cancelada : encontrista.cancelada,
+                    data_inscricao: data_inscricao ? data_inscricao : encontrista.data_inscricao,
+                    valor: valor ? valor : encontrista.valor,
+                    categoria: categoria ? categoria : encontrista.categoria,
+                    cupom: cupom ? cupom : encontrista.cupom,
+                    forma_pagamento: forma_pagamento ? forma_pagamento : encontrista.forma_pagamento,
+                    quantidade_parcelas: quantidade_parcelas ? quantidade_parcelas : encontrista.quantidade_parcelas,
+                    nome_lider: nome_lider ? nome_lider : encontrista.nome_lider,
+                    telefone_lider: telefone_lider ? telefone_lider : encontrista.telefone_lider,
+                    numero_lider: numero_lider ? numero_lider : encontrista.numero_lider,
+                    complemento_lider: complemento_lider ? complemento_lider : encontrista.complemento_lider,
+                    bairro_lider: bairro_lider ? bairro_lider : encontrista.bairro_lider,
+                    cidade_lider: cidade_lider ? cidade_lider : encontrista.cidade_lider,
+                    cep_lider: cep_lider ? cep_lider : encontrista.cep_lider,
+                    telefone_Fixo: telefone_Fixo ? telefone_Fixo : encontrista.telefone_Fixo,
+                    outro_telefone: outro_telefone ? outro_telefone : encontrista.outro_telefone,
+                    membro_IBA: membro_IBA ? membro_IBA : encontrista.membro_IBA,
+                    participa_Celula: participa_Celula ? participa_Celula : encontrista.participa_Celula,
+                    endereco: endereco ? endereco : encontrista.endereco,
+                    quem_inscricao: quem_inscricao ? quem_inscricao : encontrista.quem_inscricao,
+                    email_quem: email_quem ? email_quem : encontrista.email_quem,
+                    tipo_documento_quem: tipo_documento_quem ? tipo_documento_quem : encontrista.tipo_documento_quem,
+                    num_doc_quem: num_doc_quem ? num_doc_quem : encontrista.num_doc_quem,
+                    ciente: ciente ? ciente : encontrista.ciente,
+                    nome_Pai: nome_Pai ? nome_Pai : encontrista.nome_Pai,
+                    email_Pai: email_Pai ? email_Pai : encontrista.email_Pai,
+                    telefone_Pai: telefone_Pai ? telefone_Pai : encontrista.telefone_Pai,
+                    idade_no_Evento: idade_no_Evento ? idade_no_Evento : encontrista.idade_no_Evento,
+                    data_Nascimento: data_Nascimento ? data_Nascimento : encontrista.data_Nascimento,
+                    membro_IBA_PAI: membro_IBA_PAI ? membro_IBA_PAI : encontrista.membro_IBA_PAI,
+                    pertence_igreja: pertence_igreja ? pertence_igreja : encontrista.pertence_igreja,
+                    email_mae: email_mae ? email_mae : encontrista.email_mae,
+                    telefone_Mae: telefone_Mae ? telefone_Mae : encontrista.telefone_Mae,
+                    nome_crianca: nome_crianca ? nome_crianca : encontrista.nome_crianca,
+                    tipo_Sanguineo: tipo_Sanguineo ? tipo_Sanguineo : encontrista.tipo_Sanguineo,
+                    idade: idade ? idade : encontrista.idade,
+                    nome_mae: nome_mae ? nome_mae : encontrista.nome_mae,
+                    sexo: sexo ? sexo : encontrista.sexo,
+                    contato: contato ? contato : encontrista.contato,
+                    alergico: alergico ? alergico : encontrista.alergico,
+                    medicamento: medicamento ? medicamento : encontrista.medicamento,
+                    restricao: restricao ? restricao : encontrista.restricao,
+                    necessidade: necessidade ? necessidade : encontrista.necessidade,
+                    rede: rede ? rede : encontrista.rede,
+                    url_doc: url_doc ? url_doc : encontrista.url_doc,
+                    quem_inscricao2: quem_inscricao2 ? quem_inscricao2 : encontrista.quem_inscricao2,
+                    email_inscricao: email_inscricao ? email_inscricao : encontrista.email_inscricao,
+                    tipo_doc_inscricao: tipo_doc_inscricao ? tipo_doc_inscricao : encontrista.tipo_doc_inscricao,
+                    doc_inscricao: doc_inscricao ? doc_inscricao : encontrista.doc_inscricao,
+                    checkin: checkin ? checkin : encontrista.checkin,
+                    nome_inscricao_lider: nome_inscricao_lider ? nome_inscricao_lider : encontrista.nome_inscricao_lider,
+                    codigo_inscricao_lider: codigo_inscricao_lider ? codigo_inscricao_lider : encontrista.codigo_inscricao_lider,
+                    email_inscricao_lider: email_inscricao_lider ? email_inscricao_lider : encontrista.email_inscricao_lider
                 }, { where: { id: id } })
             })
             .then(user => {
                 if (user) {
-                    return res.status(200).json({ success: true, msg: "User update successsfully"});
+                    return res.status(200).json({ success: true, msg: "Encontrista Atualizado com Sucesso"});
                 }
                 else
                     res.status(500).json({ 'success': false });

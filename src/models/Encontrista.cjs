@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const encontrista = sequelize.define('encontrista', {
     id: {type: DataTypes.INTEGER,primaryKey: true},
-    Nome DataTypes.STRING,
+    nome DataTypes.STRING,
     tipo_documento DataTypes.STRING,
     numero_documento DataTypes.STRING,
     email DataTypes.STRING,

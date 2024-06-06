@@ -60,7 +60,15 @@ module.exports = (sequelize, DataTypes) => {
     checkin DataTypes.STRING,
     nome_inscricao_lider DataTypes.STRING,
     codigo_inscricao_lider DataTypes.STRING,
-    email_inscricao_lider DataTypes.STRING
+    email_inscricao_lider DataTypes.STRING,
+     createdAt: {
+          field: 'created_at',
+          type: DataTypes.DATE,
+      },
+      updatedAt: {
+          field: 'updated_at',
+          type: DataTypes.DATE,
+      },      
 
   }, 
     {

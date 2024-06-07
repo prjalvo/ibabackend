@@ -18,7 +18,9 @@ module.exports = (sequelize, DataTypes) => {
   },  
 
   }, 
-   
+   {
+     tableName: 'carta_vida'    
+   },   
   {});
 
 

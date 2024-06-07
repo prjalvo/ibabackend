@@ -6,7 +6,7 @@ import { validateBody, schemas } from '../../../middleware/validator.js';
 
 
 export const carta_vidaRouter = express.Router();
-carta_vidaRouter.route('/create').post(sanitize(), jwtStrategy, carta_vidaController.index);
+carta_vidaRouter.route('/create').post(carta_vidaController.index);
 carta_vidaRouter.route('/delete').delete(sanitize(),jwtStrategy,carta_vidaController.getcartaDelete);
 carta_vidaRouter.route('/update').post(sanitize(),jwtStrategy,carta_vidaController.getcartaUpdate);
 

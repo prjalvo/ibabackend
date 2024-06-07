@@ -2,18 +2,12 @@ import { db } from '../../../models/index.js';
 import { s3, bucket, upload } from "../../../middleware/bucket.js";
 
 export default {
-
-    /* Add user api start here................................*/
-
    async index(req, res, next) {
         try {
             const { texto,id_participante } = req.body;
             db.carta_vida.findOne({ where: { id_participante: -1 } })
                 .then(data => {
-                    if (data) {
-                        return db.carta_vida.update({ url:url }, { where: { id: data.imprimiu } })
-                    }
-                    return db.carta_vida.create({ texto:texto,id_participante:id_participante})
+                   return db.carta_vida.create({ texto:texto,id_participante:id_participante})
                 })
                 .then(carta_vida => {
                     res.status(200).json({ 'success': true, msg: "Successfully inserted location" });

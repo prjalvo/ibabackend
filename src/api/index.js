@@ -16,7 +16,7 @@ import { pessoaRouter } from './resources/pessoa/index.js'
 
 import { areasRouter } from './resources/areas/index.js'
 import { batismoRouter } from './resources/batismo/index.js'
-
+import { encontristaRouter } from './resources/encontrista/index.js'
  
 export const restRouter = express.Router();
 restRouter.use('/auth', authRouter);
@@ -35,4 +35,5 @@ restRouter.use('/grupo_membros', grupo_membrosRouter);
 restRouter.use('/comprometimentos', comprometimentosRouter);
 restRouter.use('/areas', areasRouter);
 restRouter.use('/batismo', batismoRouter);
+restRouter.use('/encontrista', encontristaRouter);
 

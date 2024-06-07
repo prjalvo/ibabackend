@@ -6,7 +6,7 @@ import { validateBody, schemas } from '../../../middleware/validator.js';
 
 export const encontristaRouter = express.Router();
 encontristaRouter.route('/register').post(encontristaController.addencontrista);
-encontristaRouter.route('/getAllencontristaList').get(sanitize(),encontristaController.getAllencontristaList);
+encontristaRouter.route('/getAllencontristaList').get(sanitize(),encontristaController.getAllencontrista);
 encontristaRouter.route('/getAllencontristaListById').post(sanitize(), encontristaController.getAllencontristaListById);
 encontristaRouter.route('/update').post(encontristaController.encontristaUpdate);
 encontristaRouter.route('/delete').post(sanitize(), jwtStrategy, encontristaController.deleteencontristaList);

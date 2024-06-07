@@ -16,7 +16,7 @@ export default {
         //        medicamento, restricao, necessidade, rede, url_doc, quem_inscricao2, email_inscricao, 
         //        tipo_doc_inscricao, doc_inscricao, checkin, nome_inscricao_lider, codigo_inscricao_lider, 
         //        email_inscricao_lider } = req.body;    
-
+        console.log(req.body)
         const {
             'Nome': nome,
             'Tipo do documento': tipo_documento,

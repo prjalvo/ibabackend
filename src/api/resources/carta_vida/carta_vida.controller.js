@@ -7,13 +7,13 @@ export default {
 
    async index(req, res, next) {
         try {
-            const { url,texto,imprimiu,id_participante } = req.body;
-            db.carta_vida.findOne({ where: { imprimiu: -1 } })
+            const { texto,id_participante } = req.body;
+            db.carta_vida.findOne({ where: { id_participante: -1 } })
                 .then(data => {
                     if (data) {
                         return db.carta_vida.update({ url:url }, { where: { id: data.imprimiu } })
                     }
-                    return db.carta_vida.create({ url:url,texto:texto,imprimiu:imprimiu,id_participante:id_participante})
+                    return db.carta_vida.create({ texto:texto,id_participante:id_participante})
                 })
                 .then(carta_vida => {
                     res.status(200).json({ 'success': true, msg: "Successfully inserted location" });

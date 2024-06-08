@@ -23,7 +23,7 @@ export default {
     async getCartaListById(req, res, next) {
         try {
             db.carta_vida.findAll({
-                where: { id: req.query.id },             
+                where: { id_participante: req.query.id },             
             })
                 .then(list => {
                     res.status(200).json({ 'success': true, data: list });

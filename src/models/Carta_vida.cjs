@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true},
     url: DataTypes.STRING,
     texto: DataTypes.STRING,
+    remetente: DataTypes.STRING,
     imprimiu:DataTypes.INTEGER,
     id_participante:DataTypes.INTEGER,
     

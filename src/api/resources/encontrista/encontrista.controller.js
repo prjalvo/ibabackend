@@ -128,6 +128,31 @@ export default {
             })
     },
     
+ async function listEncontristaWithCartas(req, res, next) {
+  try {
+    const result = await db.encontrista.findAll({
+      include: [
+        {
+          model: db.carta_vida,
+          as: 'cartas',
+          attributes: [], // Não precisamos dos detalhes das cartas, apenas da contagem
+        },
+      ],
+      attributes: {
+        include: [
+          [
+            db.Sequelize.fn('COUNT', db.Sequelize.col('cartas.id')),
+            'cartasCount'
+          ]
+        ]
+      },
+      group: ['encontrista.id']
+    });
+    res.status(200).json({ success: true, data: result });
+  } catch (err) {
+    next(err);
+  }
+},
     async deleteencontristaList(req, res, next) {
         db.encontrista.findOne({ where: { id: req.body.id} })
             .then(data => {

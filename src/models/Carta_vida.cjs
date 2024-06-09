@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     url: DataTypes.STRING,
     texto: DataTypes.STRING,
     remetente: DataTypes.STRING,
-    imprimiu:DataTypes.INTEGER,
+    imprimiu:DataTypes.STRING,
     id_participante:DataTypes.INTEGER,
     
   createdAt: {

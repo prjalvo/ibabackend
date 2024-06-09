@@ -80,7 +80,7 @@ export default {
                         texto:texto ? texto : carta_vida.texto ,
                         imprimiu:imprimiu ? imprimiu : carta_vida.imprimiu,
                         id_participante:id_participante ? id_participante : carta_vida.id_participante,
-                        remetente:nome : nome ? carta_vida.nome
+                        remetente:nome ? nome : carta_vida.nome
                     },{where: {id: parseInt(id)}})
                 }
                 throw new RequestError('No data found')

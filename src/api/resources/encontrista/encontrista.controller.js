@@ -19,7 +19,7 @@ export default {
             db.encontrista.findOne({ where: { nome: nome }, paranoid: false })
             .then(find => {
                 if (find) {
-                    throw new RequestError('Criança já cadastrada', 409);
+                    res.status(200).json({ 'success': true,msg: "Encontrista Já Cadastrado" });
                 }
                 return db.encontrista.create({
                 nome: nome,

@@ -20,7 +20,7 @@ export default {
             .then(find => {
                 if (find) {
                     res.status(200).json({ 'success': true,msg: "Encontrista Já Cadastrado" });
-                }
+                } else {
                 return db.encontrista.create({
                 nome: nome,
                 tipo_documento: tipo_documento,
@@ -81,7 +81,7 @@ export default {
                 nome_inscricao_lider: nome_inscricao_lider,
                 codigo_inscricao_lider: codigo_inscricao_lider,
                 email_inscricao_lider: email_inscricao_lider             
-                })
+                })}
 
             })
             .then(encontrista => {

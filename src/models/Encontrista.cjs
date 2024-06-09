@@ -77,7 +77,8 @@ module.exports = (sequelize, DataTypes) => {
    },   
   {});
   
-  encontrista.associate = function(models) {   
+  encontrista.associate = function(models) {
+    encontrista.hasMany(models.carta_vida, { foreignKey: 'id_participante', as: 'cartas' });
   };
   return encontrista;
 };

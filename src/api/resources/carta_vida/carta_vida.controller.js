@@ -36,8 +36,20 @@ export default {
             throw new RequestError('Error');
         }
     },
-
-
+   async List(req, res, next) {
+        try {
+            db.carta_vida.findAll()
+            .then(list => {
+                res.status(200).json({ 'success': true,data:list});
+            })
+            .catch(function (err) {
+                next(err)
+            });
+        }
+        catch (err) {
+            throw new RequestError('Error');
+        }
+    },
     async getcartaDelete(req, res, next) {
         try {
             db.carta_vida.findAll({ where: { id: parseInt(req.query.id) } })

@@ -135,19 +135,25 @@ export default {
         {
           model: db.carta_vida,
           as: 'cartas',
-          attributes: [], // Não precisamos dos detalhes das cartas, apenas da contagem
+          attributes: [], // Não precisamos dos detalhes das cartas, apenas das contagens
         },
       ],
       attributes: {
         include: [
+          [db.Sequelize.fn('COUNT', db.Sequelize.col('cartas.id')), 'cartasCount'],
           [
-            db.Sequelize.fn('COUNT', db.Sequelize.col('cartas.id')),
-            'cartasCount'
+            db.Sequelize.fn('SUM', db.Sequelize.literal(`CASE WHEN cartas.imprimiu = 'Sim' THEN 1 ELSE 0 END`)),
+            'impressasCount'
+          ],
+          [
+            db.Sequelize.fn('SUM', db.Sequelize.literal(`CASE WHEN cartas.imprimiu = 'Não' THEN 1 ELSE 0 END`)),
+            'naoImpressasCount'
           ]
         ]
       },
       group: ['encontrista.id']
     });
+
     res.status(200).json({ success: true, data: result });
   } catch (err) {
     next(err);

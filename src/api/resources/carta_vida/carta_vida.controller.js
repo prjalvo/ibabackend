@@ -4,10 +4,10 @@ import { s3, bucket, upload } from "../../../middleware/bucket.js";
 export default {
    async index(req, res, next) {
         try {
-            const { texto,id_participante } = req.body;
+            const { texto,id_participante,nome } = req.body;
             db.carta_vida.findOne({ where: { id_participante: -1 } })
                 .then(data => {
-                   return db.carta_vida.create({ texto:texto,id_participante:id_participante})
+                   return db.carta_vida.create({ texto:texto,id_participante:id_participante,remetente:nome})
                 })
                 .then(carta_vida => {
                     res.status(200).json({ 'success': true, msg: "Successfully inserted location" });
@@ -60,12 +60,12 @@ export default {
 
     async getcartaUpdate(req, res, next) {
         try {
-            const{ id,url,texto,imprimiu,id_participante} = req.body
+            const{ id,url,texto,imprimiu,id_participante,nome} = req.body
             db.carta_vida.findOne({ where: { id: parseInt(id) } })
             .then(carta_vida => {
                 if (carta_vida) {
                     return db.carta_vida.update({
-                        url:url,texto:texto,imprimiu:imprimiu,id_participante:id_participante
+                        url:url,texto:texto,imprimiu:imprimiu,id_participante:id_participante,remetente:nome
                     },{where: {id: parseInt(id)}})
                 }
                 throw new RequestError('No data found')

@@ -23,10 +23,9 @@ module.exports = (sequelize, DataTypes) => {
      tableName: 'carta_vida'    
    },   
   {});
-
-
   
-  carta_vida.associate = function(models) {   
+  carta_vida.associate = function(models) {
+    carta_vida.belongsTo(models.encontrista, { foreignKey: 'id_participante', as: 'encontrista' });
   };
   return carta_vida;
 };

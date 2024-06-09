@@ -128,7 +128,7 @@ export default {
             })
     },
     
- async function listEncontristaWithCartas(req, res, next) {
+ async listEncontristaWithCartas(req, res, next) {
   try {
     const result = await db.encontrista.findAll({
       include: [

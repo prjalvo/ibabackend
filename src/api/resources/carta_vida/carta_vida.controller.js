@@ -72,12 +72,15 @@ export default {
 
     async getcartaUpdate(req, res, next) {
         try {
-            const{ id,url,texto,imprimiu,id_participante,nome} = req.body
+            const{ id,texto,imprimiu,id_participante,nome} = req.body
             db.carta_vida.findOne({ where: { id: parseInt(id) } })
             .then(carta_vida => {
                 if (carta_vida) {
                     return db.carta_vida.update({
-                        url:url,texto:texto,imprimiu:imprimiu,id_participante:id_participante,remetente:nome
+                        texto:texto ? texto : carta_vida.texto ,
+                        imprimiu:imprimiu ? imprimiu : carta_vida.imprimiu,
+                        id_participante:id_participante ? id_participante : carta_vida.id_participante,
+                        remetente:nome : nome ? carta_vida.nome
                     },{where: {id: parseInt(id)}})
                 }
                 throw new RequestError('No data found')

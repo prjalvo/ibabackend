@@ -98,7 +98,10 @@ export default {
     },  
     
      async getAllencontrista(req,res,next){
-        db.encontrista.findAll({            
+        db.encontrista.findAll({  
+             order: [
+            ['nome', 'ASC']  
+            ]
         })
         .then(encontrista => {
             if (encontrista) {
@@ -131,6 +134,9 @@ export default {
  async listEncontristaWithCartas(req, res, next) {
   try {
     const result = await db.encontrista.findAll({
+         order: [
+            ['nome', 'ASC']  // Ordena pela coluna 'nome' em ordem crescente (ASC)
+        ],
       include: [
         {
           model: db.carta_vida,

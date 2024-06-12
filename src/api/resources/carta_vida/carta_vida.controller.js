@@ -4,7 +4,15 @@ import { s3, bucket, upload } from "../../../middleware/bucket.js";
 export default {
    async index(req, res, next) {
         try {
-            const { texto,id_participante,nome } = req.body;
+            let { texto,id_participante,nome } = req.body;
+             function removeHtmlTags(str) 
+             {
+               return str.replace(/<\/?[^>]+(>|$)/g, "");
+             }
+
+            // Remove HTML tags do campo texto
+            texto = removeHtmlTags(texto);
+           
             db.carta_vida.findOne({ where: { id_participante: -1 } })
                 .then(data => {
                    return db.carta_vida.create({ texto:texto,id_participante:id_participante,remetente:nome})

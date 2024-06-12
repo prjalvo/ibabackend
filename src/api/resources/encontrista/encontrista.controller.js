@@ -165,6 +165,31 @@ export default {
     next(err);
   }
 },
+async CartasSum(req, res, next) {
+  try {
+    const result = await db.encontrista.findOne({
+      attributes: [
+        [
+          db.Sequelize.fn('COUNT', db.Sequelize.col('cartas.id')),
+          'cartasCount'
+        ],
+        [
+          db.Sequelize.fn('SUM', db.Sequelize.literal(`CASE WHEN cartas.imprimiu = 'Sim' THEN 1 ELSE 0 END`)),
+          'impressasCount'
+        ],
+        [
+          db.Sequelize.fn('SUM', db.Sequelize.literal(`CASE WHEN cartas.imprimiu = 'Não' THEN 1 ELSE 0 END`)),
+          'naoImpressasCount'
+        ]
+      ],
+      raw: true
+    });
+
+    res.status(200).json({ success: true, data: result });
+  } catch (err) {
+    next(err);
+  }
+},    
     async deleteencontristaList(req, res, next) {
         db.encontrista.findOne({ where: { id: req.body.id} })
             .then(data => {

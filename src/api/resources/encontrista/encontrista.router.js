@@ -11,3 +11,4 @@ encontristaRouter.route('/getAllencontristaListById').post(sanitize(), encontris
 encontristaRouter.route('/update').post(encontristaController.encontristaUpdate);
 encontristaRouter.route('/delete').post(sanitize(), jwtStrategy, encontristaController.deleteencontristaList);
 encontristaRouter.route('/getAllencontristaCount').get(sanitize(),encontristaController.listEncontristaWithCartas);
+encontristaRouter.route('/CartasSum').get(sanitize(),encontristaController.CartasSum);

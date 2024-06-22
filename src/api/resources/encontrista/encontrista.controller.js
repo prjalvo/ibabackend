@@ -28,6 +28,7 @@ export default {
     // Verifica se o encontrista já existe
     const find = await db.encontrista.findOne({ where: { nome: nome }, paranoid: false, transaction });
     if (find) {
+      await transaction.commit();  
       return res.status(200).json({ success: true, msg: "Encontrista Já Cadastrado" });
     }
 

@@ -166,23 +166,19 @@ export default {
   }
 },
 async CartasSum(req, res, next) {
-  try {
-    const result = await db.encontrista.findOne({
+   try {
+    const result = await db.carta_vida.findOne({
       attributes: [
+        [db.Sequelize.fn('COUNT', db.Sequelize.col('id')), 'cartasCount'],
         [
-          db.Sequelize.fn('COUNT', db.Sequelize.col('cartas.id')),
-          'cartasCount'
-        ],
-        [
-          db.Sequelize.fn('SUM', db.Sequelize.literal(`CASE WHEN cartas.imprimiu = 'Sim' THEN 1 ELSE 0 END`)),
+          db.Sequelize.fn('SUM', db.Sequelize.literal(`CASE WHEN imprimiu = 'Sim' THEN 1 ELSE 0 END`)),
           'impressasCount'
         ],
         [
-          db.Sequelize.fn('SUM', db.Sequelize.literal(`CASE WHEN cartas.imprimiu = 'Não' THEN 1 ELSE 0 END`)),
+          db.Sequelize.fn('SUM', db.Sequelize.literal(`CASE WHEN imprimiu = 'Não' THEN 1 ELSE 0 END`)),
           'naoImpressasCount'
         ]
-      ],
-      raw: true
+      ]
     });
 
     res.status(200).json({ success: true, data: result });

@@ -22,16 +22,16 @@ export default {
   let transaction;
 
   try {
-    // Inicia uma nova transação
-    transaction = await db.sequelize.transaction();
+  
 
     // Verifica se o encontrista já existe
     const find = await db.encontrista.findOne({ where: { nome: nome }, paranoid: false, transaction });
-    if (find) {
-      await transaction.commit();  
+    if (find) {      
       return res.status(200).json({ success: true, msg: "Encontrista Já Cadastrado" });
     }
 
+    // Inicia uma nova transação
+    transaction = await db.sequelize.transaction();
     // Cria um novo encontrista
     const encontrista = await db.encontrista.create({
       nome,

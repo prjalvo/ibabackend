@@ -222,7 +222,7 @@ async CartasSum(req, res, next) {
                telefone_Mae, nome_crianca, tipo_Sanguineo, idade, nome_mae, sexo, contato, alergico, 
                medicamento, restricao, necessidade, rede, url_doc, quem_inscricao2, email_inscricao, 
                tipo_doc_inscricao, doc_inscricao, checkin, nome_inscricao_lider, codigo_inscricao_lider, 
-               email_inscricao_lider } = req.body;             
+               email_inscricao_lider,flg_envia} = req.body;             
         
         db.encontrista.findOne({ where: { id: id }, paranoid: false })
             .then(batismo => {
@@ -288,7 +288,8 @@ async CartasSum(req, res, next) {
                     checkin: checkin ? checkin : encontrista.checkin,
                     nome_inscricao_lider: nome_inscricao_lider ? nome_inscricao_lider : encontrista.nome_inscricao_lider,
                     codigo_inscricao_lider: codigo_inscricao_lider ? codigo_inscricao_lider : encontrista.codigo_inscricao_lider,
-                    email_inscricao_lider: email_inscricao_lider ? email_inscricao_lider : encontrista.email_inscricao_lider
+                    email_inscricao_lider: email_inscricao_lider ? email_inscricao_lider : encontrista.email_inscricao_lider,
+                    flg_envia: flg_envia ? flg_envia : encontrista.flg_envia
                 }, { where: { id: id } })
             })
             .then(user => {

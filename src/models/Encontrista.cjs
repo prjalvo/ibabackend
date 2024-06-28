@@ -61,6 +61,7 @@ module.exports = (sequelize, DataTypes) => {
     nome_inscricao_lider: DataTypes.STRING,
     codigo_inscricao_lider: DataTypes.STRING,
     email_inscricao_lider: DataTypes.STRING,
+    flg_envia: DataTypes.STRING,
      createdAt: {
           field: 'created_at',
           type: DataTypes.DATE,

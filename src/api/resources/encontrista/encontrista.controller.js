@@ -111,6 +111,9 @@ export default {
     
      async getAllencontrista(req,res,next){
         db.encontrista.findAll({  
+            where: {
+            flg_envia: 'S'
+            },
              order: [
             ['nome', 'ASC']  
             ]

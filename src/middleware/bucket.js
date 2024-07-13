@@ -7,8 +7,8 @@ export const bucket = "ibaverde";
 
 export const s3 = new AWS.S3({
   endpoint: "http://13363.masterdaweb.net:9000/",
-  accessKeyId: "XAZTT2KQlMBl89mYnrig",
-  secretAccessKey: "KPUiUdeJlmEWpfZKX9MH97uKsJ4LfSLkSFmzZ4AP",
+  accessKeyId: "X4likLLiWmCpSk489dfN",
+  secretAccessKey: "e6sigybXvECN7XqtbJVurBkipmHCiFQcbtAF9dIC",
   sslEnabled: false,
   s3ForcePathStyle: true,
 });

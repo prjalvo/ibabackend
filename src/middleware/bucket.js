@@ -6,7 +6,7 @@ import AWS from "aws-sdk";
 export const bucket = "ibaverde";
 
 export const s3 = new AWS.S3({
-  endpoint: "http://13363.masterdaweb.net:9000/",
+  endpoint: "http://185.228.72.82:9000/",
   accessKeyId: "X4likLLiWmCpSk489dfN",
   secretAccessKey: "e6sigybXvECN7XqtbJVurBkipmHCiFQcbtAF9dIC",
   sslEnabled: false,

@@ -7,8 +7,8 @@ export const bucket = "ibaverde";
 
 export const s3 = new AWS.S3({
   endpoint: "http://185.228.72.82:9000/",
-  accessKeyId: "X4likLLiWmCpSk489dfN",
-  secretAccessKey: "e6sigybXvECN7XqtbJVurBkipmHCiFQcbtAF9dIC",
+  accessKeyId: "89AppwYBiRtWSpAkvT0F",
+  secretAccessKey: "5KBTHFq2A6xiYSicbzTC3JS59YxYg8FuluEzr55b",
   sslEnabled: false,
   s3ForcePathStyle: true,
 });

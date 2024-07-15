@@ -103,6 +103,28 @@ export default {
             throw new RequestError('Error');
         }
     },    
+   async getcartaUpdateAll(req, res, next) {
+        try {
+            const{ id,imprimiu} = req.body
+            db.carta_vida.findOne({ where: { id_participante: parseInt(id) } })
+            .then(carta_vida => {
+                if (carta_vida) {
+                    return db.carta_vida.update({                      
+                        imprimiu:imprimiu ? imprimiu : carta_vida.imprimiu,                        
+                    },{where: {id: parseInt(id)}})
+                }
+                throw new RequestError('No data found')
+            })
+            .then(re => {
+                return res.status(200).json({'msg':'success','status': "Update location Seccessfully" });
+            }).catch(err => {
+                next(err)
+            })
+        }
+        catch (err) {
+            throw new RequestError('Error');
+        }
+    },    
 }
 
 

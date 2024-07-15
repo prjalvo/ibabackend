@@ -27,6 +27,11 @@ global.appRoot = path.resolve(__dirname);
 //const PORT = config.app.port;
 const app = appManager.setup(config);
 
+
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 /*cors handling*/
 app.use(cors({
 	origin:true,

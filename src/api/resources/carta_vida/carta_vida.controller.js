@@ -3,7 +3,7 @@ import { db } from '../../../models/index.js';
 export default {
    async index(req, res, next) {
         try {
-            let { texto,id_participante,nome,url_file } = req.body;
+            let { texto,id_participante,nome,url_file,relacao } = req.body;
              function removeHtmlTags(str) 
              {
                return str.replace(/<\/?[^>]+(>|$)/g, "");
@@ -14,7 +14,7 @@ export default {
            
             db.carta_vida.findOne({ where: { id_participante: -1 } })
                 .then(data => {
-                   return db.carta_vida.create({ texto:texto,id_participante:id_participante,remetente:nome,url:url_file})
+                   return db.carta_vida.create({ texto:texto,id_participante:id_participante,remetente:nome,url:url_file,relacao:relacao})
                 })
                 .then(carta_vida => {
                     res.status(200).json({ 'success': true, msg: "Successfully inserted location" });

@@ -8,15 +8,15 @@ import './errors.js';
 import scheduler from './scheduler.js';
 import path from 'path';
 import cors from 'cors';
-import { s3, bucket, upload1 } from "./middleware/bucket.js";
+import { s3, bucket, upload } from "./middleware/bucket.js";
 
-import axios from 'axios';
-import https from 'https';
-import multer from "multer";
+// import axios from 'axios';
+// import https from 'https';
+// import multer from "multer";
 
-import express from 'express';
+// import express from 'express';
 
-const upload = multer();
+// const upload = multer();
 
 
 import { fileURLToPath } from 'url';
@@ -31,8 +31,8 @@ const app = appManager.setup(config);
 
 
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
 
 /*cors handling*/
 app.use(cors({
@@ -49,20 +49,20 @@ app.post("/api/upload", upload1.single("file"), (req, res) => {
     return res.status(200).json({ message: req.file.location });
  });
 
-app.post('/api/generate-doc',upload.none(), async (req, res) => {
-    try {
-        const response = await axios.post('http://185.228.72.82:9002/generate-doc', req.body, {
-            httpsAgent: new https.Agent({ rejectUnauthorized: false }), // Desabilitar SSL
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-            responseType: 'blob',
-        });
-        res.send(response.data);
-    } catch (error) {
-        res.status(500).send('Erro na chamada à API');
-    }
-});
+// app.post('/api/generate-doc',upload.none(), async (req, res) => {
+//     try {
+//         const response = await axios.post('http://185.228.72.82:9002/generate-doc', req.body, {
+//             httpsAgent: new https.Agent({ rejectUnauthorized: false }), // Desabilitar SSL
+//             headers: {
+//                 'Content-Type': 'multipart/form-data',
+//             },
+//             responseType: 'blob',
+//         });
+//         res.send(response.data);
+//     } catch (error) {
+//         res.status(500).send('Erro na chamada à API');
+//     }
+// });
 
 
 app.use((req, res, next) => {

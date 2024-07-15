@@ -39,7 +39,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
     return res.status(200).json({ message: req.file.location });
  });
 
-app.post('/proxy/generate-doc', async (req, res) => {
+app.post('/api/generate-doc', async (req, res) => {
     try {
         const response = await axios.post('http://185.228.72.82:9002/generate-doc', req.body, {
             httpsAgent: new https.Agent({ rejectUnauthorized: false }), // Desabilitar SSL

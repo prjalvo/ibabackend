@@ -8,12 +8,13 @@ import './errors.js';
 import scheduler from './scheduler.js';
 import path from 'path';
 import cors from 'cors';
-import { s3, bucket, upload } from "./middleware/bucket.js";
+import { s3, bucket, upload1 } from "./middleware/bucket.js";
 
 import axios from 'axios';
 import https from 'https';
 import multer from "multer";
 
+const upload = multer();
 
 
 import { fileURLToPath } from 'url';
@@ -37,11 +38,10 @@ app.options('*', cors());
 app.use('/api', restRouter);
 // app.use('/', webRouter);
 
-app.post("/api/upload", upload.single("file"), (req, res) => {
+app.post("/api/upload", upload1.single("file"), (req, res) => {
     return res.status(200).json({ message: req.file.location });
  });
 
-const upload = multer();
 app.post('/api/generate-doc',upload.none(), async (req, res) => {
     try {
         const response = await axios.post('http://185.228.72.82:9002/generate-doc', req.body, {

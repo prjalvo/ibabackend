@@ -3,7 +3,7 @@ import { db } from '../../../models/index.js';
 export default {
    async index(req, res, next) {
         try {
-            let { texto,id_participante,nome,url_file,relacao } = req.body;
+            let {texto,id_participante,nome,url_file,relacao} = req.body;
              function removeHtmlTags(str) 
              {
                return str.replace(/<\/?[^>]+(>|$)/g, "");

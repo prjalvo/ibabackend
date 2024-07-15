@@ -39,6 +39,22 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
     return res.status(200).json({ message: req.file.location });
  });
 
+app.post('/proxy/generate-doc', async (req, res) => {
+    try {
+        const response = await axios.post('http://185.228.72.82:9002/generate-doc', req.body, {
+            httpsAgent: new https.Agent({ rejectUnauthorized: false }), // Desabilitar SSL
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+            responseType: 'blob',
+        });
+        res.send(response.data);
+    } catch (error) {
+        res.status(500).send('Erro na chamada à API');
+    }
+});
+
+
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin',"http://localhost:3000");
     res.setHeader('Access-Control-Allow-Headers',"*");

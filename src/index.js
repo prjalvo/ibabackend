@@ -10,6 +10,10 @@ import path from 'path';
 import cors from 'cors';
 import { s3, bucket, upload } from "./middleware/bucket.js";
 
+const axios = require('axios');
+const https = require('https');
+
+
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 

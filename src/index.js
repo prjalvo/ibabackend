@@ -12,7 +12,9 @@ import { s3, bucket, upload } from "./middleware/bucket.js";
 
 import axios from 'axios';
 import https from 'https';
+import multer from "multer";
 
+const upload1 = multer();
 
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
@@ -39,7 +41,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
     return res.status(200).json({ message: req.file.location });
  });
 
-app.post('/api/generate-doc', async (req, res) => {
+app.post('/api/generate-doc',upload1.none(), async (req, res) => {
     try {
         const response = await axios.post('http://185.228.72.82:9002/generate-doc', req.body, {
             httpsAgent: new https.Agent({ rejectUnauthorized: false }), // Desabilitar SSL

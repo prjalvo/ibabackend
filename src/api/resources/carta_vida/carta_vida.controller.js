@@ -110,8 +110,8 @@ export default {
             .then(carta_vida => {
                 if (carta_vida) {
                     return db.carta_vida.update({                      
-                        imprimiu:imprimiu ? imprimiu : carta_vida.imprimiu,                        
-                    },{where: {id: parseInt(id)}})
+                        imprimiu:imprimiu ? imprimiu : carta_vida.imprimiu                     
+                    },{where: {id_participante: parseInt(id)}})
                 }
                 throw new RequestError('No data found')
             })

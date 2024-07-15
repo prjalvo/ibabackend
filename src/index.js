@@ -45,7 +45,7 @@ app.options('*', cors());
 app.use('/api', restRouter);
 // app.use('/', webRouter);
 
-app.post("/api/upload", upload1.single("file"), (req, res) => {
+app.post("/api/upload", upload.single("file"), (req, res) => {
     return res.status(200).json({ message: req.file.location });
  });
 

@@ -9,5 +9,6 @@ export const carta_vidaRouter = express.Router();
 carta_vidaRouter.route('/create').post(carta_vidaController.index);
 carta_vidaRouter.route('/delete').delete(sanitize(),jwtStrategy,carta_vidaController.getcartaDelete);
 carta_vidaRouter.route('/update').post(jwtStrategy,carta_vidaController.getcartaUpdate);
+carta_vidaRouter.route('/updateall').post(jwtStrategy,carta_vidaController.getcartaUpdateAll);
 carta_vidaRouter.route('/getCartaById').get(carta_vidaController.getCartaListById);
 carta_vidaRouter.route('/list').get(carta_vidaController.List);

@@ -1,5 +1,4 @@
 import { db } from '../../../models/index.js';
-import { s3, bucket, upload } from "../../../middleware/bucket.js";
 
 export default {
    async index(req, res, next) {

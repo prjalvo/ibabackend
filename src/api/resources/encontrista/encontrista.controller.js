@@ -7,16 +7,7 @@ import bcrypt from 'bcrypt-nodejs';
 export default {
     async addencontrista(req, res, next) {
   const {
-    nome, tipo_documento, numero_documento, email, codigo_inscricao, status, cancelada, 
-    data_inscricao, valor, categoria, cupom, forma_pagamento, quantidade_parcelas, nome_lider, 
-    telefone_lider, numero_lider, complemento_lider, bairro_lider, cidade_lider, cep_lider, 
-    telefone_Fixo, outro_telefone, membro_IBA, participa_Celula, endereco, quem_inscricao, 
-    email_quem, tipo_documento_quem, num_doc_quem, ciente, nome_Pai, email_Pai, telefone_Pai, 
-    idade_no_Evento, data_Nascimento, membro_IBA_PAI, pertence_igreja, email_mae, 
-    telefone_Mae, nome_crianca, tipo_Sanguineo, idade, nome_mae, sexo, contato, alergico, 
-    medicamento, restricao, necessidade, rede, url_doc, quem_inscricao2, email_inscricao, 
-    tipo_doc_inscricao, doc_inscricao, checkin, nome_inscricao_lider, codigo_inscricao_lider, 
-    email_inscricao_lider 
+    nome,data_inscricao, nome_lider   
   } = req.body;
 
   let transaction;
@@ -34,65 +25,9 @@ export default {
     transaction = await db.sequelize.transaction();
     // Cria um novo encontrista
     const encontrista = await db.encontrista.create({
-      nome,
-      tipo_documento,
-      numero_documento,
-      email,
-      codigo_inscricao,
-      status,
-      cancelada,
-      data_inscricao,
-      valor,
-      categoria,
-      cupom,
-      forma_pagamento,
-      quantidade_parcelas,
-      nome_lider,
-      telefone_lider,
-      numero_lider,
-      complemento_lider,
-      bairro_lider,
-      cidade_lider,
-      cep_lider,
-      telefone_Fixo,
-      outro_telefone,
-      membro_IBA,
-      participa_Celula,
-      endereco,
-      quem_inscricao,
-      email_quem,
-      tipo_documento_quem,
-      num_doc_quem,
-      ciente,
-      nome_Pai,
-      email_Pai,
-      telefone_Pai,
-      idade_no_Evento,
-      data_Nascimento,
-      membro_IBA_PAI,
-      pertence_igreja,
-      email_mae,
-      telefone_Mae,
-      nome_crianca,
-      tipo_Sanguineo,
-      idade,
-      nome_mae,
-      sexo,
-      contato,
-      alergico,
-      medicamento,
-      restricao,
-      necessidade,
-      rede,
-      url_doc,
-      quem_inscricao2,
-      email_inscricao,
-      tipo_doc_inscricao,
-      doc_inscricao,
-      checkin,
-      nome_inscricao_lider,
-      codigo_inscricao_lider,
-      email_inscricao_lider
+      nome: nome,
+      data_inscricao: data_inscricao,
+      nome_lider:nome_lider      
     }, { transaction });
 
     // Confirma a transação
